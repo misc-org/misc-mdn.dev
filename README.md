@@ -1,6 +1,6 @@
 # misc.dev
 
-情報システム部のサイト(仮)です [misc.dev](https://misc.vercel.app)
+情報システム部のサイト(仮)です [misc.dev](https://misc.dev)
 
 ## Hugo のインストール
 [このサイト](https://gohugo.io/getting-started/installing/) を参考にしてください
