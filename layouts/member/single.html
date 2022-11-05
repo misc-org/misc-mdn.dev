@@ -1,0 +1,93 @@
+{{ define "main" }}
+<article id="member-article"
+  class="px-6 mx-auto max-w-2xl prose mb-16 text-white justify-self-center sm:px-4 md:px-0">
+  <h1 class="text-center font-light text-5xl m-0">{{ .Title }}</h1>
+  <div class="w-48 m-auto my-8 border-accent-400 border-2 rounded-sm"></div>
+  <div class="member-container">
+    {{ .Content }}
+  </div>
+</article>
+
+<style>
+  #member-article {
+    min-height: 80vh;
+  }
+
+  .member-container .member-detail {
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: opacity 0.4s ease-in-out;
+    opacity: 0;
+  }
+
+  .member-container .member-detail.active {
+    height: auto;
+    padding: 0.4rem;
+    opacity: 1;
+  }
+
+
+  .member-container p {
+    margin: 0 0 0 1rem;
+  }
+
+  .member-container ul {
+    margin: 0;
+  }
+
+  .member-container li {
+    line-height: 1.2rem;
+  }
+
+  .member-container h3 {
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+
+  .member-container h3::before {
+    content: "▶︎";
+    display: inline-block;
+    font-size: 0.5rem;
+    vertical-align: middle;
+    transition: all 0.3s ease-out;
+    transform: rotateX(0deg);
+  }
+
+  .member-container h3.active::before {
+    transform: rotate(90deg);
+  }
+
+  .member-container svg {
+    display: none;
+  }
+</style>
+
+<script defer>
+  const members = [...document.getElementsByTagName('h3')];
+  const details = [...document.getElementsByClassName('member-detail')];
+
+  members.map((member, i) => {
+    if (member.id == location.hash.slice(1)) {
+      member.classList.add('active');
+      details[i].classList.add('active');
+    }
+
+    member.addEventListener("click", () => {
+      const classes = [...details[i].classList];
+      if (classes.indexOf('active') != -1) {
+        member.classList.remove('active');
+        details[i].classList.remove('active');
+      }
+      else {
+        member.classList.add('active');
+        details[i].classList.add('active');
+      }
+    });
+  });
+
+  document.getElementById('header-path').innerText = '~/member';
+</script>
+
+{{ end }}
