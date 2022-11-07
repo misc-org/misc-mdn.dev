@@ -1,6 +1,6 @@
-# misc.dev
+# misc-mdn.dev
 
-情報システム部のサイト(仮)です [misc.dev](https://misc.dev)
+情報システム部のサイト(仮)です [misc-mdn.dev](https://misc-mdn.dev)
 
 ## Hugo のインストール
 [このサイト](https://gohugo.io/getting-started/installing/) を参考にしてください

@@ -1,5 +1,5 @@
 {
-  "name": "misc.dev",
+  "name": "misc-mdn.dev",
   "version": "1.0.0",
   "description": "misc's site",
   "main": "index.js",
@@ -8,11 +8,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SatooRu65536/misc.dev.git"
+    "url": "git+https://github.com/SatooRu65536/misc-mdn.dev.git"
   },
   "author": "SatooRu65536",
   "license": "MIT",
-  "homepage": "https://github.com/SatooRu65536/misc.dev#readme",
+  "homepage": "https://github.com/SatooRu65536/misc-mdn.dev#readme",
   "devDependencies": {
     "autoprefixer": "^10.4.12",
     "postcss-cli": "^10.0.0",
