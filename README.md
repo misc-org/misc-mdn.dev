@@ -16,6 +16,9 @@ hugo server
 hugo --kind blog-bundle new blog/`date +'%Y/%m/'`title
 ```
 
+## ページ内容の変更
+`content/about.md` `content/member.md` を書き換えてください
+
 ## CSSの変更
 - 基本的には[/layouts](./layouts/) のhtmlファイルを直接編集する
 - デフォルトの設定は `assets/tailwind.config.js` を変更する
