@@ -2,15 +2,13 @@
 author: Ryuto Tada
 title: "Member"
 type: "member"
-date: 2022-10-16T13:08:19+09:00
 description: A short description about members.
-keywords:
-  - about
 ---
 
 ※一部のメンバーのみ表示しています
 
 ## 3年
+
 ### Ryuto Tada
 <div class="member-detail">
 
@@ -37,3 +35,12 @@ keywords:
 </div>
 
 ## 2年
+
+### Riku Nagamine
+<div class="member-detail">
+
+Vtuberが好きすぎてモデリングを始めたやばいやつ
+- Live2d
+- 動画編集
+
+</div>
