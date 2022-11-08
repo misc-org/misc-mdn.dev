@@ -15,7 +15,7 @@
       <div class="flex justify-center space-x-4">
         {{ if .Site.Params.gitHub }}
         <a rel="me" href="{{ .Site.Params.gitHub.Url }}" title="{{ .Site.Params.gitHub.Name }}"
-          class="text-white hover:text-accent-400 transition-colors duration-200">
+          class="text-white hover:text-accent-400 mt-1 transition-colors duration-300">
           {{ partial "icons/ionicons" (dict "logoname" "logo-github" "size" 10) }}
           {{ .Site.Params.gitHub.Name }}
         </a>
@@ -24,7 +24,7 @@
       <div class="flex justify-center space-x-4">
         {{ if .Site.Params.twitter }}
         <a rel="me" href="{{ .Site.Params.twitter.Url }}" title="{{ .Site.Params.twitter.Name }}"
-          class="text-white hover:text-accent-400 transition-colors duration-200">
+          class="text-white hover:text-accent-400 mt-1 transition-colors duration-300">
           {{ partial "icons/ionicons" (dict "logoname" "logo-twitter" "size" 10) }}
           {{ .Site.Params.twitter.Name }}
         </a>
@@ -33,7 +33,7 @@
       <div class="flex justify-center space-x-4">
         {{ if .Site.Params.mail }}
         <a rel="me" href="mailto:{{ .Site.Params.mail.Account }}" title="{{ .Site.Params.mail.Name }}"
-          class="text-white hover:text-accent-400 transition-colors duration-200">
+          class="text-white hover:text-accent-400 mt-1 transition-colors duration-300">
           {{ .Site.Params.mail.Name }}
         </a>
         {{ end }}

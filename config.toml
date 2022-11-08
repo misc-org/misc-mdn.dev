@@ -1,4 +1,4 @@
-baseURL = 'https://misc-phi.vercel.app/'
+baseURL = 'https://misc-mdn.dev/'
 languageCode = 'ja-jp'
 title = 'MISC'
 author = 'Meiden Information System Club'
@@ -40,6 +40,7 @@ url = "https://github.com/misc-org"
 
 [Params.twitter]
 name = '@misc-meiden'
+url = 'https://twitter.com/'
 
 [Params.mail]
 name = "misc.meiden@gmail.com"
