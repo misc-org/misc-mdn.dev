@@ -1,6 +1,6 @@
 ---
 author: Ryuto Tada
-title: 名電高校 情報システム部
+title: Hello, World!
 subtitle: "Meiden Information System Club"
 date: 2022-10-16T13:07:02+09:00
 ---
