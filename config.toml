@@ -13,12 +13,17 @@ email = 'misc.meiden@gmail.com'
 [Params]
     name = "MISC"
     description = "Meiden Information System Club"
+    descriptionmeta = "名電高校 情報システム部"
 
     github_user = "misc-org"
     github_repo = "https://github.com/misc-org"
     github_banner = true
     
     # トップページのスクロール矢印
+    indicatearrowonindex = true
+    # トップページのabout
+    aboutsonindex = true
+    # 最近の投稿
     recentpostsonindex = true
 
     headerUsername = 'misc'

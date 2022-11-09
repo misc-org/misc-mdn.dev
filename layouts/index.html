@@ -10,12 +10,14 @@
       <h1 class="text-5xl text-white">
         {{ .Title }}
       </h1>
-      {{ .Content }}
+      {{ if .Site.Params.description }}
+      {{ .Site.Params.description }}
+      {{ end }}
       <div class="w-48 m-auto my-4 border-accent-400 border-2 rounded-sm"></div>
       <div class="flex justify-center space-x-4">
         {{ if .Site.Params.gitHub }}
         <a rel="me" href="{{ .Site.Params.gitHub.Url }}" title="{{ .Site.Params.gitHub.Name }}"
-          class="text-white hover:text-accent-400 mt-1 transition-colors duration-300">
+          class="text-white hover:text-accent-400 mt-2 transition-colors duration-300">
           {{ partial "icons/ionicons" (dict "logoname" "logo-github" "size" 10) }}
           {{ .Site.Params.gitHub.Name }}
         </a>
@@ -24,7 +26,7 @@
       <div class="flex justify-center space-x-4">
         {{ if .Site.Params.twitter }}
         <a rel="me" href="{{ .Site.Params.twitter.Url }}" title="{{ .Site.Params.twitter.Name }}"
-          class="text-white hover:text-accent-400 mt-1 transition-colors duration-300">
+          class="text-white hover:text-accent-400 mt-2 transition-colors duration-300">
           {{ partial "icons/ionicons" (dict "logoname" "logo-twitter" "size" 10) }}
           {{ .Site.Params.twitter.Name }}
         </a>
@@ -33,13 +35,13 @@
       <div class="flex justify-center space-x-4">
         {{ if .Site.Params.mail }}
         <a rel="me" href="mailto:{{ .Site.Params.mail.Account }}" title="{{ .Site.Params.mail.Name }}"
-          class="text-white hover:text-accent-400 mt-1 transition-colors duration-300">
+          class="text-white hover:text-accent-400 mt-2 transition-colors duration-300">
           {{ .Site.Params.mail.Name }}
         </a>
         {{ end }}
       </div>
     </div>
-    {{ if .Site.Params.recentpostsonindex | default true }}
+    {{ if .Site.Params.indicatearrowonindex | default true }}
     <div class="mx-auto mb-10">
       <svg class="animate-bounce w-6 h-6 text-white cursor-pointer" id="bouncing-arrow" fill="none"
         stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -48,6 +50,14 @@
     </div>
     {{ end }}
   </div>
+
+  {{ if .Site.Params.aboutsonindex | default true }}
+  <h2 class="text-center font-light text-3xl mt-5">About</h2>
+  <div class="w-48 m-auto my-8 border-accent-400 border-2 rounded-sm"></div>
+  <div class="mb-15">
+    {{ .Content }}
+  </div>
+  {{ end }}
 
   {{ if .Site.Params.recentpostsonindex | default true }}
   <div id="featured-post" class="h-8"></div>

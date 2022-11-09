@@ -1452,6 +1452,9 @@ body .icon-parent::before {
 .mt-5{
   margin-top: 1.25rem;
 }
+.mb-15{
+  margin-bottom: 4rem;
+}
 .mt-15{
   margin-top: 4rem;
 }

@@ -16,10 +16,10 @@
   </title>
   {{- if .Description -}}
     <meta name="description" content="{{ .Description | safeHTML }}" />
-  {{ else if .Site.Params.description }}
+  {{ else if .Site.Params.Descriptionmeta }}
     <meta
       name="description"
-      content="{{ .Site.Params.Description | safeHTML }}"
+      content="{{ .Site.Params.Descriptionmeta | safeHTML }}"
     />
   {{- end -}}
   {{- if .Params.Author -}}
