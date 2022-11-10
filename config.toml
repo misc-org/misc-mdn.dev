@@ -13,7 +13,7 @@ email = 'misc.meiden@gmail.com'
 [Params]
     name = "MISC"
     description = "Meiden Information System Club"
-    descriptionmeta = "名電高校情報システム部の公式サイトです。活動内容などはブログにあります"
+    descriptionmeta = "名電高校情報システム部の公式サイトです。"
 
     github_user = "misc-org"
     github_repo = "https://github.com/misc-org"
