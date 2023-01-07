@@ -72,7 +72,7 @@
           {{ partial "icons/ionicons" (dict "logoname" "person-outline" "size" 5) }}
           Posted By:
         </span>
-        <a rel="author" class="p-author h-card" href="/member/#{{ . | urlize }}">{{ . }}</a>
+        <span class="h-card">{{ . }}</span>
       </div>
     {{ end }}
     {{ with .Params.categories }}
