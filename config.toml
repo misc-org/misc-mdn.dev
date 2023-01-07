@@ -43,10 +43,6 @@ email = 'misc.meiden@gmail.com'
 name = "misc-org"
 url = "https://github.com/misc-org"
 
-[Params.twitter]
-name = '@misc-meiden'
-url = 'https://twitter.com/'
-
 [Params.mail]
 name = "misc.meiden@gmail.com"
 account = "misc.meiden@gmial.com"
