@@ -3,9 +3,11 @@
     "tags": [
       "a",
       "article",
+      "blockquote",
       "body",
       "br",
       "circle",
+      "del",
       "div",
       "figcaption",
       "figure",
@@ -29,6 +31,7 @@
       "p",
       "path",
       "picture",
+      "pre",
       "rect",
       "script",
       "source",
@@ -89,6 +92,7 @@
       "h-screen",
       "header-title",
       "hidden",
+      "highlight",
       "hover:bg-gray-100",
       "hover:shadow-lg",
       "hover:shadow-xl",
@@ -208,8 +212,14 @@
       "type-blog",
       "type-member",
       "type-top",
+      "おわりに",
+      "なぜ",
+      "はじめに",
       "フレームワーク等",
-      "情報システム部のサイトを作った"
+      "使い方",
+      "情報システム部のサイトを作った",
+      "自作言語について",
+      "難しかった点"
     ]
   }
 }
