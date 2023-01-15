@@ -17,7 +17,7 @@ function addCodeCopyButtons(clipboard) {
           button.blur();
 
           button.innerHTML =
-            '<span class="inline-sttext-gray00ay-700 text-sm"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Checkmark</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M416 128L192 384l-96-96"/></svg></span> Copied!';
+            '<span class="inline-svg text-gray700700 text-sm"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Checkmark</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M416 128L192 384l-96-96"/></svg></span> Copied!';
 
           setTimeout(() => {
             button.innerHTML = copyHtml;
@@ -25,7 +25,7 @@ function addCodeCopyButtons(clipboard) {
         },
         (error) => {
           button.innerHTML =
-            '<span class="inlintetext-gray0-gray-700 text-sm"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg></span> Error';
+            '<span class="inline-svg text-gray700700 text-sm"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg></span> Error';
         }
       );
     });
