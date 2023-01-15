@@ -48,22 +48,31 @@
     @apply transition ease-in-out hover:scale-150 duration-300 hover:z-20;
   }
 
-  .prose pre > code {
+  .prose pre>code {
     background-color: inherit;
     border-radius: inherit;
     padding: unset;
     font-weight: inherit;
   }
+
   .prose code::before,
   .prose code::after {
     content: none;
   }
 
   .prose code {
-    @apply bg-gray-200 dark:bg-gray-500 rounded-md p-1 font-light;
+    @apply bg-gray-200 rounded-md p-1 font-light;
+    color: rgb(17 24 39);
   }
+
+  .prose :where(li):not(:where([class~="not-prose"] *)) {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
   body {
     @apply font-body;
+    background-color: rgb(17 24 39);
   }
 
   .no-prose li::before {
@@ -88,7 +97,7 @@
 
   /* Shamelessly ripped from https://www.dannyguo.com/blog/how-to-add-copy-to-clipboard-buttons-to-code-blocks-in-hugo/ */
   .copy-code-button {
-    @apply border rounded bg-white dark:bg-gray-500 border-gray-900 block ml-auto mr-0;
+    @apply border rounded border-gray-900 block ml-auto mr-0;
     /* Until we get a new version of Tailwind that supports 
     @apply with complex classes, including responsive and pseudo-class variants */
     /* @apply rounded-sm sm */
@@ -98,21 +107,17 @@
   }
 
   .copy-code-button:hover {
-    @apply cursor-pointer bg-gray-50 dark:bg-gray-600;
+    @apply cursor-pointer bg-gray-500;
   }
 
   .copy-code-button:focus {
     /* Avoid an ugly focus outline on click in Chrome,
        but darken the button for accessibility.
        See https://stackoverflow.com/a/25298082/1481479 */
-    @apply outline-none bg-gray-100 dark:bg-gray-700;
+    @apply outline-none bg-gray-100;
   }
 
-  .copy-code-button:active {
-    @apply bg-gray-200 dark:bg-gray-800;
-  }
-
-  .link-owner:hover > .link {
+  .link-owner:hover>.link {
     @apply opacity-90 transition ease-in-out delay-150 duration-300;
   }
 

@@ -43,10 +43,6 @@ email = 'misc.meiden@gmail.com'
 name = "misc-org"
 url = "https://github.com/misc-org"
 
-[Params.mail]
-name = "misc.meiden@gmail.com"
-account = "misc.meiden@gmial.com"
-
 [Params.command]
 commands = [
   'sudo rm -rf /',

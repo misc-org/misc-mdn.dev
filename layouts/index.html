@@ -50,9 +50,9 @@
     </div>
     {{ end }}
   </div>
-
+  <div id="featured-post" class="h-64"></div>
   {{ if .Site.Params.aboutsonindex | default true }}
-  <h2 class="text-center font-light text-3xl mt-5">About</h2>
+  <h2 class="text-center font-light text-4xl mt-5">About</h2>
   <div class="w-48 m-auto my-8 border-accent-400 border-2 rounded-sm"></div>
   <div class="mb-15">
     {{ .Content }}
@@ -60,7 +60,7 @@
   {{ end }}
 
   {{ if .Site.Params.recentpostsonindex | default true }}
-  <div id="featured-post" class="h-8"></div>
+  <div id="featured-post" class="h-64"></div>
   <div class="container mx-auto max-w-4xl">
     <h2 class="text-center font-light text-3xl mt-5">Recent Posts</h2>
     <div class="w-48 m-auto my-8 border-accent-400 border-2 rounded-sm"></div>

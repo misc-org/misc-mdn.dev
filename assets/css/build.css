@@ -505,7 +505,7 @@ h1,
   --tw-scale-y: 1.5;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-.prose pre > code {
+.prose pre>code {
     background-color: inherit;
     border-radius: inherit;
     padding: unset;
@@ -521,15 +521,15 @@ h1,
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
   padding: 0.25rem;
   font-weight: 300;
+    color: rgb(17 24 39);
 }
-@media (prefers-color-scheme: dark){
-  .prose code{
-    --tw-bg-opacity: 1;
-    background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+.prose :where(li):not(:where([class~="not-prose"] *)) {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
   }
-}
 body{
   font-family: Fira Sans;
+    background-color: rgb(17 24 39);
 }
 .pagination a{
   margin-left: 0.5rem;
@@ -566,33 +566,17 @@ body{
   border-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(17 24 39 / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-@media (prefers-color-scheme: dark){
-  .copy-code-button{
-    --tw-bg-opacity: 1;
-    background-color: rgb(107 114 128 / var(--tw-bg-opacity));
-  }
-}
-.copy-code-button {
     /* Until we get a new version of Tailwind that supports 
     @apply with complex classes, including responsive and pseudo-class variants */
     /* @apply rounded-sm sm */
     margin-bottom: -2px;
     padding: 3px 8px;
     font-size: 0.875rem;
-  }
+}
 .copy-code-button:hover{
   cursor: pointer;
   --tw-bg-opacity: 1;
-  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-}
-@media (prefers-color-scheme: dark){
-  .copy-code-button:hover{
-    --tw-bg-opacity: 1;
-    background-color: rgb(75 85 99 / var(--tw-bg-opacity));
-  }
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
 .copy-code-button:focus {
     /* Avoid an ugly focus outline on click in Chrome,
@@ -603,23 +587,7 @@ body{
     outline: 2px solid transparent;
     outline-offset: 2px;
   }
-@media (prefers-color-scheme: dark){
-  .copy-code-button:focus{
-    --tw-bg-opacity: 1;
-    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-  }
-}
-.copy-code-button:active{
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-@media (prefers-color-scheme: dark){
-  .copy-code-button:active{
-    --tw-bg-opacity: 1;
-    background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-  }
-}
-.link-owner:hover > .link{
+.link-owner:hover>.link{
   opacity: 0.9;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
@@ -1467,6 +1435,9 @@ body .icon-parent::before {
 .mb-4{
   margin-bottom: 1rem;
 }
+.ml-2{
+  margin-left: 0.5rem;
+}
 .mt-8{
   margin-top: 2rem;
 }
@@ -1542,8 +1513,8 @@ body .icon-parent::before {
 .h-6{
   height: 1.5rem;
 }
-.h-8{
-  height: 2rem;
+.h-64{
+  height: 16rem;
 }
 .h-full{
   height: 100%;
@@ -1698,10 +1669,6 @@ body .icon-parent::before {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
-.bg-gray-900{
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-}
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1785,6 +1752,10 @@ body .icon-parent::before {
 .text-5xl{
   font-size: 3rem;
   line-height: 1;
+}
+.text-4xl{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 .text-3xl{
   font-size: 1.875rem;
@@ -1879,9 +1850,6 @@ body .icon-parent::before {
 .text-gray-900{
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
-}
-.underline{
-  text-decoration-line: underline;
 }
 .no-underline{
   text-decoration-line: none;
