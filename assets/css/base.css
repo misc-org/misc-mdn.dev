@@ -62,6 +62,9 @@
 
   .prose code {
     @apply bg-gray-200 rounded-md p-1 font-light;
+  }
+
+  .prose code[data-lang=""] {
     color: rgb(17 24 39);
   }
 
