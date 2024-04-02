@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["fontsource"]
+  "cSpell.words": ["fontsource", "iconify", "Iconify"],
+  "eslint.validate": ["javascript", "javascriptreact", "svelte"]
 }

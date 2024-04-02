@@ -1,3 +1,29 @@
+/* thx: https://gist.github.com/travis-g/f5caf7f6d5756da1fa90368d33da3362 */
+@font-face {
+  font-family: "emoji";
+  src: local("Noto Color Emoji");
+  unicode-range:
+    U+1f300-1f5ff,
+    /* misc symbols + pictographs */ U+1f910-1f918,
+    U+1f980-1f984,
+    /* supplemental */ U+1f600-1f64f,
+    /* emoticons */ U+1f680-1f6ff,
+    /* transport */ U+26??,
+    /* misc */ U+2700-27bf; /* dingbats */
+}
+
+/* font */
+html {
+  font-size: 1.2rem;
+  scroll-padding-top: 130px; /* header height */
+}
+
 body {
-  font-family: "M PLUS 1 Variable", sans-serif;
+  font-family: "emoji", "M PLUS 1 Variable", sans-serif;
+  font-feature-settings: "palt";
+}
+
+code,
+pre {
+  font-family: "JetBrains Mono Variable", "M PLUS 1 Variable", monospace;
 }
