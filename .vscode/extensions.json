@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "mrmlnc.vscode-scss",
+    "svelte.svelte-vscode",
+    "dbaeumer.vscode-eslint",
+    "ardenivanov.svelte-intellisense",
+    "esbenp.prettier-vscode",
+    "yusukehirao.vscode-markuplint"
+  ]
+}
