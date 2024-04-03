@@ -12,8 +12,11 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `
-          @use "src/lib/styles/_colors.scss" as *;
-          @use "src/lib/styles/_fonts.scss" as *;
+        @use "src/lib/styles/_breakpoints.scss" as *;
+        @use "src/lib/styles/_colors.scss" as *;
+        @use "src/lib/styles/_fonts.scss" as *;
+        @use "src/lib/styles/_sizes.scss" as *;
+        @use "src/lib/styles/_spacings.scss" as *;
         `.trim(),
       },
     },

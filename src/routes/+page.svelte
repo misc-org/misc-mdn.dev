@@ -1,3 +1,9 @@
+<script lang="ts">
+  import { MetaTags } from "svelte-meta-tags";
+  import { INFO } from "$lib/assets/info";
+</script>
+
+<MetaTags title={INFO.about.title} />
 <div>
   <p>夢が現実になる、<wbr />未来への一歩を</p>
 </div>

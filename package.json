@@ -38,6 +38,8 @@
     "sass": "^1.69.5",
     "svelte": "^4.2.7",
     "svelte-check": "^3.6.0",
+    "svelte-meta-tags": "^3.1.1",
+    "sveltekit-view-transition": "^0.5.3",
     "tslib": "^2.4.1",
     "typescript": "^5.4.2",
     "vite": "^5.0.3",
@@ -50,7 +52,9 @@
     "@fontsource-variable/jetbrains-mono": "^5.0.20",
     "@fontsource-variable/m-plus-1": "^5.0.16",
     "@fontsource/noto-color-emoji": "^5.0.26",
+    "@nanostores/persistent": "^0.10.1",
     "bits-ui": "^0.21.1",
+    "nanostores": "^0.10.2",
     "the-new-css-reset": "^1.11.2"
   }
 }

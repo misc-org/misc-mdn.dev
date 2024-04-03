@@ -42,7 +42,7 @@ table {
   th,
   td {
     border: 1px solid;
-    padding: var(--spacing-3);
+    padding: $spacing-3;
   }
   th {
     border-bottom: 2px solid;
@@ -52,7 +52,7 @@ table {
 article,
 .content {
   margin: 0 auto;
-  padding-inline: var(--spacing-20);
+  padding-inline: $spacing-20;
 }
 
 .content {
@@ -76,8 +76,8 @@ h3 {
     opacity: 0;
     cursor: pointer;
     position: absolute;
-    left: calc(-1 * var(--spacing-6));
-    padding-right: var(--spacing-6);
+    left: calc(-1 * $spacing-6);
+    padding-right: $spacing-6;
     transition: opacity 0.1s;
   }
 }
@@ -85,14 +85,14 @@ h3 {
 /* 768px = md */
 @media (width < 768px) {
   html {
-    font-size: var(--font-sizes-md);
+    font-size: $size-md;
     scroll-padding-top: 60px; /* header height */
   }
   article {
-    padding-inline: var(--spacing-5);
+    padding-inline: $spacing-5;
   }
   .content {
-    padding-inline: var(--spacing-10);
+    padding-inline: $spacing-10;
   }
   h2 > a,
   h3 > a {

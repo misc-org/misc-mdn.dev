@@ -16,11 +16,16 @@
 
 <style lang="scss">
   footer {
-    padding: 2rem;
+    padding: $spacing-5;
     align-items: center;
-    gap: 2rem;
+    gap: $spacing-5;
     margin-inline: auto;
     display: flex;
+
+    a {
+      display: grid;
+      place-items: center;
+    }
 
     p {
       text-align: center;
@@ -28,7 +33,7 @@
 
     .circle-container {
       display: flex;
-      gap: 1rem;
+      gap: $spacing-5;
 
       .circle {
         width: 40px;

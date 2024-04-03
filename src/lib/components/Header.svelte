@@ -1,5 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
+  import ThemeSelector from "./ThemeSelector.svelte";
   import logoTitle from "$lib/assets/icons/logo-title";
 </script>
 
@@ -7,8 +8,8 @@
   <a href="/">
     <Icon icon={logoTitle} height={30} />
   </a>
-  <div>
-    <div class="theme-selector">★</div>
+  <div class="nav">
+    <div class="theme-selector"><ThemeSelector /></div>
     <nav>
       <a href="/about">About</a>
       <a href="/about">Blogs</a>
@@ -20,13 +21,25 @@
   header {
     display: flex;
     justify-content: space-between;
-    padding: 2rem;
+    padding: $spacing-5;
 
-    div,
-    nav {
+    a {
+      display: grid;
+      place-items: center;
+    }
+
+    .nav {
       display: flex;
-      align-items: center;
-      gap: 1rem;
+      gap: $spacing-5;
+      .theme-selector {
+        display: grid;
+        place-items: center;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        gap: $spacing-5;
+      }
     }
   }
 </style>

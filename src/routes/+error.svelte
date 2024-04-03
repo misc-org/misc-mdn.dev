@@ -18,7 +18,7 @@
     width: 100%;
 
     > .status {
-      font-size: 2rem;
+      font-size: $size-3xl;
       font-weight: bold;
     }
 
@@ -29,7 +29,7 @@
     }
 
     > .message {
-      font-size: 1.5rem;
+      font-size: $size-lg;
     }
   }
 </style>
