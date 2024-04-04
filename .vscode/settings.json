@@ -5,6 +5,7 @@
     "fontsource",
     "iconify",
     "Iconify",
+    "markuplint",
     "nanostores"
   ],
   "eslint.validate": ["javascript", "javascriptreact", "svelte"],
