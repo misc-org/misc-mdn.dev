@@ -1,0 +1,8 @@
+{
+  "extends": ["markuplint:recommended"],
+  "excludeFiles": ["node_modules/**/*", "dist/**/*", "src/app.html"],
+  "parser": {
+    ".svelte$": "@markuplint/svelte-parser",
+    ".html$": "@markuplint/svelte-parser/kit"
+  }
+}

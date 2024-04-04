@@ -1,0 +1,41 @@
+{
+  "root": true,
+  "extends": ["airbnb-typescript", "plugin:svelte/recommended", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["import", "unused-imports"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2020,
+    "extraFileExtensions": [".svelte"],
+    "project": ["./tsconfig.json"]
+  },
+  "env": {
+    "browser": true,
+    "es2017": true,
+    "node": true
+  },
+  "overrides": [
+    {
+      "files": ["*.svelte"],
+      "parser": "svelte-eslint-parser",
+      "parserOptions": { "parser": "@typescript-eslint/parser" },
+      "rules": {}
+    }
+  ],
+  "rules": {
+    "react/jsx-filename-extension": "off",
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "no-underscore-dangle": "off",
+    "import/no-extraneous-dependencies": ["off"],
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
+    "import/order": [
+      "error",
+      {
+        "alphabetize": { "order": "asc" }
+      }
+    ],
+    "unused-imports/no-unused-imports": "error"
+  }
+}

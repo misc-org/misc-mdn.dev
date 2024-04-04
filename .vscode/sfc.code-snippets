@@ -1,0 +1,16 @@
+{
+	"Svelte SFC": {
+		"prefix": "!",
+		"body": [
+			"<script lang=\"ts\">",
+			"</script>",
+			"",
+			"$0",
+			"",
+			"<style lang=\"scss\">",
+			"</style>",
+			""
+		],
+		"description": "Svelte SFC"
+	}
+}
