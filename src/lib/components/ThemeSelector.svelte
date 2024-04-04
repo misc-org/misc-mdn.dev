@@ -20,7 +20,7 @@
 </script>
 
 <Select.Root {items} selected={atomThemeMode}>
-  <Select.Trigger>
+  <Select.Trigger title="テーマを選択する">
     <div class="icon">
       <Icon icon={themes[$atomThemeMode].icon} height={23} />
     </div>
@@ -62,6 +62,7 @@
     display: flex;
     flex-direction: column;
     gap: $spacing-1;
+    z-index: $z-index-dropdown;
   }
   :global(.select-item) {
     display: grid;

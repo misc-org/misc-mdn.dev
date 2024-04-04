@@ -19,7 +19,7 @@
 
     > .status {
       font-size: $size-3xl;
-      font-weight: bold;
+      font-weight: $font-bold;
     }
 
     > hr {

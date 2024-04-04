@@ -4,7 +4,7 @@
 </script>
 
 <footer>
-  <a href="/">
+  <a href="/" title="トップページへ">
     <Icon icon={logoTitle} height={30} />
   </a>
   <p>MISC © 2024 Copyright.</p>

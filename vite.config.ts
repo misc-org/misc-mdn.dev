@@ -17,6 +17,7 @@ export default defineConfig({
         @use "src/lib/styles/_fonts.scss" as *;
         @use "src/lib/styles/_sizes.scss" as *;
         @use "src/lib/styles/_spacings.scss" as *;
+        @use "src/lib/styles/_z-index.scss" as *;
         `.trim(),
       },
     },

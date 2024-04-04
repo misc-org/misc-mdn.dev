@@ -10,7 +10,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "fmt": "prettier --write .",
-    "lint": "eslint ./src/ && markuplint ./src/**/*.svelte",
+    "lint": "eslint ./src/ && markuplint \"./src/**/*.svelte\"",
     "test": "vitest",
     "clean": "npx --yes rimraf ./node_modules"
   },
@@ -45,9 +45,6 @@
     "vite": "^5.0.3",
     "vitest": "^1.2.0"
   },
-  "engines": {
-    "node": "21.x"
-  },
   "dependencies": {
     "@fontsource-variable/jetbrains-mono": "^5.0.20",
     "@fontsource-variable/m-plus-1": "^5.0.16",
@@ -56,5 +53,8 @@
     "bits-ui": "^0.21.1",
     "nanostores": "^0.10.2",
     "the-new-css-reset": "^1.11.2"
+  },
+  "engines": {
+    "node": "21.x"
   }
 }

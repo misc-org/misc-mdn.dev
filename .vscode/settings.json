@@ -1,5 +1,12 @@
 {
-  "cSpell.words": ["consts", "fontsource", "iconify", "Iconify", "nanostores"],
+  "cSpell.words": [
+    "consts",
+    "extralight",
+    "fontsource",
+    "iconify",
+    "Iconify",
+    "nanostores"
+  ],
   "eslint.validate": ["javascript", "javascriptreact", "svelte"],
   "somesass.suggestAllFromOpenDocument": false,
   "somesass.suggestFromUseOnly": false
