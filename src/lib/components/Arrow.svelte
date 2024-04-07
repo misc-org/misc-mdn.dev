@@ -25,15 +25,11 @@
 </div>
 
 <style lang="scss">
-  $stroke-width: var(--stroke-width);
-  $arrow-height: var(--arrow-height);
-  $arrow-tail-size: var(--arrow-tail-size);
-
   .down-arrow {
     position: relative;
     width: 0;
-    height: $arrow-height;
-    border-left: $stroke-width solid;
+    height: var(--arrow-height);
+    border-left: var(--stroke-width) solid;
     transition: height 0.3s ease-in-out;
 
     .arrow-tail {
@@ -41,14 +37,14 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: $arrow-tail-size;
-      height: $arrow-tail-size;
+      width: var(--arrow-tail-size);
+      height: var(--arrow-tail-size);
       transform-origin: top left;
-      border-left: $stroke-width solid;
-      border-top: $stroke-width solid;
+      border-left: var(--stroke-width) solid;
+      border-top: var(--stroke-width) solid;
       transform: //
-        translateX(calc(-1 * $stroke-width / 2)) //
-        translateY(calc(-1 * $stroke-width / 2)) //
+        translateX(calc(-1 * var(--stroke-width) / 2)) //
+        translateY(calc(-1 * var(--stroke-width) / 2)) //
         rotate(45deg);
     }
   }
