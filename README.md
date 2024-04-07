@@ -20,7 +20,7 @@
 
 ## 要求環境 / Requirements
 
-- Node.js v21
+- Node.js v20
 - npm v10
 
 <details>
@@ -42,8 +42,8 @@
 その後,
 
 ```bash
-nvm install v21
-nvm use v21
+nvm install v20
+nvm use v20
 ```
 
 で, Node.js の準備が整います.
@@ -57,7 +57,7 @@ nvm use v21
 
   ```bash
   curl https://mise.run | sh
-  mise use node@21
+  mise use node@20
   ```
 
 おわり.
