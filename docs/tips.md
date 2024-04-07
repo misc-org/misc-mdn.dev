@@ -26,7 +26,7 @@ Panda CSS の [Theme ↗](https://panda-css.com/docs/customization/theme) に定
 
 ### なぜ SCSS 変数を使うときにインポートせずに使えるの？
 
-Vite の共通オプションの SCSS プロパティーに, すべての SCSS ファイル (/スタイルブロック) に use するよう設定しているからです.
+Vite の共通オプションの SCSS プロパティーに, すべての SCSS ファイル (スタイルブロック) に use するよう設定しているからです.
 
 [`/vite.config.ts` ↗](/vite.config.ts) を見てみましょう. `css.preprocessorOptions[extension].additionalData` に `/src/lib/styles` を import するように設定しています. これがタネ明かしです.
 
