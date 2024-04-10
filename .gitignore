@@ -12,3 +12,4 @@ vite.config.ts.timestamp-*
 dist/
 bun.lockb
 yarn.lock
+pnpm-lock.yaml

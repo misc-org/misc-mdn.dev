@@ -1,55 +1,124 @@
 # misc-mdn.dev
 
-情報システム部のサイト(仮)です [misc-mdn.dev](https://misc-mdn.dev)
+![img](https://raw.githubusercontent.com/misc-org/.github/main/images/background.png)
 
-## Hugo のインストール
+<p align="center">
+情報システム部のサイト
+</p>
 
-[このサイト](https://gohugo.io/getting-started/installing/) を参考にしてください
+## 主な技術スタック / Tech stack
 
-## プレビュー
+- [Svelte ↗](https://svelte.jp/)
+- [SvelteKit ↗](https://kit.svelte.jp/)
+- [TypeScript ↗](https://www.typescriptlang.org/)
+- [SCSS ↗](https://sass-lang.com/)
+- [microCMS ↗](https://microcms.io/)
 
-```shell
-hugo server
+## デプロイ先 / Deploy to
+
+[misc-mdn.dev](https://misc-mdn.dev)
+
+## 要求環境 / Requirements
+
+- Node.js v20
+- npm v10
+
+<details>
+  <summary>NVM を用いた Node.js のインストール</summary>
+
+- Linux / macOS
+
+  1. [HomeBrew](https://brew.sh) をインストールする
+  2. `brew install nvm` で [NVM ↗](https://github.com/nvm-sh/nvm) をインストールする
+
+- Windows
+  1. PowerShell で `winget install -e --id CoreyButler.NVMforWindows` を叩く  
+     または:
+     - [NVM Windows](https://github.com/coreybutler/nvm-windows) からインストーラーをダウンロード
+     - インストーラーを実行
+
+---
+
+その後,
+
+```bash
+nvm install v20
+nvm use v20
 ```
 
-## ブログの追加
+で, Node.js の準備が整います.
 
-`title` 部分はブログの内容に合うタイトルに変更してください
+</details>
 
-```shell
-hugo --kind blog-bundle new blog/`date +'%Y/%m/'`title
+<details>
+  <summary><a href="https://mise.jdx.dev/">mise ↗</a> を用いた Node.js のインストール</summary>
+
+- Linux / macOS
+
+  ```bash
+  curl https://mise.run | sh
+  mise use node@20
+  ```
+
+おわり.
+
+</details>
+
+## 環境変数 / Environment variable
+
+TODO
+
+## インストール / Installation
+
+```bash
+npm i
+npm run dev
+
+# 自動でブラウザを開かせる場合
+npm run dev -- --open
 ```
 
-## ページ内容の変更
+`package-lock.json` のマイグレーション機能を持っている pnpm, Yarn, Bun などのパッケージマネージャなら, 依存関係のインストールや NPM スクリプトの実行時に時短として使っても構いません. それらが生成する lock 系は一応 gitignore しています.  
+ただし, 新しい依存関係を追加するときには npm を使ってください.
 
-`content/about.md` `content/member.md` を書き換えてください
+## ビルド / Build
 
-## CSSの変更
+`/dist` ディレクトリに SSG されたファイルが生成されます.
 
-- 基本的には[/layouts](./layouts/) のhtmlファイルを直接編集する
-- デフォルトの設定は `assets/tailwind.config.js` を変更する
-- TailWind では難しい場合はhtmlファイルに `styleタグ` を追加する
-
-基本的には TailWind に従って class を変更してください
-※ styleタグ を使用する場合は他の部分に干渉しないように気を付けること
-
-TailWind を変更する場合は以下のコマンドを実行してください
-
-```shell
-npm install  # 初回のみ
-npm run build-css
+```bash
+npm run build
 ```
 
-※ [build.css](./assets/css/build.css) は自動生成されるため直接変更しないこと  
-※ [base.css](./assets/css/base.css),
-[resume.css](./assets/css/resume.css),
-[styles.css](./assets/css/styles.css),
-も基本的には変更しない
+## その他のスクリプト / Other scripts
 
-## その他サイトの設定
+### コードフォーマット / Code formatting
 
-[config.toml](./config.toml) を変更してください
+```bash
+npm run fmt
+```
 
-## ライセンス
+### Linting
 
-[MIT LICENSE](./LICENSE)
+[ESLint ↗](https://eslint.org/) と [Markuplint ↗](https://markuplint.dev/ja/) を使っています.
+
+```bash
+npm run lint
+```
+
+### テスト / Testing
+
+[Vitest ↗](https://vitest.dev/) を使っています.
+
+```bash
+npm run test
+```
+
+### キャッシュクリア / Clear cache
+
+```bash
+npm run clean
+```
+
+## その他 / etc
+
+新しく関わるメンバーのために, [コードの歩き方 - `docs/tips.md` ↗](./docs/tips.md) を準備しています. ぜひ参考にしてください.
