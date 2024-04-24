@@ -1,25 +1,20 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import type { PageData } from "./$types";
   import Marker from "$lib/components/Marker.svelte";
-  import { getContentList } from "$lib/utils/services/microcms";
-  import type { EndPoints } from "$lib/utils/types/microcms";
 
-  let blogListContents: EndPoints["gets"]["blogs"]["contents"] = [];
-  onMount(async () => {
-    const res = await getContentList("blogs");
-    blogListContents = res.contents;
-  });
+  export let data: PageData;
+  let blogListContents = data.blogList.contents;
 </script>
 
-<h2>
+<h1>
   <Marker>blogs</Marker>
-</h2>
+</h1>
 
 <div class="content">
   {#each blogListContents as blog}
     <div>
       <code>{blog.id}</code>
-      <h3>{blog.title}</h3>
+      <a href={`/blogs/${blog.id}`}><h3>{blog.title}</h3></a>
       <p>{blog.publishedAt}</p>
     </div>
   {/each}

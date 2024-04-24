@@ -9,6 +9,7 @@
   .marker {
     background: linear-gradient(transparent 65%, $color-highlight 35%);
     width: fit-content;
+    height: fit-content;
 
     font-size: $size-8xl;
     font-weight: $font-thin;

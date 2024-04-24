@@ -9,7 +9,8 @@
   import "@fontsource-variable/m-plus-1";
   import "@fontsource/noto-color-emoji";
   import "@fontsource-variable/jetbrains-mono";
-  import "$lib/styles/global.scss";
+  import "$lib/styles/_global.scss";
+  import "$lib/styles/article.scss";
 
   setupViewTransition();
 </script>
@@ -34,7 +35,9 @@
 
 <div>
   <Header />
-  <slot />
+  <main>
+    <slot />
+  </main>
   <Footer />
 </div>
 
