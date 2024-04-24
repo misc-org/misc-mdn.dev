@@ -9,7 +9,7 @@
   let blogListContents = data.blogList.contents;
 
   let sortKey = 'publishedAt';
-  let filterTag: Tag;
+  let filterTag: Tag = "";
 
   $: sortedAndFilteredBlogs = blogListContents
     .filter(blog => filterTag === "" || blog.tags.includes(filterTag))
@@ -23,6 +23,8 @@
           return 0;
       }
     });
+
+  const tags: Tag[] = ["", "お知らせ", "作品紹介", "活動報告", "1 年生", "2 年生", "3 年生", "_migrated"];
 </script>
 
 <h1>
@@ -37,10 +39,12 @@
       <option value="publishedAtDesc">Date (descending)</option>
     </select>
   </label>
-  <label>
+  <div>
     Filter by tag:
-    <input type="text" bind:value={filterTag} placeholder="Enter tag" />
-  </label>
+    {#each tags as tag (tag)}
+      <button on:click={() => filterTag = tag}>{tag || 'All'}</button>
+    {/each}
+  </div>
 </div>
 
 <div class="content">
