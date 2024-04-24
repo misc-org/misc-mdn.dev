@@ -18,16 +18,17 @@ article {
 
   & .code-block {
     padding-inline: $spacing-5;
-    background-color: $color-text;
-    color: $color-bg;
+    background-color: $color-static-black;
+    border: 1px solid $color-static-white;
+    color: $color-static-white;
     font-size: $size-sm;
+    border-radius: $radii-lg;
 
     > div {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid;
-      border-color: $color-bg;
+      border-bottom: 1px solid $color-static-white;
     }
 
     > pre {
@@ -38,12 +39,12 @@ article {
   }
 
   & p > code {
-    // background-color: $color-9u-brown;
-    // border: 1px solid $color-9u-white;
-    // color: $color-9u-white;
-    // padding: 1rem 2rem;
+    background-color: $color-static-black;
+    border: 1px solid $color-static-white;
+    color: $color-static-white;
+    padding: $spacing-1 $spacing-2;
     font-size: $size-sm;
-    border-radius: $radii-sm;
+    border-radius: $radii-md;
   }
 
   & iframe {
