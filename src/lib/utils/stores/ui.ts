@@ -1,6 +1,6 @@
 import { persistentAtom } from "@nanostores/persistent";
-import { getLocalStorageKey } from "../consts";
-import type { ThemeMode } from "../types/ui";
+import { getLocalStorageKey } from "$lib/utils/consts";
+import type { ThemeMode } from "$lib/utils/types/ui";
 
 export const atomThemeMode = persistentAtom<ThemeMode>(
   getLocalStorageKey("theme-mode"),
