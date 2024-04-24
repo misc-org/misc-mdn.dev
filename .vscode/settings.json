@@ -6,6 +6,8 @@
     "iconify",
     "Iconify",
     "markuplint",
+    "microcms",
+    "MICROCMS",
     "nanostores"
   ],
   "eslint.validate": ["javascript", "javascriptreact", "svelte"],

@@ -6,18 +6,19 @@ export default defineConfig({
 
   test: {
     include: ["src/**/*.{test,spec}.{js,ts}"],
+    globals: true,
   },
 
   css: {
     preprocessorOptions: {
       scss: {
         additionalData: `
-        @use "src/lib/styles/_breakpoints.scss" as *;
-        @use "src/lib/styles/_colors.scss" as *;
-        @use "src/lib/styles/_fonts.scss" as *;
-        @use "src/lib/styles/_sizes.scss" as *;
-        @use "src/lib/styles/_spacings.scss" as *;
-        @use "src/lib/styles/_z-index.scss" as *;
+        @use "src/lib/styles/variables/breakpoints.scss" as *;
+        @use "src/lib/styles/variables/colors.scss" as *;
+        @use "src/lib/styles/variables/fonts.scss" as *;
+        @use "src/lib/styles/variables/sizes.scss" as *;
+        @use "src/lib/styles/variables/spacings.scss" as *;
+        @use "src/lib/styles/variables/z-index.scss" as *;
         `.trim(),
       },
     },
