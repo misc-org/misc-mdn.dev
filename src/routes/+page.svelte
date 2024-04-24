@@ -50,6 +50,15 @@
   </section>
 </article>
 
+<section id="arrow">
+  <a href="/about"><p>Show more</p></a>
+  <span></span>
+</section>
+
+<h2>
+  <Marker>blogs</Marker>
+</h2>
+
 <style lang="scss">
   $header-height: calc(30px + $spacing-5 * 2);
 
@@ -106,4 +115,16 @@
       }
     }
   }
+
+  #arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-5;
+
+  > p {
+    font-size: $size-md;
+    line-height: 1.5;
+  }
+}
 </style>
