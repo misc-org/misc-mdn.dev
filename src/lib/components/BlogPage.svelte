@@ -11,6 +11,8 @@
 
   let blogListContents = blogs.blogList.contents;
 
+  let state: boolean = false;
+
   let sortKey: boolean = false;
   let filterTag = "All";
 
@@ -60,9 +62,9 @@
 {#if more}
   <div id="sort">
     <div>
-      <Button type="button" on:click={() => (filterTag = "All")}>All</Button>
+      <Button type="button" state={state} on:click={() => {filterTag = "All"; state = !state;}}>All</Button>
       {#each tags as tag (tag)}
-        <Button type="button" on:click={() => (filterTag = tag)}>{tag}</Button>
+        <Button type="button" state={state} on:click={() => {filterTag = tag; state = !state;}}>{tag}</Button>
       {/each}
     </div>
     <div>
@@ -89,6 +91,8 @@
 <div id="next">
   {#if page > 1}
     <button on:click={() => (page -= 1)}>前のページ</button>
+  {:else}
+    <span></span>
   {/if}
 
   {#if more}
@@ -120,5 +124,29 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: $spacing-8;
+  }
+
+  #next {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 150px 150px;
+    gap: $spacing-8;
+    justify-content: center;
+    margin-bottom: $spacing-20;
+
+    button {
+      padding: $spacing-5;
+      border: 1px solid $color-bg;
+      border-radius: 5px;
+      background-color: $color-bg;
+      color: $color-text;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: $color-text;
+        color: $color-bg;
+      }
+    }
   }
 </style>

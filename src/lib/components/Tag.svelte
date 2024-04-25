@@ -7,7 +7,6 @@
 
   function handleClick() {
     dispatch("click");
-    state = !state;
   }
 </script>
 
