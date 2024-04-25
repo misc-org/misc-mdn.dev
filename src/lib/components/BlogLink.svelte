@@ -25,13 +25,13 @@
       {/if}
     </a>
   </div>
-  <a href={`/blogs/${id}`}><h3>{title}</h3></a>
   <p>公開：{formatDate(publishedAt)}</p>
   <ul>
     {#each tags as tag (tag)}
       <li>{tag}</li>
     {/each}
   </ul>
+  <a href={`/blogs/${id}`}><h3>{title}</h3></a>
 </div>
 
 <style lang="scss">
@@ -58,5 +58,34 @@
         transform: scale(1.1);
       }
     }
+  }
+
+  h3 {
+    margin: $spacing-2 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    font-size: 0.8em;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    margin-top: $spacing-2;
+    list-style: none;
+  }
+
+  li {
+    background-color: #d9d9d9;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px;
+    font-size: 0.8em;
   }
 </style>

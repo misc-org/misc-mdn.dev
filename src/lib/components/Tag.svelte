@@ -46,11 +46,19 @@
 
     &.button-on {
       background-color: #d9d9d9;
+
+      div {
+        color: #333;
+      }
     }
 
     &.updown-on,
     &.updown-off {
       background-color: #d9d9d9;
+
+      div {
+        color: #333;
+      }
     }
 
     span {
@@ -115,6 +123,7 @@
     span.updown-on::before,
     span.updown-off::before {
       content: "";
+      color: #333;
       width: 12px;
       height: 12px;
       transform: rotate(-45deg);

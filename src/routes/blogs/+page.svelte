@@ -1,11 +1,10 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import type { PageData } from "./$types";
-  import Marker from "$lib/components/Marker.svelte";
   import BlogPage from "$lib/components/BlogPage.svelte";
+  import Marker from "$lib/components/Marker.svelte";
 
   export let data: PageData;
-
-  import { onMount } from "svelte";
 
   let limit: number;
 

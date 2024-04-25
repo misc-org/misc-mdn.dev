@@ -1,17 +1,26 @@
 <script lang="ts">
-  import BlogLink from "$lib/components/BlogLink.svelte";
+  import { createEventDispatcher } from "svelte";
   import Button from "./Tag.svelte";
+  import BlogLink from "$lib/components/BlogLink.svelte";
   import type { Tags } from "$lib/utils/types/microcms";
 
   export let more: boolean = false;
   export let blogs;
   export let limit: number = 10;
 
-  import { createEventDispatcher } from "svelte";
-
   let blogListContents = blogs.blogList.contents;
 
-  let state: boolean = false;
+  let state: boolean[] = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
 
   let sortKey: boolean = false;
   let filterTag = "All";
@@ -62,9 +71,9 @@
 {#if more}
   <div id="sort">
     <div>
-      <Button type="button" state={state} on:click={() => {filterTag = "All"; state = !state;}}>All</Button>
-      {#each tags as tag (tag)}
-        <Button type="button" state={state} on:click={() => {filterTag = tag; state = !state;}}>{tag}</Button>
+      <Button type="button" state={state[0]} on:click={() => {filterTag = "All"; state.fill(false); state[0] = !state[0];}}>All</Button>
+      {#each tags as tag, i (tag)}
+        <Button type="button" state={state[i + 1]} on:click={() => {filterTag = tag; state.fill(false); state[i + 1] = !state[i + 1];}}>{tag}</Button>
       {/each}
     </div>
     <div>
