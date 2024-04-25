@@ -1,29 +1,41 @@
 <script lang="ts">
   import BlogLink from "$lib/components/BlogLink.svelte";
-  import Button from "./Button.svelte";
+  import Button from "./Tag.svelte";
   import type { Tags } from "$lib/utils/types/microcms";
 
   export let more: boolean = false;
   export let blogs;
   export let limit: number = 10;
 
+  import { createEventDispatcher } from "svelte";
+
   let blogListContents = blogs.blogList.contents;
 
-  let sortKey = "publishedAt";
-  let filterTag = "";
+  let sortKey: boolean = false;
+  let filterTag = "All";
 
   let page = 1;
 
   $: start = (page - 1) * limit;
   $: end = start + limit;
 
+  const dispatch = createEventDispatcher();
+
+  function handlePublishedAtClick() {
+    sortKey = !sortKey;
+    dispatch("click");
+  }
+
   $: sortedAndFilteredBlogs = blogListContents
-    .filter((blog: { tags: string | string[]; }) => filterTag === "All" || blog.tags.includes(filterTag))
-    .sort((a: { publishedAt: string; }, b: { publishedAt: string; }) => {
+    .filter(
+      (blog: { tags: string | string[] }) =>
+        filterTag === "All" || blog.tags.includes(filterTag),
+    )
+    .sort((a: { publishedAt: string }, b: { publishedAt: string }) => {
       switch (sortKey) {
-        case "publishedAtAsc":
+        case true:
           return a.publishedAt.localeCompare(b.publishedAt);
-        case "publishedAtDesc":
+        case false:
           return b.publishedAt.localeCompare(a.publishedAt);
         default:
           return 0;
@@ -47,19 +59,14 @@
 
 {#if more}
   <div id="sort">
-    <label>
-      Sort by:
-      <select bind:value={sortKey}>
-        <option value="publishedAtAsc">Date (ascending)</option>
-        <option value="publishedAtDesc">Date (descending)</option>
-      </select>
-    </label>
     <div>
-      Filter by tag:
-      <Button on:click={() => (filterTag = "All")}>All</Button>
+      <Button type="button" on:click={() => (filterTag = "All")}>All</Button>
       {#each tags as tag (tag)}
-        <Button on:click={() => (filterTag = tag)}>{tag}</Button>
+        <Button type="button" on:click={() => (filterTag = tag)}>{tag}</Button>
       {/each}
+    </div>
+    <div>
+      <Button type="updown" on:click={handlePublishedAtClick}>投稿日</Button>
     </div>
   </div>
 {/if}
@@ -79,19 +86,32 @@
     {/each}
   {/if}
 </div>
+<div id="next">
+  {#if page > 1}
+    <button on:click={() => (page -= 1)}>前のページ</button>
+  {/if}
 
-{#if page > 1}
-  <button on:click={() => (page -= 1)}>前のページ</button>
-{/if}
-
-{#if more}
-  <button on:click={() => (page += 1)}>次のページ</button>
-{/if}
+  {#if more}
+    <button on:click={() => (page += 1)}>次のページ</button>
+  {/if}
+</div>
 
 <style lang="scss">
   #sort {
+    margin: 0 $spacing-8;
     margin-top: $spacing-20;
     margin-bottom: $spacing-8;
+    display: grid;
+    grid-template-columns: 1fr 150px;
+    gap: $spacing-8;
+
+    div:nth-of-type(1) {
+      display: grid;
+      grid-template-columns: auto;
+      grid-auto-flow: column;
+      gap: $spacing-1;
+      overflow: auto;
+    }
   }
   .content {
     width: 100%;
