@@ -2,14 +2,19 @@
   import type { PageData } from "./$types";
   import BlogLink from "$lib/components/BlogLink.svelte";
   import Marker from "$lib/components/Marker.svelte";
-
-  type Tag = "" | "お知らせ" | "作品紹介" | "活動報告" | "1 年生" | "2 年生" | "3 年生" | "_migrated";
+  import type { Blog } from "$lib/types";
 
   export let data: PageData;
   let blogListContents = data.blogList.contents;
 
   let sortKey = 'publishedAt';
   let filterTag: Tag = "";
+
+  let limit = 10;
+  let page = 1;
+
+  $: start = (page - 1) * limit;
+  $: end = start + limit;
 
   $: sortedAndFilteredBlogs = blogListContents
     .filter(blog => filterTag === "" || blog.tags.includes(filterTag))
@@ -22,9 +27,13 @@
         default:
           return 0;
       }
-    });
+    })
+    .slice(start, end); // 現在のページに表示するブログの範囲だけを取得
 
-  const tags: Tag[] = ["", "お知らせ", "作品紹介", "活動報告", "1 年生", "2 年生", "3 年生", "_migrated"];
+  $: more = blogListContents.length > end; // 次のページが存在する場合はtrue
+
+
+  const tags: Tag[] = ["", "お知らせ", "ブログ", "作品紹介", "活動報告", "1 年生", "2 年生", "3 年生", "_migrated"];
 </script>
 
 <h1>
@@ -48,16 +57,28 @@
 </div>
 
 <div class="content">
-  {#each sortedAndFilteredBlogs as blog}
-    <BlogLink
-      id={blog.id}
-      title={blog.title}
-      publishedAt={blog.publishedAt}
-      tags={blog.tags}
-      ogpImg={blog.ogpImg}
-    />
-  {/each}
+  {#if sortedAndFilteredBlogs.length === 0}
+  <p id="no-page">ページは存在しません</p>
+{:else}
+{#each sortedAndFilteredBlogs as blog}
+<BlogLink
+  id={blog.id}
+  title={blog.title}
+  publishedAt={blog.publishedAt}
+  tags={blog.tags}
+  ogpImg={blog.ogpImg}
+/>
+{/each}
+{/if}
 </div>
+
+{#if page > 1}
+  <button on:click={() => page -= 1}>前のページ</button>
+{/if}
+
+{#if more}
+  <button on:click={() => page += 1}>次のページ</button>
+{/if}
 
 <style lang="scss">
   .content {

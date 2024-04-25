@@ -37,7 +37,7 @@
 <style lang="scss">
   .ogp {
     width: 100%;
-    height: 200px;
+    aspect-ratio: 100 / 52.5;
     border-radius: 5px;
     text-align: center;
     overflow: hidden;
