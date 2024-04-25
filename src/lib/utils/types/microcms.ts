@@ -51,6 +51,8 @@ export type Blogs<T = "get"> = Structure<
   }
 >;
 
+export type Tags = Blogs["tags"][number];
+
 export type EndPoints = {
   get: {
     blogs: Blogs<"get">;
