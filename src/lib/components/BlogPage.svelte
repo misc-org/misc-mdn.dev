@@ -54,7 +54,7 @@
     })
     .slice(start, end);
 
-  $: more = blogListContents.length > end;
+  $: morePage = blogListContents.length > end;
 
   const tags: Tags[] = [
     "お知らせ",
@@ -71,10 +71,12 @@
 {#if more}
   <div id="sort">
     <div>
-      <Button type="button" state={state[0]} on:click={() => {filterTag = "All"; state.fill(false); state[0] = !state[0];}}>All</Button>
-      {#each tags as tag, i (tag)}
-        <Button type="button" state={state[i + 1]} on:click={() => {filterTag = tag; state.fill(false); state[i + 1] = !state[i + 1];}}>{tag}</Button>
-      {/each}
+      <select  bind:value={filterTag}>
+        <option value="All">All</option>
+        {#each tags as tag, i}
+          <option value={tag}>{tag}</option>
+        {/each}
+      </select>
     </div>
     <div>
       <Button type="updown" on:click={handlePublishedAtClick}>投稿日</Button>
@@ -104,7 +106,7 @@
     <span></span>
   {/if}
 
-  {#if more}
+  {#if morePage}
     <button on:click={() => (page += 1)}>次のページ</button>
   {/if}
 </div>
@@ -115,7 +117,7 @@
     margin-top: $spacing-20;
     margin-bottom: $spacing-8;
     display: grid;
-    grid-template-columns: 1fr 150px;
+    grid-template-columns: 150px 150px 1fr;
     gap: $spacing-8;
 
     div:nth-of-type(1) {
@@ -123,9 +125,18 @@
       grid-template-columns: auto;
       grid-auto-flow: column;
       gap: $spacing-1;
-      overflow: auto;
+
+      select {
+        padding: $spacing-2 $spacing-5;
+        border: 1px solid $color-text;
+        border-radius: 5px;
+        background-color: $color-bg;
+        color: $color-text;
+        cursor: pointer;
+      }
     }
   }
+
   .content {
     width: 100%;
     margin-bottom: $spacing-20;
