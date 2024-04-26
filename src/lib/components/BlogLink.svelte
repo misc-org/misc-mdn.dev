@@ -18,7 +18,12 @@
   <div class="ogp">
     <a href={`/blogs/${id}`}>
       {#if ogpImg}
-        <img src={ogpImg.url} alt={title} />
+        <img
+          src={ogpImg.url}
+          alt={title}
+          height={ogpImg.height}
+          width={ogpImg.width}
+        />
       {:else}
         <img src="https://placehold.jp/1200x630.png" alt="ogp" />
       {/if}
