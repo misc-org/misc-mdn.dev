@@ -10,18 +10,6 @@
 
   let blogListContents = blogs.blogList.contents;
 
-  let state: boolean[] = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ];
-
   let sortKey: boolean = false;
   let filterTag = "All";
 
@@ -106,7 +94,7 @@
     <span></span>
   {/if}
 
-  {#if morePage}
+  {#if more && morePage}
     <button on:click={() => (page += 1)}>次のページ</button>
   {/if}
 </div>

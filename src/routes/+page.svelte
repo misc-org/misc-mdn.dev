@@ -3,6 +3,25 @@
   import { INFO } from "$lib/assets/info";
   import Arrow from "$lib/components/Arrow.svelte";
   import Marker from "$lib/components/Marker.svelte";
+  import { onMount } from "svelte";
+  import type { PageData } from "./$types";
+  import BlogPage from "$lib/components/BlogPage.svelte";
+  import Button from "$lib/components/Button.svelte";
+
+  export let data: PageData;
+
+  let limit: number;
+
+  onMount(() => {
+    const width = window.innerWidth;
+    if (width <= 480) {
+      limit = 4; // モバイルデバイスの場合
+    } else if (width <= 768) {
+      limit = 6; // タブレットの場合
+    } else {
+      limit = 8; // デスクトップの場合
+    }
+  });
 </script>
 
 <MetaTags title={INFO.about.title} />
@@ -51,13 +70,22 @@
 </article>
 
 <section id="arrow">
-  <a href="/about"><p>Show more</p></a>
+  <a href="/about"><Button>Show more →</Button></a>
   <span></span>
 </section>
 
 <h2>
   <Marker>blogs</Marker>
 </h2>
+
+<section>
+  <BlogPage more={false} blogs={data} {limit} />
+</section>
+
+<section>
+  <a href="/blogs"><Button>Show more →</Button></a>
+  <span></span>
+</section>
 
 <style lang="scss">
   $header-height: calc(30px + $spacing-5 * 2);
