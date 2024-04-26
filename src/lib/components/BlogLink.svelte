@@ -1,9 +1,8 @@
 <script lang="ts">
-  export let id: string;
-  export let title: string;
-  export let publishedAt: string;
-  export let tags: string[];
-  export let ogpImg: { url: string } | null;
+  import type { EndPoints } from "$lib/utils/types/microcms";
+
+  export let blogData: EndPoints["get"]["blogs"];
+  const { id, title, publishedAt, tags, ogpImg } = blogData;
 
   function formatDate(dateString: string | number | Date) {
     const date = new Date(dateString);

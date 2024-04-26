@@ -76,14 +76,8 @@
   {#if sortedAndFilteredBlogs.length === 0}
     <p id="no-page">ページは存在しません</p>
   {:else}
-    {#each sortedAndFilteredBlogs as blog}
-      <BlogLink
-        id={blog.id}
-        title={blog.title}
-        publishedAt={blog.publishedAt}
-        tags={blog.tags}
-        ogpImg={blog.ogpImg}
-      />
+    {#each sortedAndFilteredBlogs as blogData}
+      <BlogLink {blogData} />
     {/each}
   {/if}
 </div>
