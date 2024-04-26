@@ -40,7 +40,6 @@
 
 <style lang="scss">
   .ogp {
-    width: 100%;
     aspect-ratio: 100 / 52.5;
     border-radius: 5px;
     text-align: center;
