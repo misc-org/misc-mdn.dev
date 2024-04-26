@@ -88,13 +88,13 @@
   {/if}
 </div>
 <div id="next">
-  {#if page > 1}
+  {#if page > 1 && sortedAndFilteredBlogs.length !== 0}
     <button on:click={() => {page -= 1; window.scrollTo(0, 0);}}>前のページ</button>
   {:else}
     <span></span>
   {/if}
 
-  {#if more && morePage}
+  {#if more && morePage && sortedAndFilteredBlogs.length !== 0}
     <button on:click={() => {page += 1; window.scrollTo(0, 0);}}>次のページ</button>
   {/if}
 </div>
