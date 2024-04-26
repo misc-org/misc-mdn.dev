@@ -1,12 +1,12 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { MetaTags } from "svelte-meta-tags";
+  import type { PageData } from "./$types";
   import { INFO } from "$lib/assets/info";
   import Arrow from "$lib/components/Arrow.svelte";
-  import Marker from "$lib/components/Marker.svelte";
-  import { onMount } from "svelte";
-  import type { PageData } from "./$types";
   import BlogPage from "$lib/components/BlogPage.svelte";
   import Button from "$lib/components/Button.svelte";
+  import Marker from "$lib/components/Marker.svelte";
 
   export let data: PageData;
 
