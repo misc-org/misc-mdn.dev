@@ -47,8 +47,6 @@
         </span>
       </div>
     </div>
-    <h3>令和 6 年度部活動紹介動画</h3>
-    <span></span>
   </article>
   <article>
     <h3>このサイトについて</h3>
