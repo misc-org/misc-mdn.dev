@@ -93,6 +93,12 @@
         line-height: 1.5;
       }
 
+      @media (max-width: 768px) {
+        p {
+          font-size: $size-xs;
+        }
+      }
+
       div {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -118,6 +124,16 @@
 
       ul {
         list-style: none;
+        padding: 0;
+
+        li {
+          padding: $spacing-2;
+          border-radius: 5px;
+          background-color: #d9d9d9;
+          color: #333;
+          margin: $spacing-2;
+          font-size: 0.8em;
+        }
       }
 
       a {

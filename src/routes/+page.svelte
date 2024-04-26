@@ -94,19 +94,27 @@
     }
   }
 
+  @media (max-width: 768px) {
+    .landing {
+      > p {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
   h2 {
     padding-block: $spacing-10;
   }
 
   #arrow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: $spacing-5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-5;
 
-  > p {
-    font-size: $size-md;
-    line-height: 1.5;
+    > p {
+      font-size: $size-md;
+      line-height: 1.5;
+    }
   }
-}
 </style>

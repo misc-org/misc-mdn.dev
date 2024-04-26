@@ -16,4 +16,10 @@
     line-height: 1.1;
     text-transform: uppercase;
   }
+
+  @media (max-width: 768px) {
+    .marker {
+      font-size: $size-6xl;
+    }
+  }
 </style>

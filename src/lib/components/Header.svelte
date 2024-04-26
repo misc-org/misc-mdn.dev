@@ -44,6 +44,12 @@
         align-items: center;
         gap: $spacing-5;
       }
+
+      @media (max-width: 768px) {
+        nav {
+          gap: $spacing-3;
+        }
+      }
     }
   }
 </style>

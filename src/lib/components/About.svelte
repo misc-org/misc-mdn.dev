@@ -45,6 +45,17 @@
       > h3 {
         font-weight: $font-extrabold;
       }
+
+      > p {
+        font-size: $size-lg;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 768px) {
+        > p {
+          font-size: $size-xs;
+        }
+      }
     }
   }
 </style>

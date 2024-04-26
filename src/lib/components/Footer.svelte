@@ -34,6 +34,10 @@
       text-align: center;
     }
 
+    @media (max-width: 768px) {
+      font-size: $size-xs;
+    }
+
     .circle-container {
       display: flex;
       gap: $spacing-5;

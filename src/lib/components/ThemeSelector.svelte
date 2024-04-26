@@ -56,6 +56,7 @@
 
 <style lang="scss">
   :global(.select-content) {
+    background-color: $color-bg;
     border: 1px solid $color-text;
     padding: 0.5rem;
     border-radius: 0.5rem;
