@@ -38,7 +38,6 @@ export type Blogs<T = "get"> = Structure<
       | "1 年生"
       | "2 年生"
       | "3 年生"
-      | "_migrated"
     )[];
     /**
      * 本文
