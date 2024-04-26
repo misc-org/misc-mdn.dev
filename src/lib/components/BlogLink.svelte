@@ -20,7 +20,7 @@
       {#if ogpImg}
         <img src={ogpImg.url} alt={title} />
       {:else}
-        <img src="https://placehold.jp/150x150.png" alt="ogp" />
+        <img src="https://placehold.jp/1200x630.png" alt="ogp" />
       {/if}
     </a>
   </div>
