@@ -98,9 +98,16 @@
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: $spacing-5;
 
+        div {
+          padding: $spacing-2;
+          border-radius: 5px;
+          background-color: #d9d9d9;
+        }
+
         p {
           font-size: 1.2em;
           font-weight: $font-bold;
+          color: #333;
         }
 
         span {
