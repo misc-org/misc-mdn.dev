@@ -83,6 +83,7 @@
 
   li {
     background-color: #d9d9d9;
+    color: #333;
     border-radius: 5px;
     padding: 5px 10px;
     margin: 5px;

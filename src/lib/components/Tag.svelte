@@ -3,29 +3,19 @@
   const dispatch = createEventDispatcher();
 
   export let state: boolean = false;
-  export let type: "button" | "updown" = "button";
 
   function handleClick() {
+    state = !state;
     dispatch("click");
   }
 </script>
 
 <button
-  class:button-on={state && type == "button"}
-  class:button-off={!state && type == "button"}
-  class:updown-on={state && type == "updown"}
-  class:updown-off={!state && type == "updown"}
+  class:updown-on={state}
+  class:updown-off={!state}
   on:click={handleClick}
 >
-  <span
-    class:button-on={state && type == "button"}
-    class:button-off={!state && type == "button"}
-    class:updown-on={state && type == "updown"}
-    class:updown-off={!state && type == "updown"}
-    >{#if type == "updown"}
-      <span></span>
-    {/if}</span
-  >
+  <span class:updown-on={state} class:updown-off={!state}><span></span></span>
   <div><slot /></div>
 </button>
 
@@ -44,14 +34,6 @@
     grid-template-columns: 30px 1fr;
     transition: all 0.3s ease-in-out;
 
-    &.button-on {
-      background-color: #d9d9d9;
-
-      div {
-        color: #333;
-      }
-    }
-
     &.updown-on,
     &.updown-off {
       background-color: #d9d9d9;
@@ -68,42 +50,10 @@
       height: 30px;
       border-radius: 100vh;
       transition: all 0.3s ease-in-out;
-
-      &.button-on {
-        background-color: #f3f3f3;
-
-        &::before,
-        &::after {
-          background: #333;
-        }
-      }
-
-      &.button-off {
-        background-color: #d9d9d9;
-
-        &::before,
-        &::after {
-          background: #d9d9d9;
-        }
-      }
-
       &.updown-on,
       &.updown-off {
         background-color: #f3f3f3;
       }
-    }
-
-    span.button-on::before,
-    span.button-on::after,
-    span.button-off::before,
-    span.button-off::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 2px;
-      height: 20px;
-      transition: all 0.3s ease-in-out;
     }
 
     span.updown-on > span,
@@ -138,21 +88,11 @@
     }
 
     span.updown-on {
-      transform: rotate(180deg);
-    }
-
-    span.updown-off {
       transform: rotate(0deg);
     }
 
-    span.button-on::before,
-    span.button-off::before {
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
-
-    span.button-on::after,
-    span.button-off::after {
-      transform: translate(-50%, -50%) rotate(-45deg);
+    span.updown-off {
+      transform: rotate(180deg);
     }
   }
 </style>

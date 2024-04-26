@@ -61,13 +61,13 @@
     <div>
       <select  bind:value={filterTag}>
         <option value="All">All</option>
-        {#each tags as tag, i}
+        {#each tags as tag}
           <option value={tag}>{tag}</option>
         {/each}
       </select>
     </div>
     <div>
-      <Button type="updown" on:click={handlePublishedAtClick}>投稿日</Button>
+      <Button on:click={handlePublishedAtClick}>投稿日</Button>
     </div>
   </div>
 {/if}
@@ -127,7 +127,6 @@
 
   .content {
     width: 100%;
-    margin-bottom: $spacing-20;
     padding: 0 $spacing-8;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

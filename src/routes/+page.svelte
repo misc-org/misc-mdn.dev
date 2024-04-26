@@ -15,11 +15,11 @@
   onMount(() => {
     const width = window.innerWidth;
     if (width <= 480) {
-      limit = 4; // モバイルデバイスの場合
+      limit = 4;
     } else if (width <= 768) {
-      limit = 6; // タブレットの場合
+      limit = 6;
     } else {
-      limit = 8; // デスクトップの場合
+      limit = 8;
     }
   });
 </script>
