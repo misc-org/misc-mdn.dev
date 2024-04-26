@@ -3,12 +3,13 @@
   import Button from "./Tag.svelte";
   import BlogLink from "$lib/components/BlogLink.svelte";
   import type { Tags } from "$lib/utils/types/microcms";
+  import type { EndPoints } from "$lib/utils/types/microcms";
 
   export let more: boolean = false;
-  export let blogs;
+  export let blogs: EndPoints["gets"]["blogs"];
   export let limit: number = 10;
 
-  let blogListContents = blogs.blogList.contents;
+  let blogListContents = blogs.contents;
 
   let sortKey: boolean = false;
   let filterTag = "All";
@@ -27,10 +28,10 @@
 
   $: sortedAndFilteredBlogs = blogListContents
     .filter(
-      (blog: { tags: string | string[] }) =>
-        filterTag === "All" || blog.tags.includes(filterTag),
+      (blog) =>
+        filterTag === "All" || blog.tags.includes(filterTag as Tags),
     )
-    .sort((a: { publishedAt: string }, b: { publishedAt: string }) => {
+    .sort((a, b) => {
       switch (sortKey) {
         case true:
           return a.publishedAt.localeCompare(b.publishedAt);
