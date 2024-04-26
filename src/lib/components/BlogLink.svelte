@@ -41,7 +41,7 @@
 <style lang="scss">
   .ogp {
     aspect-ratio: 100 / 52.5;
-    border-radius: 5px;
+    border-radius: $radii-md;
     text-align: center;
     overflow: hidden;
 
