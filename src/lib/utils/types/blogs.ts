@@ -1,14 +1,13 @@
 import type { Blogs } from "./microcms";
 
 export type Tag = {
-  title: "All" | Blogs["tags"][number];
+  title: Blogs["tags"][number];
   icon: string;
 };
 
-export type TagMode = "All" | Blogs["tags"][number];
+export type TagMode = Blogs["tags"][number];
 
 export type Tags = {
-  All: Tag;
   [key: string]: Tag;
 };
 

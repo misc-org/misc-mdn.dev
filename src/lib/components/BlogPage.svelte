@@ -7,6 +7,7 @@
   import BlogLink from "$lib/components/BlogLink.svelte";
   import { getEntries } from "$lib/utils/consts";
   import { tags } from "$lib/utils/types/blogs";
+  import type { TagMode } from "$lib/utils/types/blogs";
   import type { EndPoints } from "$lib/utils/types/microcms";
 
   export let more: boolean = false;
@@ -15,13 +16,13 @@
 
   let blogListContents: EndPoints["get"]["blogs"][] = blogs.blogList.contents;
 
-  let sortKey: boolean = false;
+  let sortKey: boolean = true;
 
   let page = 1;
 
   $: start = (page - 1) * limit;
   $: end = start + limit;
-  $: value = [];
+  let value: TagMode[] = [];
 
   function deleteTag() {
     value = [];
@@ -48,10 +49,10 @@
 
   $: {
     if (value.length === 0) {
-      sortedAndFilteredBlogs = blogListContents.slice(); // Show all blogs when `value` is empty
+      sortedAndFilteredBlogs = blogListContents.slice();
     } else {
-      sortedAndFilteredBlogs = blogListContents.filter(
-        (blog) => value.every((v) => blog.tags.includes(v)), // Change `some` to `every`
+      sortedAndFilteredBlogs = blogListContents.filter((blog) =>
+        value.every((v) => blog.tags.includes(v)),
       );
     }
   }
