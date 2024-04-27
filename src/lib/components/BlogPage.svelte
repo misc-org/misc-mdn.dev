@@ -35,26 +35,28 @@
     dispatch("click");
   }
 
-  $: sortedAndFilteredBlogs = [...blogListContents].sort((a, b) => {
-    if (sortKey) {
-      return (
-        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-      );
-    } else {
-      return (
-        new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime()
-      );
-    }
-  });
+  let sortedAndFilteredBlogs: EndPoints["get"]["blogs"][] = [];
 
   $: {
     if (value.length === 0) {
-      sortedAndFilteredBlogs = blogListContents.slice();
+      sortedAndFilteredBlogs = [...blogListContents];
     } else {
       sortedAndFilteredBlogs = blogListContents.filter((blog) =>
         value.every((v) => blog.tags.includes(v)),
       );
     }
+
+    sortedAndFilteredBlogs.sort((a, b) => {
+      if (sortKey) {
+        return (
+          new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+        );
+      } else {
+        return (
+          new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime()
+        );
+      }
+    });
   }
 
   $: pagedBlogs = sortedAndFilteredBlogs.slice(start, end);
