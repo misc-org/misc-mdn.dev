@@ -1,8 +1,12 @@
 <script lang="ts">
+  import Icon from "@iconify/svelte";
+  import { Select } from "bits-ui";
   import { createEventDispatcher } from "svelte";
-  import Button from "./Tag.svelte";
+  import { slide } from "svelte/transition";
+  import Tag from "./Tag.svelte";
   import BlogLink from "$lib/components/BlogLink.svelte";
-  import type { Tags } from "$lib/utils/types/microcms";
+  import { getEntries } from "$lib/utils/consts";
+  import { tags } from "$lib/utils/types/blogs";
   import type { EndPoints } from "$lib/utils/types/microcms";
 
   export let more: boolean = false;
@@ -12,7 +16,9 @@
   let blogListContents = blogs.contents;
 
   let sortKey: boolean = false;
-  let filterTag = "All";
+  let filterTag: typeof tags[keyof typeof tags]['title'] = "All";
+
+  console.log(blogs.contents);
 
   let page = 1;
 
@@ -27,48 +33,83 @@
   }
 
   $: sortedAndFilteredBlogs = blogListContents
-    .filter(
-      (blog) =>
-        filterTag === "All" || blog.tags.includes(filterTag as Tags),
-    )
-    .sort((a, b) => {
-      switch (sortKey) {
-        case true:
-          return a.publishedAt.localeCompare(b.publishedAt);
-        case false:
-          return b.publishedAt.localeCompare(a.publishedAt);
-        default:
-          return 0;
+    ? blogListContents
+        .filter((blog) => filterTag === "All" || blog.tags.includes(filterTag))
+        .sort((a, b) => {
+          switch (sortKey) {
+            case true:
+              return a.publishedAt.localeCompare(b.publishedAt);
+            case false:
+              return b.publishedAt.localeCompare(a.publishedAt);
+            default:
+              return 0;
+          }
+        })
+        .slice(start, end)
+    : [];
+
+  $: morePage = blogListContents ? blogListContents.length > end : false;
+
+  let selectedIcon = "";
+
+  $: {
+    selectedIcon = "";
+    for (const key in tags) {
+      if (tags[key].title === filterTag) {
+        selectedIcon = tags[key].icon;
+        break;
       }
-    })
-    .slice(start, end);
+    }
+  }
 
-  $: morePage = blogListContents.length > end;
-
-  const tags: Tags[] = [
-    "お知らせ",
-    "ブログ",
-    "作品紹介",
-    "活動報告",
-    "1 年生",
-    "2 年生",
-    "3 年生",
-  ];
+  const items = getEntries(tags).map(([value, { title, icon }]) => ({
+    value,
+    label: title,
+    icon,
+  }));
 </script>
 
 {#if more}
   <div id="sort">
-    <div>
-      <select  bind:value={filterTag}>
-        <option value="All">All</option>
-        {#each tags as tag}
-          <option value={tag}>{tag}</option>
+    <Select.Root {items} selected={{ value: filterTag }}>
+      <Select.Trigger title="タグを選択する">
+        <div class="icon">
+          <Icon icon={selectedIcon} height={23} />
+          <p>{filterTag}</p>
+        </div>
+      </Select.Trigger>
+      <Select.Content
+        class="select-content"
+        sameWidth={false}
+        sideOffset={8}
+        transition={slide}
+        transitionConfig={{ duration: 300 }}
+      >
+        {#each items as { label, icon, value }}
+          <Select.Item
+            class="select-item"
+            {value}
+            {label}
+            on:click={() => {
+              filterTag = label;
+            }}
+          >
+            <Icon {icon} />
+            <p>{label}</p>
+            <div class="icon">
+              <Select.ItemIndicator
+                class="select-item-indicator"
+                asChild={false}
+              >
+                <Icon icon="mdi:check" />
+              </Select.ItemIndicator>
+            </div>
+          </Select.Item>
         {/each}
-      </select>
-    </div>
-    <div>
-      <Button on:click={handlePublishedAtClick}>投稿日</Button>
-    </div>
+        <Select.Input name="favoriteFruit" />
+      </Select.Content>
+    </Select.Root>
+    <Tag on:click={handlePublishedAtClick}>投稿日</Tag>
   </div>
 {/if}
 
@@ -76,20 +117,34 @@
   {#if sortedAndFilteredBlogs.length === 0}
     <p id="no-page">ページは存在しません</p>
   {:else}
-    {#each sortedAndFilteredBlogs as blogData}
-      <BlogLink {blogData} />
-    {/each}
+    {#await blogs then value}
+      {#each value.contents as blogData}
+        <BlogLink {blogData} />
+      {/each}
+    {:catch error}
+      <p>Error: {error.message}</p>
+    {/await}
   {/if}
 </div>
 <div id="next">
   {#if page > 1 && sortedAndFilteredBlogs.length !== 0}
-    <button on:click={() => {page -= 1; window.scrollTo(0, 0);}}>前のページ</button>
+    <button
+      on:click={() => {
+        page -= 1;
+        window.scrollTo(0, 0);
+      }}>前のページ</button
+    >
   {:else}
     <span></span>
   {/if}
 
   {#if more && morePage && sortedAndFilteredBlogs.length !== 0}
-    <button on:click={() => {page += 1; window.scrollTo(0, 0);}}>次のページ</button>
+    <button
+      on:click={() => {
+        page += 1;
+        window.scrollTo(0, 0);
+      }}>次のページ</button
+    >
   {/if}
 </div>
 

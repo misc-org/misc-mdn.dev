@@ -1,21 +1,23 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import type { PageData } from "./$types";
   import BlogPage from "$lib/components/BlogPage.svelte";
   import Marker from "$lib/components/Marker.svelte";
+  import type { EndPoints } from "$lib/utils/types/microcms";
 
-  export let data: PageData;
+  export let data: EndPoints["gets"]["blogs"];
 
   let limit: number;
+
+  console.log(data);
 
   onMount(() => {
     const width = window.innerWidth;
     if (width <= 480) {
-      limit = 4; // モバイルデバイスの場合
+      limit = 4;
     } else if (width <= 768) {
-      limit = 8; // タブレットの場合
+      limit = 8;
     } else {
-      limit = 12; // デスクトップの場合
+      limit = 12;
     }
   });
 </script>
