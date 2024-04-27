@@ -40,6 +40,8 @@
 
       div {
         color: #333;
+        padding-left: $spacing-2;
+        text-align: left;
       }
     }
 
