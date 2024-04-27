@@ -114,7 +114,7 @@
 {/if}
 
 <div class="content">
-  {#if sortedAndFilteredBlogs.length === 0}
+  {#if pagedBlogs.length === 0}
     <p id="no-page">ページは存在しません</p>
   {:else}
     {#each pagedBlogs as blogData}
@@ -123,7 +123,7 @@
   {/if}
 </div>
 <div id="next">
-  {#if page > 1 && sortedAndFilteredBlogs.length !== 0}
+  {#if page > 1 && pagedBlogs.length !== 0}
     <button
       on:click={() => {
         page -= 1;
@@ -134,7 +134,7 @@
     <span></span>
   {/if}
 
-  {#if more && morePage && sortedAndFilteredBlogs.length !== 0}
+  {#if more && morePage && pagedBlogs.length !== 0}
     <button
       on:click={() => {
         page += 1;
