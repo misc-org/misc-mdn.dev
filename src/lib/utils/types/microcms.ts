@@ -13,8 +13,8 @@ type DateType = {
 type Structure<T, P> = T extends "get"
   ? { id: string } & DateType & Required<P>
   : T extends "gets"
-  ? GetsType<{ id: string } & DateType & Required<P>>
-  : Partial<DateType> & (T extends "patch" ? Partial<P> : P);
+    ? GetsType<{ id: string } & DateType & Required<P>>
+    : Partial<DateType> & (T extends "patch" ? Partial<P> : P);
 
 export type Blogs<T = "get"> = Structure<
   T,
