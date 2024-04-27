@@ -13,7 +13,6 @@ export type Tags = {
 };
 
 export const tags: Tags = {
-    "All": { title: "All", icon: "mdi:tag-multiple" },
     "info": { title: "お知らせ", icon: "mdi:bell" },
     "blogs": { title: "ブログ", icon: "mdi:book" },
     "works": { title: "作品紹介", icon: "mdi:palette" },

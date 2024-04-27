@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import { Checkbox, Label } from "bits-ui";
+  import { ToggleGroup } from "bits-ui";
   import { createEventDispatcher } from "svelte";
   import { slide } from "svelte/transition";
   import Tag from "./Tag.svelte";
@@ -15,15 +15,17 @@
 
   let blogListContents: EndPoints["get"]["blogs"][] = blogs.blogList.contents;
 
-  console.log(blogListContents);
-
   let sortKey: boolean = false;
-  let filterTag: (typeof tags)[keyof typeof tags]["title"] = "All";
 
   let page = 1;
 
   $: start = (page - 1) * limit;
   $: end = start + limit;
+  $: value = [];
+
+  function deleteTag() {
+    value = [];
+  }
 
   const dispatch = createEventDispatcher();
 
@@ -32,19 +34,27 @@
     dispatch("click");
   }
 
-  $: sortedAndFilteredBlogs = [...blogListContents]
-    .filter((blog) => filterTag === "All" || blog.tags.includes(filterTag))
-    .sort((a, b) => {
-      if (sortKey) {
-        return (
-          new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-        );
-      } else {
-        return (
-          new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime()
-        );
-      }
-    });
+  $: sortedAndFilteredBlogs = [...blogListContents].sort((a, b) => {
+    if (sortKey) {
+      return (
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+      );
+    } else {
+      return (
+        new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime()
+      );
+    }
+  });
+
+  $: {
+    if (value.length === 0) {
+      sortedAndFilteredBlogs = blogListContents.slice(); // Show all blogs when `value` is empty
+    } else {
+      sortedAndFilteredBlogs = blogListContents.filter(
+        (blog) => value.every((v) => blog.tags.includes(v)), // Change `some` to `every`
+      );
+    }
+  }
 
   $: pagedBlogs = sortedAndFilteredBlogs.slice(start, end);
 
@@ -56,14 +66,11 @@
     isOpen = !isOpen;
   }
 
-  const items = getEntries(tags).map(([value, { title, icon }]) => ({
-    value,
+  const items = getEntries(tags).map(([itemValue, { title, icon }]) => ({
+    value: itemValue,
     label: title,
     icon,
   }));
-
-  $: tagChecked = items.map((item) => ({ ...item, checked: undefined }));
-  $: console.log(tagChecked);
 </script>
 
 {#if more}
@@ -71,35 +78,34 @@
     <button id="taged" on:click={toggleMenu}>tag</button>
     {#if isOpen}
       <div id="select" transition:slide={{ duration: 200 }}>
-        {#each items as { value, label, icon }}
-          <div class="flex items-center space-x-3">
-            <Checkbox.Root
-              id={value}
-              aria-labelledby="terms-label"
-              class="peer inline-flex size-[25px] items-center justify-center rounded-md border border-muted bg-foreground transition-all duration-150 ease-in-out active:scale-98 data-[state=unchecked]:border-border-input data-[state=unchecked]:bg-background data-[state=unchecked]:hover:border-dark-40"
-              checked={tagChecked}
-            >
-              <Checkbox.Indicator
-                let:isChecked
-                class="inline-flex items-center justify-center text-background"
-              >
-                {#if isChecked}
+        <div>
+          <button on:click={deleteTag}>
+            <Icon icon="mdi:tag-multiple" />
+            <p>All</p>
+          </button>
+        </div>
+        <ToggleGroup.Root
+          bind:value
+          type="multiple"
+          class="flex h-input items-center gap-x-0.5 rounded-card-sm border border-border bg-background-alt px-[4px] py-1 shadow-mini"
+        >
+          {#each items as { label, icon }}
+            <ToggleGroup.Item
+              aria-label="toggle bold"
+              value={label}
+              class="inline-flex size-10 items-center justify-center rounded-9px bg-background-alt transition-all hover:bg-muted active:scale-98 active:bg-dark-10 data-[state=on]:bg-muted data-[state=off]:text-foreground-alt data-[state=on]:text-foreground active:data-[state=on]:bg-dark-10"
+              ><div>
+                {#if value.includes(label)}
                   <Icon icon="mdi:check" />
+                {:else}
+                  <Icon icon="mdi:checkbox-blank-outline" />
                 {/if}
-              </Checkbox.Indicator>
-            </Checkbox.Root>
-            <Label.Root
-              id="${value}-label"
-              for={value}
-              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              <div class="icon">
-                <Icon {icon} height={23} />
+                <Icon {icon} />
                 <p>{label}</p>
               </div>
-            </Label.Root>
-          </div>
-        {/each}
+            </ToggleGroup.Item>
+          {/each}
+        </ToggleGroup.Root>
       </div>
     {/if}
     <Tag on:click={handlePublishedAtClick}>投稿日</Tag>
@@ -147,6 +153,15 @@
     gap: $spacing-8;
     position: relative;
 
+    button {
+      border: 1px solid $color-text;
+      border-radius: 5px;
+      background-color: $color-bg;
+      color: $color-text;
+      cursor: pointer;
+      text-align: center;
+    }
+
     #select {
       position: absolute;
       top: 50px;
@@ -161,9 +176,22 @@
 
       div {
         display: grid;
-        grid-template-columns: 20px 1fr;
+        grid-template-columns: 20px 20px 1fr;
+        height: 30px;
         gap: $spacing-1;
         align-items: center;
+
+        button {
+          display: grid;
+          grid-template-columns: 20px 1fr;
+          gap: $spacing-2;
+          align-items: center;
+          border: 1px solid $color-bg;
+          border-radius: 5px;
+          background-color: $color-bg;
+          color: $color-text;
+          cursor: pointer;
+        }
       }
     }
 
