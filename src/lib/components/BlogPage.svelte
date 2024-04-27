@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import { Select } from "bits-ui";
+  import { Checkbox, Label } from "bits-ui";
   import { createEventDispatcher } from "svelte";
   import { slide } from "svelte/transition";
   import Tag from "./Tag.svelte";
@@ -50,16 +50,10 @@
 
   $: morePage = sortedAndFilteredBlogs.length > end;
 
-  let selectedIcon = "";
+  let isOpen = false;
 
-  $: {
-    selectedIcon = "";
-    for (const key in tags) {
-      if (tags[key].title === filterTag) {
-        selectedIcon = tags[key].icon;
-        break;
-      }
-    }
+  function toggleMenu() {
+    isOpen = !isOpen;
   }
 
   const items = getEntries(tags).map(([value, { title, icon }]) => ({
@@ -67,48 +61,47 @@
     label: title,
     icon,
   }));
+
+  $: tagChecked = items.map((item) => ({ ...item, checked: undefined }));
+  $: console.log(tagChecked);
 </script>
 
 {#if more}
   <div id="sort">
-    <Select.Root {items} selected={{ value: filterTag }}>
-      <Select.Trigger title="タグを選択する">
-        <div class="icon">
-          <Icon icon={selectedIcon} height={23} />
-          <p>{filterTag}</p>
-        </div>
-      </Select.Trigger>
-      <Select.Content
-        class="select-content"
-        sameWidth={false}
-        sideOffset={8}
-        transition={slide}
-        transitionConfig={{ duration: 300 }}
-      >
-        {#each items as { label, icon, value }}
-          <Select.Item
-            class="select-item"
-            {value}
-            {label}
-            on:click={() => {
-              filterTag = label;
-            }}
-          >
-            <Icon {icon} />
-            <p>{label}</p>
-            <div class="icon">
-              <Select.ItemIndicator
-                class="select-item-indicator"
-                asChild={false}
+    <button id="taged" on:click={toggleMenu}>tag</button>
+    {#if isOpen}
+      <div id="select" transition:slide={{ duration: 200 }}>
+        {#each items as { value, label, icon }}
+          <div class="flex items-center space-x-3">
+            <Checkbox.Root
+              id={value}
+              aria-labelledby="terms-label"
+              class="peer inline-flex size-[25px] items-center justify-center rounded-md border border-muted bg-foreground transition-all duration-150 ease-in-out active:scale-98 data-[state=unchecked]:border-border-input data-[state=unchecked]:bg-background data-[state=unchecked]:hover:border-dark-40"
+              checked={tagChecked}
+            >
+              <Checkbox.Indicator
+                let:isChecked
+                class="inline-flex items-center justify-center text-background"
               >
-                <Icon icon="mdi:check" />
-              </Select.ItemIndicator>
-            </div>
-          </Select.Item>
+                {#if isChecked}
+                  <Icon icon="mdi:check" />
+                {/if}
+              </Checkbox.Indicator>
+            </Checkbox.Root>
+            <Label.Root
+              id="${value}-label"
+              for={value}
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              <div class="icon">
+                <Icon {icon} height={23} />
+                <p>{label}</p>
+              </div>
+            </Label.Root>
+          </div>
         {/each}
-        <Select.Input name="favoriteFruit" />
-      </Select.Content>
-    </Select.Root>
+      </div>
+    {/if}
     <Tag on:click={handlePublishedAtClick}>投稿日</Tag>
   </div>
 {/if}
@@ -152,6 +145,27 @@
     display: grid;
     grid-template-columns: 150px 150px 1fr;
     gap: $spacing-8;
+    position: relative;
+
+    #select {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      width: 200px;
+      background-color: $color-bg;
+      border: 1px solid $color-text;
+      border-radius: 5px;
+      padding: $spacing-5;
+      z-index: $z-index-dropdown;
+      display: grid;
+
+      div {
+        display: grid;
+        grid-template-columns: 20px 1fr;
+        gap: $spacing-1;
+        align-items: center;
+      }
+    }
 
     .icon {
       display: grid;
