@@ -57,7 +57,7 @@
     <ul>
       <li>SvelteKit</li>
       <li>TypeScript</li>
-      <li>MicroCMS</li>
+      <li>microCMS</li>
       <li>SCSS</li>
     </ul>
     <p>
