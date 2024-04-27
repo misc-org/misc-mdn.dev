@@ -68,7 +68,6 @@
 </div>
 
 <style lang="scss">
-  @import "src/lib/styles/responsive.scss";
 
   div {
     display: grid;
@@ -93,7 +92,7 @@
         line-height: 1.5;
       }
 
-      @include media {
+      @include mobile {
         p {
           font-size: $size-xs;
         }

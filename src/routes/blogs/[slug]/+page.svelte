@@ -84,7 +84,7 @@
     }
   }
 
-  @include media {
+  @include mobile {
     div {
       grid-template-columns: 1fr;
 
@@ -133,7 +133,7 @@
     }
   }
 
-  @include media {
+  @include mobile {
     article {
       :global(p) {
         font-size: $size-xs;

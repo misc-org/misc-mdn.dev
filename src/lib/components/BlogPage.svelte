@@ -108,7 +108,7 @@
         </ToggleGroup.Root>
       </div>
     {/if}
-    <Tag on:click={handlePublishedAtClick}>投稿日</Tag>
+    <Tag on:click={handlePublishedAtClick}>公開日</Tag>
   </div>
 {/if}
 
