@@ -1,14 +1,12 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import type { PageData } from "./$types";
   import BlogPage from "$lib/components/BlogPage.svelte";
   import Marker from "$lib/components/Marker.svelte";
-  import type { EndPoints } from "$lib/utils/types/microcms";
 
-  export let data: EndPoints["gets"]["blogs"];
+  export let data: PageData;
 
   let limit: number;
-
-  console.log(data);
 
   onMount(() => {
     const width = window.innerWidth;

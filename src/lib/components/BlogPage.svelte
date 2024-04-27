@@ -10,15 +10,15 @@
   import type { EndPoints } from "$lib/utils/types/microcms";
 
   export let more: boolean = false;
-  export let blogs: EndPoints["gets"]["blogs"];
-  export let limit: number = 10;
+  export let blogs;
+  export let limit: number;
 
-  let blogListContents = blogs.contents;
+  let blogListContents: EndPoints["get"]["blogs"][] = blogs.blogList.contents;
+
+  console.log(blogListContents);
 
   let sortKey: boolean = false;
   let filterTag: (typeof tags)[keyof typeof tags]["title"] = "All";
-
-  console.log(blogs.contents);
 
   let page = 1;
 
@@ -32,23 +32,23 @@
     dispatch("click");
   }
 
-  $: sortedAndFilteredBlogs = blogListContents
-    ? blogListContents
-        .filter((blog) => filterTag === "All" || blog.tags.includes(filterTag))
-        .sort((a, b) => {
-          switch (sortKey) {
-            case true:
-              return a.publishedAt.localeCompare(b.publishedAt);
-            case false:
-              return b.publishedAt.localeCompare(a.publishedAt);
-            default:
-              return 0;
-          }
-        })
-        .slice(start, end)
-    : [];
+  $: sortedAndFilteredBlogs = [...blogListContents]
+    .filter((blog) => filterTag === "All" || blog.tags.includes(filterTag))
+    .sort((a, b) => {
+      if (sortKey) {
+        return (
+          new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+        );
+      } else {
+        return (
+          new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime()
+        );
+      }
+    });
 
-  $: morePage = blogListContents ? blogListContents.length > end : false;
+  $: pagedBlogs = sortedAndFilteredBlogs.slice(start, end);
+
+  $: morePage = sortedAndFilteredBlogs.length > end;
 
   let selectedIcon = "";
 
@@ -117,13 +117,9 @@
   {#if sortedAndFilteredBlogs.length === 0}
     <p id="no-page">ページは存在しません</p>
   {:else}
-    {#await blogs then value}
-      {#each value.contents as blogData}
-        <BlogLink {blogData} />
-      {/each}
-    {:catch error}
-      <p>Error: {error.message}</p>
-    {/await}
+    {#each pagedBlogs as blogData}
+      <BlogLink {blogData} />
+    {/each}
   {/if}
 </div>
 <div id="next">
@@ -156,6 +152,13 @@
     display: grid;
     grid-template-columns: 150px 150px 1fr;
     gap: $spacing-8;
+
+    .icon {
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      gap: $spacing-2;
+      align-items: center;
+    }
   }
 
   @media (max-width: 768px) {

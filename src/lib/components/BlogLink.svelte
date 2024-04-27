@@ -3,7 +3,7 @@
   import type { EndPoints } from "$lib/utils/types/microcms";
 
   export let blogData: EndPoints["get"]["blogs"];
-  const { id, title, publishedAt, tags, ogpImg } = blogData;
+  $: ({ id, title, publishedAt, tags, ogpImg } = blogData);
 </script>
 
 <div>
