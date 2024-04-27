@@ -87,7 +87,7 @@
       }
 
       p {
-        font-size: 1.2em;
+        font-size: $size-lg;
         line-height: 1.5;
       }
 
