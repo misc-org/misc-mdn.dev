@@ -68,6 +68,8 @@
 </div>
 
 <style lang="scss">
+  @import "src/lib/styles/responsive.scss";
+
   div {
     display: grid;
     place-items: center;
@@ -91,7 +93,7 @@
         line-height: 1.5;
       }
 
-      @media (max-width: 768px) {
+      @include media {
         p {
           font-size: $size-xs;
         }

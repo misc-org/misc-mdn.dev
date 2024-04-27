@@ -17,7 +17,7 @@
     text-transform: uppercase;
   }
 
-  @media (max-width: 768px) {
+  @include mobile {
     .marker {
       font-size: $size-6xl;
     }

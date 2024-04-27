@@ -7,7 +7,7 @@
 </script>
 
 <div>
-  <div class="ogp">
+  <div class="thumbnail">
     <a href={`/blogs/${id}`}>
       {#if ogpImg}
         <img
@@ -17,7 +17,7 @@
           width={ogpImg.width}
         />
       {:else}
-        <img src="https://placehold.jp/1200x630.png" alt="ogp" />
+        <img src="https://placehold.jp/1200x630.png" alt="thumbnail" />
       {/if}
     </a>
   </div>
@@ -27,11 +27,11 @@
       <li>{tag}</li>
     {/each}
   </ul>
-  <a href={`/blogs/${id}`}><h3>{title}</h3></a>
+  <h3><a href={`/blogs/${id}`}>{title}</a></h3>
 </div>
 
 <style lang="scss">
-  .ogp {
+  .thumbnail {
     aspect-ratio: 100 / 52.5;
     border-radius: $radii-md;
     text-align: center;

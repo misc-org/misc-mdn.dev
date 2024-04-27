@@ -34,7 +34,7 @@
       text-align: center;
     }
 
-    @media (max-width: 768px) {
+    @include mobile {
       font-size: $size-xs;
     }
 

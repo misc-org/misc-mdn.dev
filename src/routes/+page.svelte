@@ -94,7 +94,7 @@
     }
   }
 
-  @media (max-width: 768px) {
+  @include media {
     .landing {
       > p {
         font-size: 1.5rem;

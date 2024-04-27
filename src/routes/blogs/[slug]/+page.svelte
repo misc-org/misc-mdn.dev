@@ -84,7 +84,7 @@
     }
   }
 
-  @media (max-width: 768px) {
+  @include media {
     div {
       grid-template-columns: 1fr;
 
@@ -133,7 +133,7 @@
     }
   }
 
-  @media (max-width: 768px) {
+  @include media {
     article {
       :global(p) {
         font-size: $size-xs;

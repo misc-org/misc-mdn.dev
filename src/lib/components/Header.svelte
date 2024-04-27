@@ -45,7 +45,7 @@
         gap: $spacing-5;
       }
 
-      @media (max-width: 768px) {
+      @include mobile {
         nav {
           gap: $spacing-3;
         }

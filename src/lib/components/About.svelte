@@ -1,3 +1,6 @@
+<script lang="ts">
+</script>
+
 <article>
   <section>
     <h3>Hi, we are MISC 👋</h3>
@@ -51,7 +54,7 @@
         line-height: 1.5;
       }
 
-      @media (max-width: 768px) {
+      @include mobile {
         > p {
           font-size: $size-xs;
         }

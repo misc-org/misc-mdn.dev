@@ -203,7 +203,7 @@
     }
   }
 
-  @media (max-width: 768px) {
+  @include mobile {
     #sort {
       grid-template-columns: 1fr;
     }

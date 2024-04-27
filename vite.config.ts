@@ -19,6 +19,7 @@ export default defineConfig({
         @use "src/lib/styles/variables/sizes.scss" as *;
         @use "src/lib/styles/variables/spacings.scss" as *;
         @use "src/lib/styles/variables/z-index.scss" as *;
+        @use "src/lib/styles/responsive.scss" as *;
         `.trim(),
       },
     },
