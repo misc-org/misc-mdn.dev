@@ -16,7 +16,7 @@
   let blogListContents = blogs.contents;
 
   let sortKey: boolean = false;
-  let filterTag: typeof tags[keyof typeof tags]['title'] = "All";
+  let filterTag: (typeof tags)[keyof typeof tags]["title"] = "All";
 
   console.log(blogs.contents);
 
@@ -156,21 +156,11 @@
     display: grid;
     grid-template-columns: 150px 150px 1fr;
     gap: $spacing-8;
+  }
 
-    div:nth-of-type(1) {
-      display: grid;
-      grid-template-columns: auto;
-      grid-auto-flow: column;
-      gap: $spacing-1;
-
-      select {
-        padding: $spacing-2 $spacing-5;
-        border: 1px solid $color-text;
-        border-radius: 5px;
-        background-color: $color-bg;
-        color: $color-text;
-        cursor: pointer;
-      }
+  @media (max-width: 768px) {
+    #sort {
+      grid-template-columns: 1fr;
     }
   }
 
