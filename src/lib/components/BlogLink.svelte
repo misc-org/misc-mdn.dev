@@ -1,17 +1,9 @@
 <script lang="ts">
+  import { formatDate } from "$lib/utils/services/datefmt";
   import type { EndPoints } from "$lib/utils/types/microcms";
 
   export let blogData: EndPoints["get"]["blogs"];
   const { id, title, publishedAt, tags, ogpImg } = blogData;
-
-  function formatDate(dateString: string | number | Date) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("ja-JP", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
-  }
 </script>
 
 <div>

@@ -2,17 +2,9 @@
   import type { PageData } from "./$types";
   import Marker from "$lib/components/Marker.svelte";
   import { rewriteHTML } from "$lib/utils/middlewares/rewrite-html";
+  import { formatDate } from "$lib/utils/services/datefmt";
 
   export let data: PageData;
-
-  function formatDate(dateString: string | number | Date) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("ja-JP", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
-  }
 </script>
 
 <div>
