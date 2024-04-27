@@ -55,10 +55,18 @@
       />制作にあたり、以下の技術を使用しています。
     </p>
     <ul>
-      <li>SvelteKit</li>
-      <li>TypeScript</li>
-      <li>microCMS</li>
-      <li>SCSS</li>
+      <li>
+        <a href="https://svelte.jp/">Svelte / SvelteKit</a>
+      </li>
+      <li>
+        <a href="https://www.typescriptlang.org/">TypeScript</a>
+      </li>
+      <li>
+        <a href="https://sass-lang.com/">SCSS</a>
+      </li>
+      <li>
+        <a href="https://microcms.io/">microCMS</a>
+      </li>
     </ul>
     <p>
       このサイトは、<a href="https://github.com/misc-org/misc-mdn.dev">GitHub</a
@@ -68,7 +76,6 @@
 </div>
 
 <style lang="scss">
-
   div {
     display: grid;
     place-items: center;
