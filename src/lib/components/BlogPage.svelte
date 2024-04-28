@@ -90,13 +90,11 @@
         <ToggleGroup.Root
           bind:value
           type="multiple"
-          class="flex h-input items-center gap-x-0.5 rounded-card-sm border border-border bg-background-alt px-[4px] py-1 shadow-mini"
         >
           {#each items as { label, icon }}
             <ToggleGroup.Item
               aria-label="toggle bold"
               value={label}
-              class="inline-flex size-10 items-center justify-center rounded-9px bg-background-alt transition-all hover:bg-muted active:scale-98 active:bg-dark-10 data-[state=on]:bg-muted data-[state=off]:text-foreground-alt data-[state=on]:text-foreground active:data-[state=on]:bg-dark-10"
               ><div>
                 {#if value.includes(label)}
                   <Icon icon="mdi:check" />

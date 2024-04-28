@@ -22,7 +22,12 @@
     </div>
   </div>
   <div id="image">
-    <img src={data.detail.ogpImg.url} alt={data.detail.title} />
+    <img
+    src={data.detail.ogpImg.url}
+    alt={data.detail.title}
+    height={data.detail.ogpImg.height}
+    width={data.detail.ogpImg.width}
+    />
   </div>
 </div>
 
