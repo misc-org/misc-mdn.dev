@@ -97,10 +97,8 @@
       p {
         font-size: $size-lg;
         line-height: 1.5;
-      }
 
-      @include mobile {
-        p {
+        @include mobile {
           font-size: $size-xs;
         }
       }

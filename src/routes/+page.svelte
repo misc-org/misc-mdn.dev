@@ -76,6 +76,10 @@
       font-weight: $font-extralight;
       letter-spacing: 0.5rem;
       padding-inline: $spacing-5;
+
+      @include mobile {
+        font-size: $size-2xl;
+      }
     }
 
     > .arrow {
@@ -90,14 +94,6 @@
         font-size: $size-xs;
         font-weight: $font-bold;
         text-transform: uppercase;
-      }
-    }
-  }
-
-  @include mobile {
-    .landing {
-      > p {
-        font-size: 1.5rem;
       }
     }
   }

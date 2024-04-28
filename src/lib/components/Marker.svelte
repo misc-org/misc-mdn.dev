@@ -15,10 +15,8 @@
     font-weight: $font-thin;
     line-height: 1.1;
     text-transform: uppercase;
-  }
 
-  @include mobile {
-    .marker {
+    @include mobile {
       font-size: $size-6xl;
     }
   }

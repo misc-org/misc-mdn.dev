@@ -156,6 +156,10 @@
     gap: $spacing-8;
     position: relative;
 
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+
     button {
       border: 1px solid $color-text;
       border-radius: 5px;
@@ -203,12 +207,6 @@
       grid-template-columns: 30px 1fr;
       gap: $spacing-2;
       align-items: center;
-    }
-  }
-
-  @include mobile {
-    #sort {
-      grid-template-columns: 1fr;
     }
   }
 

@@ -58,16 +58,14 @@
   h3 {
     margin: $spacing-2 0;
 
-    &:hover {
-      a {
-        text-decoration: underline;
-      }
-    }
-
     a {
       color: $color-text;
       text-decoration: none;
       opacity: 1;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 
