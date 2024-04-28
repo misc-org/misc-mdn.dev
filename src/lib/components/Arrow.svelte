@@ -42,9 +42,9 @@
       transform-origin: top left;
       border-left: var(--stroke-width) solid;
       border-top: var(--stroke-width) solid;
-      transform: //
-        translateX(calc(-1 * var(--stroke-width) / 2)) //
-        translateY(calc(-1 * var(--stroke-width) / 2)) //
+      transform:
+        translateX(calc(-1 * var(--stroke-width) / 2))
+        translateY(calc(-1 * var(--stroke-width) / 2))
         rotate(45deg);
     }
   }

@@ -32,12 +32,12 @@ export type Blogs<T = "get"> = Structure<
      */
     tags?: (
       | "お知らせ"
+      | "ブログ"
       | "作品紹介"
       | "活動報告"
       | "1 年生"
       | "2 年生"
       | "3 年生"
-      | "_migrated"
     )[];
     /**
      * 本文

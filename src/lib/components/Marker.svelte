@@ -15,5 +15,9 @@
     font-weight: $font-thin;
     line-height: 1.1;
     text-transform: uppercase;
+
+    @include mobile {
+      font-size: $size-6xl;
+    }
   }
 </style>

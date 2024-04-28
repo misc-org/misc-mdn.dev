@@ -9,8 +9,11 @@
   </a>
   <p>MISC © 2024 Copyright.</p>
   <div class="circle-container">
-    <div class="circle" />
-    <div class="circle" />
+    <div class="circle">
+      <a href="https://github.com/misc-org">
+        <Icon icon="mdi:github" height={40}/>
+      </a>
+    </div>
   </div>
 </footer>
 
@@ -31,6 +34,10 @@
       text-align: center;
     }
 
+    @include mobile {
+      font-size: $size-xs;
+    }
+
     .circle-container {
       display: flex;
       gap: $spacing-5;
@@ -38,8 +45,14 @@
       .circle {
         width: 40px;
         height: 40px;
-        border-radius: 50%;
-        background-color: $color-neutral;
+
+        a {
+          width: 100%;
+          height: 100%;
+          display: grid;
+          place-items: center;
+          color: $color-text;
+        }
       }
     }
   }

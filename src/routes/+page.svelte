@@ -1,8 +1,28 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { MetaTags } from "svelte-meta-tags";
+  import type { PageData } from "./$types";
   import { INFO } from "$lib/assets/info";
+  import About from "$lib/components/About.svelte";
   import Arrow from "$lib/components/Arrow.svelte";
+  import BlogPage from "$lib/components/BlogPage.svelte";
+  import Button from "$lib/components/Button.svelte";
   import Marker from "$lib/components/Marker.svelte";
+
+  export let data: PageData;
+
+  let limit: number;
+
+  onMount(() => {
+    const width = window.innerWidth;
+    if (width <= 480) {
+      limit = 4;
+    } else if (width <= 768) {
+      limit = 6;
+    } else {
+      limit = 8;
+    }
+  });
 </script>
 
 <MetaTags title={INFO.about.title} />
@@ -19,36 +39,25 @@
   <Marker>about</Marker>
 </h2>
 
-<article>
-  <section>
-    <h3>Hi, we are MISC 👋</h3>
+<About />
 
-    <p>私たちは名電高校の情報システム部です。</p>
-    <p>
-      Web サイトやシステム制作やゲーム制作といったプログラミング、<br />
-      IT パスポート試験や基本情報技術者試験などに向けた資格勉強をしています。
-    </p>
-    <p>
-      また映像・音楽・3D モデリング、 3D
-      プリンターやレーザーカッターを用いた作品を制作したりもします。
-      個々の活動を主としつつ、コンテストや発表に向けて
-      グループで活動することもあります。
-    </p>
+<section id="arrow">
+  <a href="/about"><Button>Show more →</Button></a>
+  <span></span>
+</section>
 
-    <p>活動場所は北校舎 3 階の 315 教室(コンピューター教室) です</p>
-  </section>
-  <section>
-    <h3>指導者メッセージ</h3>
-    <p>
-      プログラミングは楽しい！<br />
-      自分の作ったソフトが誰かの役に立つ喜びを知って欲しい。<br />
-      PC ひとつで社会に役立つものが作れます。 PC ひとつで君の世界が広がります。
-      <br />
-      最先端のIT技術に仲間と一緒にワクワクしながら、<br />
-      夢が現実になる、未来への一歩を踏み出しましょう。<br />
-    </p>
-  </section>
-</article>
+<h2>
+  <Marker>blogs</Marker>
+</h2>
+
+<section>
+  <BlogPage more={false} blogs={data} {limit} />
+</section>
+
+<section>
+  <a href="/blogs"><Button>Show more →</Button></a>
+  <span></span>
+</section>
 
 <style lang="scss">
   $header-height: calc(30px + $spacing-5 * 2);
@@ -67,6 +76,10 @@
       font-weight: $font-extralight;
       letter-spacing: 0.5rem;
       padding-inline: $spacing-5;
+
+      @include mobile {
+        font-size: $size-2xl;
+      }
     }
 
     > .arrow {
@@ -89,21 +102,15 @@
     padding-block: $spacing-10;
   }
 
-  article {
-    padding-block: $spacing-10;
-    text-align: center;
+  #arrow {
     display: flex;
     flex-direction: column;
-    gap: $spacing-10;
+    align-items: center;
+    gap: $spacing-5;
 
-    > section {
-      display: flex;
-      flex-direction: column;
-      gap: $spacing-5;
-
-      > h3 {
-        font-weight: $font-extrabold;
-      }
+    > p {
+      font-size: $size-md;
+      line-height: 1.5;
     }
   }
 </style>

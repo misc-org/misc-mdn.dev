@@ -16,6 +16,26 @@ article {
     padding-top: $spacing-3;
   }
 
+  h2,
+  h3 {
+    position: relative;
+
+    &:hover {
+      a {
+        opacity: 0.6;
+      }
+    }
+
+    >a {
+      opacity: 0;
+      cursor: pointer;
+      position: absolute;
+      left: calc(-1 * $spacing-6);
+      padding-right: $spacing-6;
+      transition: opacity 0.1s;
+    }
+  }
+
   & .code-block {
     padding-inline: $spacing-5;
     background-color: $color-static-black;
@@ -24,21 +44,21 @@ article {
     font-size: $size-sm;
     border-radius: $radii-lg;
 
-    > div {
+    >div {
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid $color-static-white;
     }
 
-    > pre {
+    >pre {
       margin: $spacing-3;
       overflow-y: auto;
       max-height: 50vh;
     }
   }
 
-  & p > code {
+  & p>code {
     background-color: $color-static-black;
     border: 1px solid $color-static-white;
     color: $color-static-white;
@@ -63,7 +83,7 @@ article {
       padding-top: 3rem;
     }
 
-    & > * {
+    &>* {
       width: fit-content;
       margin: 0 auto;
     }

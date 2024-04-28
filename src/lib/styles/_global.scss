@@ -63,26 +63,6 @@ article,
   max-width: 1600px;
 }
 
-h2,
-h3 {
-  position: relative;
-
-  &:hover {
-    a {
-      opacity: 0.6;
-    }
-  }
-
-  > a {
-    opacity: 0;
-    cursor: pointer;
-    position: absolute;
-    left: calc(-1 * $spacing-6);
-    padding-right: $spacing-6;
-    transition: opacity 0.1s;
-  }
-}
-
 /* 768px = md */
 @media (width < 768px) {
   html {

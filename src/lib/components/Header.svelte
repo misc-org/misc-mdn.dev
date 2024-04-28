@@ -43,6 +43,10 @@
         display: flex;
         align-items: center;
         gap: $spacing-5;
+
+        @include mobile {
+          gap: $spacing-3;
+        }
       }
     }
   }
