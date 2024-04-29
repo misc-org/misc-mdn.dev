@@ -1,13 +1,25 @@
 {
   "root": true,
-  "extends": ["airbnb-typescript", "plugin:svelte/recommended", "prettier"],
+  "extends": [
+    "airbnb-typescript",
+    "plugin:svelte/recommended",
+    "prettier",
+    "plugin:storybook/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["import", "unused-imports"],
+  "plugins": [
+    "import",
+    "unused-imports"
+  ],
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 2020,
-    "extraFileExtensions": [".svelte"],
-    "project": ["./tsconfig.json"]
+    "extraFileExtensions": [
+      ".svelte"
+    ],
+    "project": [
+      "./tsconfig.json"
+    ]
   },
   "env": {
     "browser": true,
@@ -16,25 +28,43 @@
   },
   "overrides": [
     {
-      "files": ["*.svelte"],
+      "files": [
+        "*.svelte"
+      ],
       "parser": "svelte-eslint-parser",
-      "parserOptions": { "parser": "@typescript-eslint/parser" },
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser"
+      },
       "rules": {}
     }
   ],
   "rules": {
     "react/jsx-filename-extension": "off",
-    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "@typescript-eslint/consistent-type-definitions": [
+      "error",
+      "type"
+    ],
     "no-underscore-dangle": "off",
-    "import/no-extraneous-dependencies": ["off"],
+    "import/no-extraneous-dependencies": [
+      "off"
+    ],
     "import/prefer-default-export": "off",
     "import/extensions": "off",
     "import/no-unresolved": "off",
-    "no-restricted-imports": ["error", { "patterns": ["../"] }],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          "../"
+        ]
+      }
+    ],
     "import/order": [
       "error",
       {
-        "alphabetize": { "order": "asc" }
+        "alphabetize": {
+          "order": "asc"
+        }
       }
     ],
     "unused-imports/no-unused-imports": "error"

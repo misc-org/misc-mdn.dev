@@ -1,8 +1,9 @@
 <script lang="ts">
+  export let label: string;
 </script>
 
 <div class="marker">
-  <slot />
+  {label}
 </div>
 
 <style lang="scss">

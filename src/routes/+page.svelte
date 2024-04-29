@@ -36,18 +36,18 @@
 </div>
 
 <h2>
-  <Marker>about</Marker>
+  <Marker label='about' />
 </h2>
 
 <About />
 
 <section id="arrow">
-  <a href="/about"><Button>Show more →</Button></a>
+  <a href="/about"><Button label='Show more →' /></a>
   <span></span>
 </section>
 
 <h2>
-  <Marker>blogs</Marker>
+  <Marker label='blogs' />
 </h2>
 
 <section>
@@ -55,7 +55,7 @@
 </section>
 
 <section>
-  <a href="/blogs"><Button>Show more →</Button></a>
+  <a href="/blogs"><Button label='Show more →' /></a>
   <span></span>
 </section>
 

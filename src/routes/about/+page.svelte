@@ -5,7 +5,7 @@
 </script>
 
 <h2>
-  <Marker>about</Marker>
+  <Marker label='about' />
 </h2>
 
 <div>

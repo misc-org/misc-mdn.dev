@@ -21,7 +21,7 @@
 </script>
 
 <h1>
-  <Marker>blogs</Marker>
+  <Marker label='blogs' />
 </h1>
 
 <section>

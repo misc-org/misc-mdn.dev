@@ -2,13 +2,15 @@
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 
+  export let label: string;
+
   function handleClick() {
     dispatch("click");
   }
 </script>
 
 <div id="next">
-  <button on:click={handleClick}><slot /></button>
+  <button on:click={handleClick}>{label}</button>
 </div>
 
 <style lang="scss">

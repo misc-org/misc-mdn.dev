@@ -10,7 +10,7 @@
 <div>
   <div id="title">
     <h1>
-      <Marker>blog</Marker>
+      <Marker label='blog' />
     </h1>
     <div>
       <h2>{data.detail.title}</h2>
