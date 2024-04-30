@@ -36,13 +36,82 @@ article {
     }
   }
 
-  & .code-block {
-    padding-inline: $spacing-5;
-    background-color: $color-static-black;
-    border: 1px solid $color-static-white;
-    color: $color-static-white;
+  & pre {
+    background-color: $color-neutral;
+    border: 2px solid $color-static-gray;
+    color: $color-static-black;
+    padding: $spacing-1 $spacing-1;
+    margin: 0 $spacing-1;
+    border-radius: $radii-xs;
+    overflow: auto;
     font-size: $size-sm;
-    border-radius: $radii-lg;
+
+    @media (width < 768px) {
+      padding: $spacing-1;
+      font-size: $size-xs;
+    }
+  }
+
+  & .code-block-content {
+    width: 100%;
+    position: relative;
+    margin: $spacing-3 0;
+
+    >.filename {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(-50%);
+      background-color: $color-static-gray;
+      padding: $spacing-1 $spacing-2;
+      border-radius: $radii-xs;
+      font-size: $size-xs;
+      color: $color-static-black;
+    }
+
+    >.codeblock {
+      padding-inline: $spacing-5;
+      background-color: $color-neutral;
+      border: 2px solid $color-static-gray;
+      color: $color-static-black;
+      font-size: $size-sm;
+      border-radius: $radii-lg;
+      display: grid;
+      grid-template-columns: 1fr;
+
+      >header {
+        margin-top: $spacing-3;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+
+        >span {
+          font-size: $size-xs;
+          color: $color-static-black;
+          background-color: $color-neutral;
+          padding: $spacing-1 0;
+          border-radius: $radii-xs;
+        }
+
+        >button {
+          grid-column: 3;
+          cursor: pointer;
+          background-color: $color-neutral;
+          border: 2px solid $color-static-gray;
+          color: $color-static-black;
+          padding: $spacing-1 $spacing-2;
+          margin: 0 $spacing-1;
+          font-size: calc(#{$size-sm} - 2px);
+          border-radius: $radii-xs;
+        }
+      }
+
+      >pre {
+        margin: $spacing-3;
+        overflow-y: auto;
+        max-height: 50vh;
+        border: none;
+      }
+    }
 
     >div {
       display: flex;
@@ -58,13 +127,26 @@ article {
     }
   }
 
-  & p>code {
-    background-color: $color-static-black;
-    border: 1px solid $color-static-white;
-    color: $color-static-white;
-    padding: $spacing-1 $spacing-2;
-    font-size: $size-sm;
-    border-radius: $radii-md;
+  & p {
+
+    svg {
+      margin: 0 $spacing-1;
+    }
+
+    >code {
+      background-color: $color-neutral;
+      border: 2px solid $color-static-gray;
+      color: $color-static-black;
+      padding: $spacing-1;
+      margin: 0 $spacing-1;
+      font-size: calc(#{$size-sm} - 2px);
+      border-radius: $radii-xs;
+
+      @media (width < 768px) {
+        padding: $spacing-0;
+        font-size: $size-xs;
+      }
+    }
   }
 
   & iframe {
@@ -98,5 +180,69 @@ article {
   & blockquote {
     padding-left: $spacing-3;
     // border-left: 5px solid $color-9u-white;
+  }
+
+  & ul {
+    padding: 0;
+
+    li {
+      list-style: disc;
+      display: flex;
+      align-items: center;
+
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 $spacing-1;
+      }
+
+      &::before {
+        content: "";
+        display: inline-block;
+        width: .2em;
+        height: .2em;
+        background-color: $color-static-black;
+        border-radius: 50%;
+        margin-right: $spacing-2;
+      }
+    }
+  }
+
+  & table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+    margin-top: $spacing-3;
+    table-layout: auto;
+
+    overflow-x: auto;
+    display: block;
+
+    tbody {
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 2px solid $color-text;
+      padding: $spacing-1 $spacing-3;
+      font-size: $size-sm;
+
+      div {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+      }
+
+      svg {
+        width: 1em;
+      }
+    }
+
+    th {
+      background-color: $color-neutral;
+      color: $color-static-black;
+    }
   }
 }

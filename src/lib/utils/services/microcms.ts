@@ -1,6 +1,7 @@
 import { createClient, type MicroCMSQueries } from "microcms-js-sdk";
 import { MICROCMS_SERVICE_DOMAIN, MICROCMS_API_KEY } from "$env/static/private";
 import blogsDetail from "$lib/assets/mocks/blogs-detail.json";
+import blogsDraft from "$lib/assets/mocks/blogs-draft.json";
 import blogsList from "$lib/assets/mocks/blogs-list.json";
 import type { EndPoints } from "$lib/utils/types/microcms";
 
@@ -45,5 +46,26 @@ export async function getContentDetail<T extends keyof EndPoints["get"]>(
     endpoint: key,
     contentId: id,
     queries,
+  });
+}
+
+export async function getDraftContentDetail<T extends keyof EndPoints["get"]>(
+  key: T,
+  id: string,
+  draftKey: string,
+  queries: MicroCMSQueries = {},
+): Promise<EndPoints["get"][T]> {
+  if (process.env.NODE_ENV === "development") {
+    switch (key) {
+      case "blogs":
+        return blogsDraft as any;
+      default:
+        throw new Error("Invalid key");
+    }
+  }
+  return microcms.get<EndPoints["get"][T]>({
+    endpoint: key,
+    contentId: id,
+    queries: { draftKey, ...queries},
   });
 }
