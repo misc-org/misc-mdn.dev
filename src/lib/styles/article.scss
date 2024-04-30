@@ -36,6 +36,21 @@ article {
     }
   }
 
+  & code {
+    background-color: $color-neutral;
+    border: 2px solid $color-static-gray;
+    color: $color-static-black;
+    padding: $spacing-0;
+    margin: 0 $spacing-1;
+    font-size: calc(#{$size-sm} - 2px);
+    border-radius: $radii-xs;
+
+    @media (width < 768px) {
+      padding: $spacing-0;
+      font-size: $size-xs;
+    }
+  }
+
   & pre {
     background-color: $color-neutral;
     border: 2px solid $color-static-gray;
@@ -110,6 +125,12 @@ article {
         overflow-y: auto;
         max-height: 50vh;
         border: none;
+
+        >code {
+          padding: 0;
+          margin: 0;
+          border: none;
+        }
       }
     }
 
@@ -129,22 +150,32 @@ article {
 
   & p {
 
-    svg {
-      margin: 0 $spacing-1;
+    >a {
+      text-decoration: underline;
     }
 
-    >code {
-      background-color: $color-neutral;
-      border: 2px solid $color-static-gray;
-      color: $color-static-black;
-      padding: $spacing-1;
-      margin: 0 $spacing-1;
-      font-size: calc(#{$size-sm} - 2px);
-      border-radius: $radii-xs;
+    >u {
+      text-decoration: underline;
+    }
 
-      @media (width < 768px) {
-        padding: $spacing-0;
-        font-size: $size-xs;
+    >s {
+      text-decoration: line-through;
+    }
+
+    >strong {
+      font-weight: $font-bold;
+    }
+
+    >em {
+      font-style: italic;
+    }
+
+    div {
+      display: inline-block;
+      margin: 0 $spacing-1;
+
+      svg {
+        width: 1em;
       }
     }
   }
@@ -229,10 +260,27 @@ article {
       padding: $spacing-1 $spacing-3;
       font-size: $size-sm;
 
-      div {
-        display: flex !important;
+      figure {
+        width: 100%;
+        height: 100%;
         justify-content: center;
         align-items: center;
+
+        & figcaption {
+          padding-top: $spacing-1;
+          font-size: $size-sm;
+          opacity: 0.8;
+        }
+
+        a {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+
+        img {
+          object-fit: contain;
+        }
       }
 
       svg {

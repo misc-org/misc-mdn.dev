@@ -113,9 +113,7 @@
                       <th>
                         {#each row.content as cell}
                           {#if cell.type === "paragraph" && "content" in cell}
-                            <div>
-                              <BlogParser content={cell.content} {iconSize} />
-                            </div>
+                            <BlogParser content={cell.content} {iconSize} />
                           {/if}
                         {/each}
                       </th>
@@ -123,9 +121,21 @@
                       <td>
                         {#each row.content as cell}
                           {#if cell.type === "paragraph" && "content" in cell}
-                            <div>
-                              <BlogParser content={cell.content} {iconSize} />
-                            </div>
+                            <BlogParser content={cell.content} {iconSize} />
+                          {:else if cell.type === "image" && "src" in cell && "alt" in cell}
+                            <figure>
+                              {#if cell.href}
+                                <a
+                                  href={cell.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  <img src={cell.src} alt={cell.alt} />
+                                </a>
+                              {:else}
+                                <img src={cell.src} alt={cell.alt} />
+                              {/if}
+                            </figure>
                           {/if}
                         {/each}
                       </td>

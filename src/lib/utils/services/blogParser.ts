@@ -2,13 +2,36 @@ function addTextContent(node: Node, content: ContentItem[]): void {
     content.push({ type: "text", text: node.textContent || '' });
 }
 
+function processFormattedText(node: Element, content: ContentItem[]): void {
+    const format = node.tagName.toLowerCase();
+    const text = node.textContent || '';
+    content.push({ type: "formattedText", format, text });
+    console.log(content);
+}
+
+function processFigure(node: Element, content: ContentItem[]): void {
+    const img = node.querySelector('img');
+    const a = node.querySelector('a');
+    if (img) {
+        const src = img.getAttribute('src') || '';
+        const alt = img.getAttribute('alt') || '';
+        const href = a ? a.getAttribute('href') || '' : '';
+        content.push({ type: "image", src, alt, href });
+    }
+}
+
+
 function processElementNode(node: Element, content: ContentItem[]): void {
     if (node.classList.contains('icon')) {
         content.push({ type: "icon", content: node.textContent || '' });
-    } else if (node.tagName === 'CODE') {
-        content.push({ type: "code", text: node.textContent || '' });
     } else if (node.tagName === 'BR') {
         content.push({ type: "text", text: '<br>' });
+    } else if (node.tagName === 'P' || node.tagName === 'U' || node.tagName === 'S' || node.tagName === 'EM' || node.tagName === 'CODE' || node.tagName === 'STRONG') {
+        processFormattedText(node, content);
+    } else if (node.tagName === 'A') {
+        content.push({ type: "link", text: node.textContent || '', href: node.getAttribute('href') || '' });
+    } else if (node.tagName === 'FIGURE') {
+        processFigure(node, content);
     }
 }
 
@@ -68,6 +91,8 @@ function processTableCell(node: Element, tableRowContent: any[]) {
                     processNode(greatGrandChildNode, paragraphContent);
                 });
                 cellContent.push({ type: "paragraph", content: paragraphContent });
+            } else if (grandChildNode.tagName === 'FIGURE') {
+                processFigure(grandChildNode, cellContent);
             }
         }
     });
@@ -131,6 +156,9 @@ export type ContentItem =
     | { type: "text"; text: string; }
     | { type: "code"; text: string; }
     | { type: "icon"; content: string; }
+    | { type: "link"; text: string; href: string; }
+    | { type: "formattedText"; text: string; format: string; }
+    | { type: "image"; src: string; alt: string; href?: string }
     | { type: "paragraph"; content: ContentItem[] }
     | { type: "ul" | "ol"; content: ContentItem[] }
     | { type: "listItem"; content: ContentItem[] }
