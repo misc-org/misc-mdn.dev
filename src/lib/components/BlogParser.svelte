@@ -1,49 +1,34 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import logoTitle from "$lib/assets/icons/logo-title";
-  import type { ContentItem } from "$lib/utils/services/blogParser";
-  export let content: ContentItem[] = [];
+  import type { TextFormat, MainElement } from "$lib/utils/services/parser";
+  export let content: TextFormat[] | MainElement[] = [];
   export let iconSize: number = 20;
 </script>
 
-{#each content as text (text)}
-  {#if text.type === "text" && text.text === "<br>"}
+{#each content as subItem}
+  {#if subItem.type === "text"}
+    {subItem.text}
+  {:else if subItem.type === "u"}
+    <u>{subItem.content.text}</u>
+  {:else if subItem.type === "s"}
+    <s>{subItem.content.text}</s>
+  {:else if subItem.type === "em"}
+    <em>{subItem.content.text}</em>
+  {:else if subItem.type === "strong"}
+    <strong>{subItem.content.text}</strong>
+  {:else if subItem.type === "br"}
     <br />
-  {:else if text.type === "text"}
-    {text.text}
-  {:else if text.type === "icon"}
-    {#if text.content === "logoTitle"}
-      <Icon icon={logoTitle} height={iconSize} />
-    {:else}
-      <div>
-        <Icon icon={text.content} height={iconSize} />
-      </div>
-    {/if}
-  {:else if text.type === "formattedText" && "text" in text}
-    {#if text.format === "em"}
-      <em>{text.text}</em>
-    {:else if text.format === "strong"}
-      <strong>{text.text}</strong>
-    {:else if text.format === "u"}
-      <u>{text.text}</u>
-    {:else if text.format === "s"}
-      <s>{text.text}</s>
-    {:else if text.format === "code"}
-      <code>{text.text}</code>
-    {/if}
-  {:else if text.type === "link" && "href" in text && "text" in text}
-    <a href={text.href} target="_blank" rel="noopener noreferrer">
-      {text.text}
+  {:else if subItem.type === "code"}
+    <code>{subItem.content.text}</code>
+  {:else if subItem.type === "a"}
+    <a href={subItem.href} target="_blank" rel="noopener noreferrer">
+      {subItem.content.text}
     </a>
-  {:else if text.type === "image" && "src" in text && "alt" in text}
-    <figure>
-      {#if text.href}
-        <a href={text.href} target="_blank" rel="noopener noreferrer">
-          <img src={text.src} alt={text.alt} />
-        </a>
-      {:else}
-        <img src={text.src} alt={text.alt} />
-      {/if}
-    </figure>
+  {:else if subItem.type === "span"}
+    {#if subItem.content.content === "logo-title"}
+      <Icon icon={logoTitle} width={iconSize} height={iconSize} />
+    {/if}
+    <Icon icon={subItem.content.content} width={iconSize} height={iconSize} />
   {/if}
 {/each}

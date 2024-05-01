@@ -4,19 +4,24 @@
   import type { PageData } from "./$types";
   import BlogParser from "$lib/components/BlogParser.svelte";
   import Marker from "$lib/components/Marker.svelte";
-  import { parser, type ContentItem } from "$lib/utils/services/blogParser";
   import { formatDate } from "$lib/utils/services/datefmt";
   import { setupHighlightJs } from "$lib/utils/services/highlight";
+  import {
+    parser,
+    type MainElement,
+    type TextFormat,
+  } from "$lib/utils/services/parser";
 
   setupHighlightJs();
 
   export let data: PageData;
 
   let isContentLoaded: boolean = false;
-  let content: ContentItem[] = [];
+  let content: MainElement[] = [];
 
   onMount(async () => {
     parser(data.detail?.content, content);
+    console.log(content);
     isContentLoaded = true;
   });
 
@@ -67,86 +72,94 @@
       <p>更新日：{formatDate(data.detail.updatedAt)}</p>
     </div>
     {#if isContentLoaded}
-      {#each content as item (item)}
-        {#if item.type === "code" && "filename" in item}
-          <span class="code-block-content">
-            {#if item.filename}
-              <p class="filename">{item.filename}</p>
-            {/if}
-            <CodeBlock language={item.language} code={item.code} />
-          </span>
-        {:else if item.type === "h2"}
-          <h2>{item.text}</h2>
+      {#each content as item}
+        {#if item.type === "h2"}
+          <h2>
+            {#each item.content as subItem}
+              {#if subItem.type === "text"}
+                {subItem.text}
+              {/if}
+            {/each}
+          </h2>
         {:else if item.type === "h3"}
-          <h3>{item.text}</h3>
-        {:else if item.type === "paragraph"}
+          <h3>
+            {#each item.content as subItem}
+              {#if subItem.type === "text"}
+                {subItem.text}
+              {/if}
+            {/each}
+          </h3>
+        {:else if item.type === "h4"}
+          <h4>
+            {#each item.content as subItem}
+              {#if subItem.type === "text"}
+                {subItem.text}
+              {/if}
+            {/each}
+          </h4>
+        {:else if item.type === "p"}
           <p>
             <BlogParser content={item.content} {iconSize} />
           </p>
+        {:else if item.type === "pre"}
+          <pre>
+            <code>
+              {item.content}
+            </code>
+        </pre>
+        {:else if item.type === "figure"}
+          <figure>
+            <img
+              src={item.content.img}
+              alt={item.content.alt}
+              height={item.content.height}
+              width={item.content.width}
+            />
+            {#if item.content.caption}
+              <figcaption>{item.content.caption}</figcaption>
+            {/if}
+          </figure>
         {:else if item.type === "ul"}
           <ul>
-            {#each item.content as items (items)}
-              {#if items.type === "listItem" && "content" in items}
-                <li>
-                  <BlogParser content={items.content} {iconSize} />
-                </li>
-              {/if}
+            {#each item.content as subItem}
+              <li>
+                <BlogParser content={subItem.li} {iconSize} />
+              </li>
             {/each}
           </ul>
         {:else if item.type === "ol"}
           <ol>
-            {#each item.content as items (items)}
-              {#if items.type === "listItem" && "content" in items}
-                <li>
-                  <BlogParser content={items.content} {iconSize} />
-                </li>
-              {/if}
+            {#each item.content as subItem}
+              <li>
+                <BlogParser content={subItem.li} {iconSize} />
+              </li>
             {/each}
           </ol>
-        {:else if item.type === "table"}
-          <table>
-            {#each item.content as items (items)}
-              {#if items.type === "tableRow" && "content" in items}
-                <tr>
-                  {#each items.content as row (row)}
-                    {#if row.type === "th" && "content" in row}
-                      <th>
-                        {#each row.content as cell}
-                          {#if cell.type === "paragraph" && "content" in cell}
-                            <BlogParser content={cell.content} {iconSize} />
-                          {/if}
-                        {/each}
-                      </th>
-                    {:else if row.type === "td" && "content" in row}
-                      <td>
-                        {#each row.content as cell}
-                          {#if cell.type === "paragraph" && "content" in cell}
-                            <BlogParser content={cell.content} {iconSize} />
-                          {:else if cell.type === "image" && "src" in cell && "alt" in cell}
-                            <figure>
-                              {#if cell.href}
-                                <a
-                                  href={cell.href}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <img src={cell.src} alt={cell.alt} />
-                                </a>
-                              {:else}
-                                <img src={cell.src} alt={cell.alt} />
-                              {/if}
-                            </figure>
-                          {/if}
-                        {/each}
-                      </td>
-                    {/if}
-                  {/each}
-                </tr>
+        {:else if item.type === "blockquote"}
+          <blockquote>
+            {#each item.content as subItem}
+              {#if subItem.type === "p"}
+                <p>
+                  <BlogParser content={subItem.content} {iconSize} />
+                </p>
               {/if}
             {/each}
+          </blockquote>
+        {:else if item.type === "table"}
+          <table>
+            <thead>
+              <tr>
+                {#each item.content.tbody as subItem}
+                  {#each subItem.tr as subSubItem}
+                    <th>{subSubItem}</th>
+                    <pre>{JSON.stringify(subSubItem, null, 2)}</pre>
+                  {/each}
+                {/each}
+              </tr>
+            <tbody>
+              
+            </tbody>
           </table>
-        {:else if item.type === "html"}
-          {@html item.html}
         {/if}
       {/each}
     {/if}
