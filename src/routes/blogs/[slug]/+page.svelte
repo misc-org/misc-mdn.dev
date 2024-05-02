@@ -146,20 +146,17 @@
             {/each}
           </blockquote>
         {:else if item.type === "table"}
-          <table>
-            <thead>
-              <tr>
-                {#each item.content.tbody as subItem}
-                  {#each subItem.tr as subSubItem}
-                    <th>{subSubItem}</th>
-                    <pre>{JSON.stringify(subSubItem, null, 2)}</pre>
-                  {/each}
-                {/each}
-              </tr>
-            <tbody>
-              
-            </tbody>
-          </table>
+          {#each item.content.tbody as subItem}
+            <tr>
+              {#each subItem.tr as subSubItem}
+                <td>
+                  {#if subSubItem.td?.type === "text"}
+                    {subSubItem.text}
+                  {/if}
+                </td>
+              {/each}
+            </tr>
+          {/each}
         {/if}
       {/each}
     {/if}

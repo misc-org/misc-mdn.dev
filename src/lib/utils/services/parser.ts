@@ -22,7 +22,7 @@ type TableElement = { tbody: TableRowElement[] };
 
 type TableRowElement = { tr: TableCellElement[] };
 
-type TableCellElement = { th?: Content; td?: Content };
+type TableCellElement = { th?: TextFormat; td?: TextFormat };
 
 type ListElement = { li: Content | MainElement };
 
@@ -35,8 +35,6 @@ type CodeFormat = { type: 'code', language: string, code: string, filename?: str
 type SpanElement =
     | { type: 'icon', content: string, size?: number }
     | { type: 'answer', content: string };
-
-
 
 function processSpan(node: Element): SpanElement {
     const className = node.getAttribute('class') || '';
@@ -111,9 +109,9 @@ function processTable(node: Element): TableElement {
         Array.from(row.childNodes).forEach((cell) => {
             if (cell instanceof Element) {
                 if (cell.tagName === 'TH') {
-                    tr.push({ th: processText(cell) });
+                    tr.push({ th: processText(cell.querySelector('p'))[0] });
                 } else if (cell.tagName === 'TD') {
-                    tr.push({ td: processText(cell) });
+                    tr.push({ td: processText(cell.querySelector('p'))[0] });
                 }
             }
         });
