@@ -105,7 +105,9 @@
             </code>
         </pre>
         {:else if item.type === "figure"}
-          <ImagePaeser content={item.content} />
+          <figure>
+            <ImagePaeser content={item.content} />
+          </figure>
         {:else if item.type === "ul"}
           <ul>
             {#each item.content as subItem}
