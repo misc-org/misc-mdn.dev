@@ -108,17 +108,21 @@
             </code>
         </pre>
         {:else if item.type === "figure"}
-          <figure>
-            <img
-              src={item.content.img}
-              alt={item.content.alt}
-              height={item.content.height}
-              width={item.content.width}
-            />
-            {#if item.content.caption}
-              <figcaption>{item.content.caption}</figcaption>
-            {/if}
-          </figure>
+          {#if item.content.a}
+            <figure>
+              <a
+                href={item.content.a}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={item.content.img} alt="" />
+              </a>
+            </figure>
+          {:else}
+            <figure>
+              <img src={item.content.img} alt="" />
+            </figure>
+          {/if}
         {:else if item.type === "ul"}
           <ul>
             {#each item.content as subItem}
@@ -180,15 +184,21 @@
                             <figure>
                               <a
                                 href={subSubSubItem.content.a}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                target={subSubSubItem.content.target}
+                                rel={subSubSubItem.content.rel}
                               >
-                                <img src={subSubSubItem.content.img} alt="" />
+                                <img
+                                  src={subSubSubItem.content.img}
+                                  alt={subSubSubItem.content.alt}
+                                />
                               </a>
                             </figure>
                           {:else}
                             <figure>
-                              <img src={subSubSubItem.content.img} alt="" />
+                              <img
+                              src={subSubSubItem.content.img}
+                              alt={subSubSubItem.content.alt}
+                              />
                             </figure>
                           {/if}
                         {/if}

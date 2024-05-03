@@ -22,13 +22,21 @@ type TableElement = { tbody: TableRowElement[] };
 
 type TableRowElement = { type: 'tr', content: TableCellElement[] };
 
-type TableCellElement = { type: 'th' | 'td', content: MainElement[]  };
+type TableCellElement = { type: 'th' | 'td', content: MainElement[] };
 
 type ListElement = { li: Content | MainElement };
 
 type DivElement = { 'data-filename': string, pre: { code: string } };
 
-type FigureElement = { a?: string, img: string };
+type FigureElement = {
+    a?: string,
+    img: string
+    alt: string,
+    width: string,
+    height: string,
+    target: string,
+    rel: string
+};
 
 type CodeFormat = { type: 'code', language: string, code: string, filename?: string };
 
@@ -95,10 +103,23 @@ function processDiv(node: Element): DivElement {
 }
 
 function processFigure(node: Element): FigureElement {
-    const img = node.querySelector('img')?.getAttribute('src') || '';
-    const a = node.querySelector('a')?.getAttribute('href') || '';
+    const aElement = node.querySelector('a');
+    let imgElement = node.querySelector('img');
 
-    return { img, a };
+    if (aElement) {
+        imgElement = aElement.querySelector('img');
+    }
+
+    const img = imgElement ? imgElement.getAttribute('src') || '' : '';
+    const alt = imgElement ? imgElement.getAttribute('alt') || '' : '';
+    const width = imgElement ? imgElement.getAttribute('width') || '' : '';
+    const height = imgElement ? imgElement.getAttribute('height') || '' : '';
+
+    const a = aElement ? aElement.getAttribute('href') || '' : '';
+    const target = aElement ? aElement.getAttribute('target') || '' : '';
+    const rel = aElement ? aElement.getAttribute('rel') || '' : '';
+
+    return { img, alt, width, height, a, target, rel };
 }
 
 function processThd(node: Element): MainElement[] {
