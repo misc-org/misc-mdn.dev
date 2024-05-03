@@ -61,9 +61,7 @@ function processText(node: Element): Content {
     const content: Content = [];
 
     Array.from(node.childNodes).forEach((childNode) => {
-        if (childNode.nodeType === Node.TEXT_NODE) {
-            content.push({ type: "text", text: childNode.textContent || '' });
-        } else if (childNode instanceof Element) {
+        if (childNode instanceof Element) {
             const tagName = childNode.tagName.toLowerCase();
             if (tagName === 'u' || tagName === 's' || tagName === 'em' || tagName === 'strong' || tagName === 'br') {
                 content.push({ type: tagName, content: { type: 'text', text: childNode.textContent as string } });
