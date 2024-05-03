@@ -2,14 +2,12 @@
   import { onMount } from "svelte";
   import type { PageData } from "./$types";
   import BlogParser from "$lib/components/BlogParser.svelte";
+  import ImagePaeser from "$lib/components/ImagePaeser.svelte";
   import Marker from "$lib/components/Marker.svelte";
   import TableParser from "$lib/components/TableParser.svelte";
   import { formatDate } from "$lib/utils/services/datefmt";
   import { setupHighlightJs } from "$lib/utils/services/highlight";
-  import {
-    parser,
-    type MainElement,
-  } from "$lib/utils/services/parser";
+  import { parser, type MainElement } from "$lib/utils/services/parser";
 
   setupHighlightJs();
 
@@ -107,21 +105,7 @@
             </code>
         </pre>
         {:else if item.type === "figure"}
-          {#if item.content.a}
-            <figure>
-              <a
-                href={item.content.a}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={item.content.img} alt="" />
-              </a>
-            </figure>
-          {:else}
-            <figure>
-              <img src={item.content.img} alt="" />
-            </figure>
-          {/if}
+          <ImagePaeser content={item.content} />
         {:else if item.type === "ul"}
           <ul>
             {#each item.content as subItem}

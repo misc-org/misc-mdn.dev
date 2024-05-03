@@ -28,7 +28,7 @@ type ListElement = { li: Content | MainElement };
 
 type DivElement = { 'data-filename': string, pre: { code: string } };
 
-type FigureElement = {
+export type FigureElement = {
     a?: string,
     img: string
     alt: string,
