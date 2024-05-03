@@ -20,9 +20,9 @@ export type MainElement =
 
 type TableElement = { tbody: TableRowElement[] };
 
-type TableRowElement = { tr: TableCellElement[] };
+type TableRowElement = { type: 'tr', content: TableCellElement[] };
 
-type TableCellElement = { th?: TextFormat; td?: TextFormat };
+type TableCellElement = { type: 'th' | 'td', content: MainElement[]  };
 
 type ListElement = { li: Content | MainElement };
 
@@ -101,6 +101,23 @@ function processFigure(node: Element): FigureElement {
     return { img, a };
 }
 
+function processThd(node: Element): MainElement[] {
+    const content: MainElement[] = [];
+
+    Array.from(node.childNodes).forEach((childNode) => {
+        if (childNode.nodeType === Node.TEXT_NODE) {
+        } else if (childNode instanceof Element) {
+            if (childNode.tagName === 'P') {
+                content.push({ type: 'p', content: processText(childNode) });
+            } else if (childNode.tagName === 'FIGURE') {
+                content.push({ type: 'figure', content: processFigure(childNode) });
+            }
+        }
+    });
+
+    return content;
+}
+
 function processTable(node: Element): TableElement {
     const tbody: TableRowElement[] = [];
 
@@ -109,13 +126,13 @@ function processTable(node: Element): TableElement {
         Array.from(row.childNodes).forEach((cell) => {
             if (cell instanceof Element) {
                 if (cell.tagName === 'TH') {
-                    tr.push({ th: processText(cell.querySelector('p'))[0] });
+                    tr.push({ type: 'th', content: processThd(cell) });
                 } else if (cell.tagName === 'TD') {
-                    tr.push({ td: processText(cell.querySelector('p'))[0] });
+                    tr.push({ type: 'td', content: processThd(cell) });
                 }
             }
         });
-        tbody.push({ tr });
+        tbody.push({ type: 'tr', content: tr });
     });
 
     return { tbody };

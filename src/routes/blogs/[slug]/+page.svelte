@@ -146,17 +146,59 @@
             {/each}
           </blockquote>
         {:else if item.type === "table"}
-          {#each item.content.tbody as subItem}
-            <tr>
-              {#each subItem.tr as subSubItem}
-                <td>
-                  {#if subSubItem.td?.type === "text"}
-                    {subSubItem.text}
+          <table>
+            {#each item.content.tbody as subItem}
+              <tr>
+                {#each subItem.content as subSubItem}
+                  {#if subSubItem.type === "th"}
+                    <th>
+                      {#each subSubItem.content as subSubSubItem}
+                        {#if subSubSubItem.type === "p"}
+                          <BlogParser
+                            content={subSubSubItem.content}
+                            {iconSize}
+                          />
+                        {/if}
+                        {#if subSubSubItem.type === "figure"}
+                          <figure>
+                            <img src={subSubSubItem.content.img} alt="" />
+                          </figure>
+                        {/if}
+                      {/each}
+                    </th>
+                  {:else if subSubItem.type === "td"}
+                    <td>
+                      {#each subSubItem.content as subSubSubItem}
+                        {#if subSubSubItem.type === "p"}
+                          <BlogParser
+                            content={subSubSubItem.content}
+                            {iconSize}
+                          />
+                        {/if}
+                        {#if subSubSubItem.type === "figure"}
+                          {#if subSubSubItem.content.a}
+                            <figure>
+                              <a
+                                href={subSubSubItem.content.a}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <img src={subSubSubItem.content.img} alt="" />
+                              </a>
+                            </figure>
+                          {:else}
+                            <figure>
+                              <img src={subSubSubItem.content.img} alt="" />
+                            </figure>
+                          {/if}
+                        {/if}
+                      {/each}
+                    </td>
                   {/if}
-                </td>
-              {/each}
-            </tr>
-          {/each}
+                {/each}
+              </tr>
+            {/each}
+          </table>
         {/if}
       {/each}
     {/if}
