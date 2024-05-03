@@ -1,15 +1,14 @@
 <script lang="ts">
-  import { CodeBlock } from "@skeletonlabs/skeleton";
   import { onMount } from "svelte";
   import type { PageData } from "./$types";
   import BlogParser from "$lib/components/BlogParser.svelte";
   import Marker from "$lib/components/Marker.svelte";
+  import TableParser from "$lib/components/TableParser.svelte";
   import { formatDate } from "$lib/utils/services/datefmt";
   import { setupHighlightJs } from "$lib/utils/services/highlight";
   import {
     parser,
     type MainElement,
-    type TextFormat,
   } from "$lib/utils/services/parser";
 
   setupHighlightJs();
@@ -127,7 +126,9 @@
           <ul>
             {#each item.content as subItem}
               <li>
-                <BlogParser content={subItem.li} {iconSize} />
+                {#if Array.isArray(subItem.li)}
+                  <BlogParser content={subItem.li} {iconSize} />
+                {/if}
               </li>
             {/each}
           </ul>
@@ -135,7 +136,9 @@
           <ol>
             {#each item.content as subItem}
               <li>
-                <BlogParser content={subItem.li} {iconSize} />
+                {#if Array.isArray(subItem.li)}
+                  <BlogParser content={subItem.li} {iconSize} />
+                {/if}
               </li>
             {/each}
           </ol>
@@ -156,53 +159,11 @@
                 {#each subItem.content as subSubItem}
                   {#if subSubItem.type === "th"}
                     <th>
-                      {#each subSubItem.content as subSubSubItem}
-                        {#if subSubSubItem.type === "p"}
-                          <BlogParser
-                            content={subSubSubItem.content}
-                            {iconSize}
-                          />
-                        {/if}
-                        {#if subSubSubItem.type === "figure"}
-                          <figure>
-                            <img src={subSubSubItem.content.img} alt="" />
-                          </figure>
-                        {/if}
-                      {/each}
+                      <TableParser content={subSubItem.content} {iconSize} />
                     </th>
                   {:else if subSubItem.type === "td"}
                     <td>
-                      {#each subSubItem.content as subSubSubItem}
-                        {#if subSubSubItem.type === "p"}
-                          <BlogParser
-                            content={subSubSubItem.content}
-                            {iconSize}
-                          />
-                        {/if}
-                        {#if subSubSubItem.type === "figure"}
-                          {#if subSubSubItem.content.a}
-                            <figure>
-                              <a
-                                href={subSubSubItem.content.a}
-                                target={subSubSubItem.content.target}
-                                rel={subSubSubItem.content.rel}
-                              >
-                                <img
-                                  src={subSubSubItem.content.img}
-                                  alt={subSubSubItem.content.alt}
-                                />
-                              </a>
-                            </figure>
-                          {:else}
-                            <figure>
-                              <img
-                              src={subSubSubItem.content.img}
-                              alt={subSubSubItem.content.alt}
-                              />
-                            </figure>
-                          {/if}
-                        {/if}
-                      {/each}
+                      <TableParser content={subSubItem.content} {iconSize} />
                     </td>
                   {/if}
                 {/each}
