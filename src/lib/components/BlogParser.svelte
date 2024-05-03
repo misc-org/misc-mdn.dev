@@ -28,7 +28,8 @@
   {:else if subItem.type === "span"}
     {#if subItem.content.content === "logo-title"}
       <Icon icon={logoTitle} width={iconSize} height={iconSize} />
+    {:else}
+      <Icon icon={subItem.content.content} width={iconSize} height={iconSize} />
     {/if}
-    <Icon icon={subItem.content.content} width={iconSize} height={iconSize} />
   {/if}
 {/each}
