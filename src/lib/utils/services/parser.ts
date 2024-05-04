@@ -72,6 +72,8 @@ function processText(node: Element): Content {
             } else if (tagName === 'code') {
                 content.push({ type: 'code', content: { type: 'text', text: childNode.textContent as string } });
             }
+        } else if (childNode.nodeType === Node.TEXT_NODE) {
+            content.push({ type: 'text', text: childNode.textContent as string });
         }
     });
 

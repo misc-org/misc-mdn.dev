@@ -99,11 +99,9 @@
             <BlogParser content={item.content} {iconSize} />
           </p>
         {:else if item.type === "pre"}
-          <pre>
-            <code>
-              {item.content}
-            </code>
-        </pre>
+          <pre><code
+              >{#each item.content as subItem}{subItem.code}{/each}</code
+            ></pre>
         {:else if item.type === "figure"}
           <figure>
             <ImagePaeser content={item.content} />
