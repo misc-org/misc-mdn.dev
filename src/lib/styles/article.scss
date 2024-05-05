@@ -81,7 +81,7 @@ article {
 
     >span {
       position: absolute;
-      top: 0;
+      top: 10px;
       left: 0;
       transform: translateY(-50%);
       background-color: $color-static-gray;
@@ -89,6 +89,7 @@ article {
       border-radius: $radii-xs;
       font-size: $size-xs;
       color: $color-static-black;
+      z-index: 1;
     }
 
     >.codeblock {
@@ -201,10 +202,9 @@ article {
       object-fit: cover;
     }
 
-    /* 768px = md */
     @media (width < 768px) {
       padding: 0;
-      padding-top: 3rem;
+      padding: 0 $spacing-1;
     }
 
     &>* {
@@ -270,17 +270,15 @@ article {
       padding: $spacing-1 $spacing-3;
       font-size: $size-sm;
 
+      p {
+        text-align: left;
+      }
+
       figure {
         width: 100%;
         height: 100%;
         justify-content: center;
         align-items: center;
-
-        & figcaption {
-          padding-top: $spacing-1;
-          font-size: $size-sm;
-          opacity: 0.8;
-        }
 
         a {
           display: block;
