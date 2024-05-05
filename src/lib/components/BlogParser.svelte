@@ -3,7 +3,7 @@
   import logoTitle from "$lib/assets/icons/logo-title";
   import type { TextFormat, MainElement } from "$lib/utils/services/parser";
   export let content: TextFormat[] | MainElement[] = [];
-  export let iconSize: number = 20;
+  export let iconSize: number;
 </script>
 
 {#each content as subItem}
@@ -32,8 +32,8 @@
       {:else}
         <Icon
           icon={subItem.content.content}
-          width={subItem.content.size}
-          height={subItem.content.size}
+          width={iconSize + subItem.content.size}
+          height={iconSize + subItem.content.size}
         />
       {/if}
     {:else}
