@@ -104,9 +104,19 @@
             {/each}
           </h4>
         {:else if item.type === "p"}
-          <p>
-            <BlogParser content={item.content} {iconSize} />
-          </p>
+          {#if item.style}
+            <p
+              style={item.style
+                .map(({ property, value }) => `${property}: ${value}`)
+                .join("; ")}
+            >
+              <BlogParser content={item.content} {iconSize} />
+            </p>
+          {:else}
+            <p>
+              <BlogParser content={item.content} {iconSize} />
+            </p>
+          {/if}
         {:else if item.type === "pre"}
           <pre><code
               >{#each item.content as subItem}{subItem.code}{/each}</code

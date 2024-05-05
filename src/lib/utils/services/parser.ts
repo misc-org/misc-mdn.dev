@@ -9,7 +9,7 @@ export type TextFormat =
     | { type: 'span', content: SpanElement };
 
 export type MainElement =
-    | { type: 'p', content: Content }
+    | { type: 'p', content: Content, style?: { property: string, value: string }[] }
     | { type: 'h2' | 'h3' | 'h4', content: Content }
     | { type: 'blockquote', content: MainElement[] }
     | { type: 'table', content: TableElement }
@@ -212,7 +212,12 @@ export function parser(data: any, content: any[]) {
             } else if (node.tagName === 'BLOCKQUOTE') {
                 content.push({ type: 'blockquote', content: processQuote(node) });
             } else if (node.tagName === 'P') {
-                content.push({ type: 'p', content: processText(node) });
+                const styleAttr = node.getAttribute("style") || "";
+                const styles = styleAttr.split(";").map((style) => {
+                    const [property, value] = style.split(":").map(s => s.trim());
+                    return { property, value };
+                }).filter(({ property, value }) => property && value);
+                content.push({ type: 'p', content: processText(node), style: styles });
             } else {
                 content.push({ type: "html", html: node.outerHTML });
             }
