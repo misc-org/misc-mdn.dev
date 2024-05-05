@@ -40,11 +40,11 @@
 | リンク         | リンクを作成します。|
 | 画像           | 画像を挿入します。|
 | 埋め込み       | 外部コンテンツを埋め込みます。|
-| アイコン         | [icones](https://icones.js.org)にあるアイコンを表示します。|
+| アイコン         | [icones ↗](https://icones.js.org)にあるアイコンを表示します。|
 
 ### テーブルについて
 
-テーブルに関しては、処理の複雑さや容量の増加を考えて、`TextFormat` （ [`parser.ts`](../../src/lib/utils/services/parser.ts) の型宣言の部分にあります ） にある基本的なものと画像のみとなっています。
+テーブルに関しては、処理の複雑さや容量の増加を考えて、`TextFormat` （ [`parser.ts` ↗](src/lib/utils/services/parser.ts) の型宣言の部分にあります ） にある基本的なものと画像のみとなっています。
 
 ### アイコンについて
 
@@ -71,7 +71,7 @@ microCMS では、画面プレビューという機能を用いて実際に投�
 
 ## パーサーについて
 
-この章は、[`parsr.ts`](../../src/lib/utils/services/parser.ts) を参照しながら読んでください。
+この章は、[`parsr.ts` ↗](src/lib/utils/services/parser.ts) を参照しながら読んでください。
 
 ### 型定義
 まず、HTML要素を表現するための型が定義されています。これらは、HTMLの各要素（段落、見出し、リスト、テーブルなど）を表現するためのものです。例えば、`MainElement` 型は、HTMLの主要な要素を表現します。これらの型は、パーサーがHTMLを解析し、特定の形式に変換する際に使用されます。
@@ -85,14 +85,14 @@ microCMS では、画面プレビューという機能を用いて実際に投�
 1. **型定義の追加：** まず、新たなHTML要素を表現するための型を定義します。これは、既存の型定義を参考にして行ってください。
 2. **パーサー関数の作成：** 次に、新たなHTML要素を解析するための関数を作成します。この関数は、HTML要素を受け取り、1で定義した型のオブジェクトを返すようにします。
 3. **メインパーサーの更新：** 最後に、メインのパーサー関数を更新して、新たに作成したパーサー関数を呼び出すようにします。これにより、新たなHTML要素が適切に解析され、特定の形式に変換されます。
-4. **表示の更新：** 最後に、[`src/routes/blogs/[slug]/+page.svelte`](../../src/routes/blogs/[slug]/+page.svelte) や [`src/lib/components/BlogParser.svelte`](../../src/lib/components/BlogParser.svelte) などを更新して、パースしたものが正しく描写されるようにしてください。
+4. **表示の更新：** 最後に、[`src/routes/blogs/[slug]/+page.svelte` ↗](src/routes/blogs/[slug]/+page.svelte) や [`src/lib/components/BlogParser.svelte` ↗](src/lib/components/BlogParser.svelte) などを更新して、パースしたものが正しく描写されるようにしてください。
 
 カスタムクラスを追加するときは、基本的に `<span class="custom-class"></span>` が `p` タグの中に入っているので、`className` によって条件を分岐させてください。
 
 具体的には、下記の部分を変更します。
 
 
-[`parser.ts`](../../src/lib/utils/services/parser.ts)
+[`parser.ts` ↗](src/lib/utils/services/parser.ts)
 ```diff
 - type SpanElement = { type: 'icon', content: string, size?: number }
 
