@@ -26,7 +26,7 @@ type TableCellElement = { type: 'th' | 'td', content: MainElement[] };
 
 type ListElement = { li: Content | MainElement };
 
-type DivElement = { 'data-filename': string, pre: { code: string } };
+type DivElement = { filename?: string, code: string, lang?: string };
 
 export type FigureElement = {
     a?: string,
@@ -40,21 +40,23 @@ export type FigureElement = {
 
 type CodeFormat = { type: 'code', language: string, code: string, filename?: string };
 
-type SpanElement =
-    | { type: 'icon', content: string, size?: number }
-    | { type: 'answer', content: string };
+type SpanElement = { type: 'icon', content: string, size?: number }
 
 function processSpan(node: Element): SpanElement {
     const className = node.getAttribute('class') || '';
-    const content = node.textContent || '';
+    let content = node.textContent || '';
+    let size;
 
     if (className === 'icon') {
-        return { type: 'icon', content };
-    } else if (className === 'answer') {
-        return { type: 'answer', content };
+        const match = content.match(/\$\$(\d+)$/);
+        if (match) {
+            content = content.replace(/\$\$\d+$/, '');
+            size = parseInt(match[1], 10);
+        }
+        return { type: 'icon', content, size };
     }
 
-    return { type: 'icon', content };
+    return { type: 'icon', content: 'error' };
 }
 
 function processText(node: Element): Content {
@@ -96,10 +98,19 @@ function processList(node: Element): ListElement[] {
 
 function processDiv(node: Element): DivElement {
     const filename = node.getAttribute("data-filename") || "";
-    const codeElement = node.querySelector("code");
+    const codeElement = node.querySelector("pre > code");
     const code = codeElement ? codeElement.textContent || "" : "";
 
-    return { 'data-filename': filename, pre: { code } };
+    let lang = "";
+    if (codeElement) {
+        const classList = Array.from(codeElement.classList);
+        const languageClass = classList.find(className => className.startsWith('language-'));
+        if (languageClass) {
+            lang = languageClass.slice('language-'.length);
+        }
+    }
+
+    return { filename, code, lang };
 }
 
 function processFigure(node: Element): FigureElement {

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { CodeBlock } from "@skeletonlabs/skeleton";
   import { onMount } from "svelte";
   import type { PageData } from "./$types";
   import BlogParser from "$lib/components/BlogParser.svelte";
@@ -18,7 +19,6 @@
 
   onMount(async () => {
     parser(data.detail?.content, content);
-    console.log(content);
     isContentLoaded = true;
   });
 
@@ -36,7 +36,7 @@
   });
 </script>
 
-<div>
+<div class="head">
   {#if data && data.detail}
     <div id="title">
       <h1>
@@ -136,6 +136,13 @@
               {/if}
             {/each}
           </blockquote>
+        {:else if item.type === "div"}
+          <div class="codeblock">
+            {#if item.content.filename}
+              <span>{item.content.filename}</span>
+            {/if}
+            <CodeBlock language={item.content.lang} code={item.content.code} />
+          </div>
         {:else if item.type === "table"}
           <table>
             {#each item.content.tbody as subItem}
@@ -161,7 +168,7 @@
 </article>
 
 <style lang="scss">
-  div {
+  .head {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;

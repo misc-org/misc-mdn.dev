@@ -72,12 +72,14 @@ article {
       border: none;}
   }
 
-  & .code-block-content {
+  & .codeblock {
     width: 100%;
     position: relative;
     margin: $spacing-3 0;
+    display: grid;
+    grid-template-columns: 1fr;
 
-    >.filename {
+    >span {
       position: absolute;
       top: 0;
       left: 0;

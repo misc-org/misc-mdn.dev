@@ -26,10 +26,22 @@
       {subItem.content.text}
     </a>
   {:else if subItem.type === "span"}
-    {#if subItem.content.content === "logo-title"}
-      <Icon icon={logoTitle} width={iconSize} height={iconSize} />
+    {#if subItem.content.size}
+      {#if subItem.content.content === "logo-title"}
+        <Icon icon={logoTitle} width={iconSize} height={iconSize} />
+      {:else}
+        <Icon
+          icon={subItem.content.content}
+          width={subItem.content.size}
+          height={subItem.content.size}
+        />
+      {/if}
     {:else}
-      <Icon icon={subItem.content.content} width={iconSize} height={iconSize} />
+      {#if subItem.content.content === "logo-title"}
+        <Icon icon={logoTitle} width={iconSize} height={iconSize} />
+      {:else}
+        <Icon icon={subItem.content.content} width={iconSize} height={iconSize} />
+      {/if}
     {/if}
   {/if}
 {/each}
