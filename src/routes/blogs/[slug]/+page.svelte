@@ -217,7 +217,7 @@
   }
 
   @include mobile {
-    div {
+    .head {
       grid-template-columns: 1fr;
 
       #title {
