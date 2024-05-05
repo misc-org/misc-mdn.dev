@@ -36,6 +36,15 @@
   });
 </script>
 
+<svelte:head>
+  {#if data && data.detail}
+    <title>MISC - {data.detail.title}</title>
+    {#if data.detail.description}
+      <meta name="description" content={data.detail.description} />
+    {/if}
+  {/if}
+</svelte:head>
+
 <div class="head">
   {#if data && data.detail}
     <div id="title">
