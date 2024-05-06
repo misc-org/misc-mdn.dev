@@ -301,4 +301,10 @@ article {
       color: $color-static-black;
     }
   }
+
+  & hr {
+    border: none;
+    border-top: 2px solid $color-static-gray;
+    margin: $spacing-5 0;
+  }
 }

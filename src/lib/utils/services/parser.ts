@@ -218,6 +218,8 @@ export function parser(data: any, content: any[]) {
                     return { property, value };
                 }).filter(({ property, value }) => property && value);
                 content.push({ type: 'p', content: processText(node), style: styles });
+            } else if (node.tagName === 'HR') {
+                content.push({ type: 'hr', content: [] });
             } else {
                 content.push({ type: "html", html: node.outerHTML });
             }
