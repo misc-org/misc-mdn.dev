@@ -9,6 +9,7 @@
   import { formatDate } from "$lib/utils/services/datefmt";
   import { setupHighlightJs } from "$lib/utils/services/highlight";
   import { parser, type MainElement } from "$lib/utils/services/parser";
+  import { rewriteHTML } from "$lib/utils/middlewares/rewrite-html";
 
   setupHighlightJs();
 
@@ -78,112 +79,7 @@
       <p>更新日：{formatDate(data.detail.updatedAt)}</p>
     </div>
     {#if isContentLoaded}
-      {#each content as item}
-        {#if item.type === "h2"}
-          <h2>
-            {#each item.content as subItem}
-              {#if subItem.type === "text"}
-                {subItem.text}
-              {/if}
-            {/each}
-          </h2>
-        {:else if item.type === "h3"}
-          <h3>
-            {#each item.content as subItem}
-              {#if subItem.type === "text"}
-                {subItem.text}
-              {/if}
-            {/each}
-          </h3>
-        {:else if item.type === "h4"}
-          <h4>
-            {#each item.content as subItem}
-              {#if subItem.type === "text"}
-                {subItem.text}
-              {/if}
-            {/each}
-          </h4>
-        {:else if item.type === "p"}
-          {#if item.style}
-            <p
-              style={item.style
-                .map(({ property, value }) => `${property}: ${value}`)
-                .join("; ")}
-            >
-              <BlogParser content={item.content} {iconSize} />
-            </p>
-          {:else}
-            <p>
-              <BlogParser content={item.content} {iconSize} />
-            </p>
-          {/if}
-        {:else if item.type === "pre"}
-          <pre><code
-              >{#each item.content as subItem}{subItem.code}{/each}</code
-            ></pre>
-        {:else if item.type === "figure"}
-          <figure>
-            <ImagePaeser content={item.content} />
-          </figure>
-        {:else if item.type === "ul"}
-          <ul>
-            {#each item.content as subItem}
-              <li>
-                {#if Array.isArray(subItem.li)}
-                  <BlogParser content={subItem.li} {iconSize} />
-                {/if}
-              </li>
-            {/each}
-          </ul>
-        {:else if item.type === "ol"}
-          <ol>
-            {#each item.content as subItem}
-              <li>
-                {#if Array.isArray(subItem.li)}
-                  <BlogParser content={subItem.li} {iconSize} />
-                {/if}
-              </li>
-            {/each}
-          </ol>
-        {:else if item.type === "blockquote"}
-          <blockquote>
-            {#each item.content as subItem}
-              {#if subItem.type === "p"}
-                <p>
-                  <BlogParser content={subItem.content} {iconSize} />
-                </p>
-              {/if}
-            {/each}
-          </blockquote>
-        {:else if item.type === "div"}
-          <div class="codeblock">
-            {#if item.content.filename}
-              <span>{item.content.filename}</span>
-            {/if}
-            <CodeBlock language={item.content.lang} code={item.content.code} />
-          </div>
-        {:else if item.type === "table"}
-          <table>
-            {#each item.content.tbody as subItem}
-              <tr>
-                {#each subItem.content as subSubItem}
-                  {#if subSubItem.type === "th"}
-                    <th>
-                      <TableParser content={subSubItem.content} {iconSize} />
-                    </th>
-                  {:else if subSubItem.type === "td"}
-                    <td>
-                      <TableParser content={subSubItem.content} {iconSize} />
-                    </td>
-                  {/if}
-                {/each}
-              </tr>
-            {/each}
-          </table>
-        {:else if item.type === "hr"}
-          <hr />
-        {/if}
-      {/each}
+      {@html rewriteHTML(data.detail.content)}
     {/if}
   {/if}
 </article>
