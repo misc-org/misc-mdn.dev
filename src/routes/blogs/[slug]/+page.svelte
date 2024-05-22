@@ -1,15 +1,11 @@
 <script lang="ts">
-  import { CodeBlock } from "@skeletonlabs/skeleton";
   import { onMount } from "svelte";
   import type { PageData } from "./$types";
-  import BlogParser from "$lib/components/BlogParser.svelte";
-  import ImagePaeser from "$lib/components/ImagePaeser.svelte";
   import Marker from "$lib/components/Marker.svelte";
-  import TableParser from "$lib/components/TableParser.svelte";
+  import { rewriteHTML, injectComponents } from "$lib/utils/middlewares/rewrite-html";
   import { formatDate } from "$lib/utils/services/datefmt";
   import { setupHighlightJs } from "$lib/utils/services/highlight";
   import { parser, type MainElement } from "$lib/utils/services/parser";
-  import { rewriteHTML } from "$lib/utils/middlewares/rewrite-html";
 
   setupHighlightJs();
 
@@ -20,20 +16,8 @@
 
   onMount(async () => {
     parser(data.detail?.content, content);
+    injectComponents();
     isContentLoaded = true;
-  });
-
-  let iconSize: number = 20;
-
-  onMount(() => {
-    const width = window.innerWidth;
-    if (width <= 480) {
-      iconSize = 15;
-    } else if (width <= 768) {
-      iconSize = 15;
-    } else {
-      iconSize = 20;
-    }
   });
 </script>
 
