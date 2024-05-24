@@ -26,7 +26,7 @@ article {
       }
     }
 
-    >a {
+    > a {
       opacity: 0;
       cursor: pointer;
       position: absolute;
@@ -66,10 +66,11 @@ article {
       font-size: $size-xs;
     }
 
-    >code {
+    > code {
       padding: 0;
       margin: 0;
-      border: none;}
+      border: none;
+    }
   }
 
   & .codeblock {
@@ -79,7 +80,7 @@ article {
     display: grid;
     grid-template-columns: 1fr;
 
-    >span {
+    > span {
       position: absolute;
       top: 10px;
       left: 0;
@@ -92,7 +93,7 @@ article {
       z-index: 1;
     }
 
-    >.codeblock {
+    > .codeblock {
       padding-inline: $spacing-5;
       background-color: $color-neutral;
       border: 2px solid $color-static-gray;
@@ -102,12 +103,12 @@ article {
       display: grid;
       grid-template-columns: 1fr;
 
-      >header {
+      > header {
         margin-top: $spacing-3;
         display: grid;
         grid-template-columns: auto 1fr auto;
 
-        >span {
+        > span {
           font-size: $size-xs;
           color: $color-static-black;
           background-color: $color-neutral;
@@ -115,7 +116,7 @@ article {
           border-radius: $radii-xs;
         }
 
-        >button {
+        > button {
           grid-column: 3;
           cursor: pointer;
           background-color: $color-neutral;
@@ -128,13 +129,13 @@ article {
         }
       }
 
-      >pre {
+      > pre {
         margin: $spacing-3;
         overflow-y: auto;
         max-height: 50vh;
         border: none;
 
-        >code {
+        > code {
           padding: 0;
           margin: 0;
           border: none;
@@ -142,14 +143,14 @@ article {
       }
     }
 
-    >div {
+    > div {
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid $color-static-white;
     }
 
-    >pre {
+    > pre {
       margin: $spacing-3;
       overflow-y: auto;
       max-height: 50vh;
@@ -157,33 +158,34 @@ article {
   }
 
   & p {
-
-    >a {
+    > a {
       text-decoration: underline;
     }
 
-    >u {
+    > u {
       text-decoration: underline;
     }
 
-    >s {
+    > s {
       text-decoration: line-through;
     }
 
-    >strong {
+    > strong {
       font-weight: $font-bold;
     }
 
-    >em {
+    > em {
       font-style: italic;
     }
 
-    div {
+    > .icon {
       display: inline-block;
       margin: 0 $spacing-1;
+      text-align: center;
 
       svg {
-        width: 1em;
+        width: $size-md;
+        height: $size-md;
       }
     }
   }
@@ -207,7 +209,7 @@ article {
       padding: 0 $spacing-1;
     }
 
-    &>* {
+    & > * {
       width: fit-content;
       margin: 0 auto;
     }
@@ -217,7 +219,7 @@ article {
     padding-left: $spacing-5;
     border-left: 2px solid $color-static-gray;
 
-    >p {
+    > p {
       font-style: italic;
       margin: $spacing-3 0;
     }
@@ -241,8 +243,8 @@ article {
       &::before {
         content: "";
         display: inline-block;
-        width: .2em;
-        height: .2em;
+        width: 0.2em;
+        height: 0.2em;
         background-color: $color-static-black;
         border-radius: 50%;
         margin-right: $spacing-2;

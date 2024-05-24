@@ -66,6 +66,6 @@ export async function getDraftContentDetail<T extends keyof EndPoints["get"]>(
   return microcms.get<EndPoints["get"][T]>({
     endpoint: key,
     contentId: id,
-    queries: { draftKey, ...queries},
+    queries: { draftKey, ...queries },
   });
 }

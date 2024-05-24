@@ -1,5 +1,8 @@
 import type { PageServerLoad } from "./$types";
-import { getContentDetail, getDraftContentDetail } from "$lib/utils/services/microcms";
+import {
+  getContentDetail,
+  getDraftContentDetail,
+} from "$lib/utils/services/microcms";
 
 export const load: PageServerLoad = async ({ request, params }) => {
   const { slug } = params;
@@ -8,7 +11,7 @@ export const load: PageServerLoad = async ({ request, params }) => {
   try {
     let res;
     if (draftKey) {
-      res = await getDraftContentDetail("blogs", slug, draftKey );
+      res = await getDraftContentDetail("blogs", slug, draftKey);
     } else {
       res = await getContentDetail("blogs", slug);
     }
@@ -23,4 +26,4 @@ export const load: PageServerLoad = async ({ request, params }) => {
       };
     }
   }
-}
+};

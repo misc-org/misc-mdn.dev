@@ -4,20 +4,11 @@
   import Marker from "$lib/components/Marker.svelte";
   import { rewriteHTML, injectComponents } from "$lib/utils/middlewares/rewrite-html";
   import { formatDate } from "$lib/utils/services/datefmt";
-  import { setupHighlightJs } from "$lib/utils/services/highlight";
-  import { parser, type MainElement } from "$lib/utils/services/parser";
-
-  setupHighlightJs();
 
   export let data: PageData;
 
-  let isContentLoaded: boolean = false;
-  let content: MainElement[] = [];
-
   onMount(async () => {
-    parser(data.detail?.content, content);
     injectComponents();
-    isContentLoaded = true;
   });
 </script>
 
@@ -62,9 +53,7 @@
       <p>公開日：{formatDate(data.detail.publishedAt)}</p>
       <p>更新日：{formatDate(data.detail.updatedAt)}</p>
     </div>
-    {#if isContentLoaded}
       {@html rewriteHTML(data.detail.content)}
-    {/if}
   {/if}
 </article>
 

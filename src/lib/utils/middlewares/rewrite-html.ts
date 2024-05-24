@@ -19,7 +19,12 @@ export function rewriteHTML(
 ): string {
   let result = html;
 
-  const writers: Rewriter[] = [highlight, addAnchorCopy, processFigure, ...additionalRewriter];
+  const writers: Rewriter[] = [
+    highlight,
+    addAnchorCopy,
+    processFigure,
+    ...additionalRewriter,
+  ];
 
   // eslint-disable-next-line no-restricted-syntax
   for (const rewriter of writers) {
