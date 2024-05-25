@@ -32,8 +32,6 @@ export function injectIconify(): void {
 
     let height = width;
 
-    console.log(name, width, height);
-
     const icon = specialIcons[name] ?? name;
 
     new Icon({
