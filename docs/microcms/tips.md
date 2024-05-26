@@ -50,7 +50,7 @@
 
 microCMS のカスタムクラスに、アイコンというものが追加されているので、 [icones ↗](https://icones.js.org) から使いたいアイコンの `mid:` などの部分をコピペして、張り付けた部分をアイコンというクラスに設定してください。
 
-基本的にはサイズは文字の大きさに合わせていますが、文字列の最後に `$$00` のように `$$` ＋ 半角数字で指定することで大きさを変えることができます。
+基本的にはサイズは文字の大きさに合わせていますが、文字列の最後に `$00` のように `$` ＋ 半角数字で指定することで大きさを変えることができます。
 なお、**この大きさは相対値**なので「基本のサイズプラスいくつ」で考えて作成してください。
 
 ex)
@@ -78,47 +78,3 @@ microCMS では、画面プレビューという機能を用いて実際に投�
 ### 型定義
 
 まず、HTML要素を表現するための型が定義されています。これらは、HTMLの各要素（段落、見出し、リスト、テーブルなど）を表現するためのものです。例えば、`MainElement` 型は、HTMLの主要な要素を表現します。これらの型は、パーサーがHTMLを解析し、特定の形式に変換する際に使用されます。
-
-### パーサー関数
-
-次に、各HTML要素を解析するための関数が定義されています。これらの関数は、HTML要素を受け取り、対応する型のオブジェクトを返します。例えば、`processText` 関数は、HTMLのテキストノードを解析し、`Content` 型のオブジェクトを生成します。
-
-### 新たな追加方法
-
-新たなHTML要素をパースする機能を追加するには、以下の手順を守ってください。
-
-1. **型定義の追加：** まず、新たなHTML要素を表現するための型を定義します。これは、既存の型定義を参考にして行ってください。
-2. **パーサー関数の作成：** 次に、新たなHTML要素を解析するための関数を作成します。この関数は、HTML要素を受け取り、1で定義した型のオブジェクトを返すようにします。
-3. **メインパーサーの更新：** 最後に、メインのパーサー関数を更新して、新たに作成したパーサー関数を呼び出すようにします。これにより、新たなHTML要素が適切に解析され、特定の形式に変換されます。
-4. **表示の更新：** 最後に、[`src/routes/blogs/[slug]/+page.svelte` ↗](src/routes/blogs/[slug]/+page.svelte) や [`src/lib/components/BlogParser.svelte` ↗](src/lib/components/BlogParser.svelte) などを更新して、パースしたものが正しく描写されるようにしてください。
-
-カスタムクラスを追加するときは、基本的に `<span class="custom-class"></span>` が `p` タグの中に入っているので、`className` によって条件を分岐させてください。
-
-具体的には、下記の部分を変更します。
-
-[`parser.ts` ↗](src/lib/utils/services/parser.ts)
-
-```diff
-- type SpanElement = { type: 'icon', content: string, size?: number }
-
-+ type SpanElement =
-+   | { type: 'icon', content: string, size?: number }
-+   | { type: 'newClass', content: Content };
-```
-
-また、`processSpan` 関数で下記の部分に追記し、条件の分岐を行います。
-
-```diff
-   if (className === 'icon') {
-          const match = content.match(/\$\$(\d+)$/);
-           if (match) {
-              content = content.replace(/\$\$\d+$/, '');
-              size = parseInt(match[1], 10);
-        }
-          return { type: 'icon', content, size };
--  }
-
-+  } else if (className === 'newClass') {
-+      //新しい処理
-+  }
-```
