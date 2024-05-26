@@ -2,7 +2,10 @@
   import { onMount } from "svelte";
   import type { PageData } from "./$types";
   import Marker from "$lib/components/Marker.svelte";
-  import { rewriteHTML, injectComponents } from "$lib/utils/middlewares/rewrite-html";
+  import {
+    rewriteHTML,
+    injectComponents,
+  } from "$lib/utils/middlewares/rewrite-html";
   import { formatDate } from "$lib/utils/services/datefmt";
 
   export let data: PageData;
@@ -53,7 +56,8 @@
       <p>公開日：{formatDate(data.detail.publishedAt)}</p>
       <p>更新日：{formatDate(data.detail.updatedAt)}</p>
     </div>
-      {@html rewriteHTML(data.detail.content)}
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    {@html rewriteHTML(data.detail.content)}
   {/if}
 </article>
 
