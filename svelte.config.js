@@ -13,6 +13,9 @@ const config = {
       precompress: false,
       strict: true,
     }),
+    prerender: {
+      crawl: true,
+    }
   },
   onwarn: (warning, handler) => {
     const { code } = warning;
