@@ -7,6 +7,7 @@
 
   export let more: boolean = false;
   export let blogs: EndPoints["gets"]["blogs"];
+  export let limit: number | undefined;
 
   const blogDataList = blogs.contents;
 
@@ -25,7 +26,8 @@
     })
     .filter(({ tags: _tags }) =>
       _tags.some((tag) => selectedTags.includes(tag)),
-    );
+    )
+    .slice(0, limit ?? blogDataList.length);
 </script>
 
 {#if more}

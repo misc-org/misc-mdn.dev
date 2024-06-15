@@ -14,8 +14,13 @@ const config = {
       strict: true,
     }),
     prerender: {
-      crawl: true,
-    }
+      handleHttpError: ({ path, message }) => {
+        if (path.startsWith("/drafts")) {
+          return;
+        }
+        throw new Error(message);
+      },
+    },
   },
   onwarn: (warning, handler) => {
     const { code } = warning;
