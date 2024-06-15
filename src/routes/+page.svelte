@@ -5,7 +5,7 @@
   import { INFO } from "$lib/assets/info";
   import About from "$lib/components/About.svelte";
   import Arrow from "$lib/components/Arrow.svelte";
-  import BlogPage from "$lib/components/BlogPage.svelte";
+  import BlogList from "$lib/components/BlogList.svelte";
   import Button from "$lib/components/Button.svelte";
   import Marker from "$lib/components/Marker.svelte";
 
@@ -51,7 +51,7 @@
 </h2>
 
 <section>
-  <BlogPage more={false} blogs={data} {limit} />
+  <BlogList blogs={data.blogList} {limit} />
 </section>
 
 <section>

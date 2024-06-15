@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import type { PageData } from "./$types";
-  import BlogPage from "$lib/components/BlogPage.svelte";
+  import BlogList from "$lib/components/BlogList.svelte";
   import Marker from "$lib/components/Marker.svelte";
 
   export let data: PageData;
@@ -25,7 +25,7 @@
 </h1>
 
 <section>
-  <BlogPage more={true} blogs={data} {limit} />
+  <BlogList blogs={data.blogList} {limit} more />
 </section>
 
 <style lang="scss">
