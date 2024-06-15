@@ -13,14 +13,6 @@ const config = {
       precompress: false,
       strict: true,
     }),
-    prerender: {
-      handleHttpError: ({ path, message }) => {
-        if (path.startsWith("/drafts")) {
-          return;
-        }
-        throw new Error(message);
-      },
-    },
   },
   onwarn: (warning, handler) => {
     const { code } = warning;
