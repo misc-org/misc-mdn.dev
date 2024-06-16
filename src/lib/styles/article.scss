@@ -26,7 +26,7 @@ article {
       }
     }
 
-    >a {
+    > a {
       opacity: 0;
       cursor: pointer;
       position: absolute;
@@ -36,35 +36,158 @@ article {
     }
   }
 
-  & .code-block {
-    padding-inline: $spacing-5;
-    background-color: $color-static-black;
-    border: 1px solid $color-static-white;
-    color: $color-static-white;
-    font-size: $size-sm;
-    border-radius: $radii-lg;
+  & code {
+    background-color: $color-neutral;
+    border: 2px solid $color-static-gray;
+    color: $color-static-black;
+    padding: $spacing-0;
+    margin: 0 $spacing-1;
+    font-size: calc(#{$size-sm} - 2px);
+    border-radius: $radii-xs;
 
-    >div {
+    @media (width < 768px) {
+      padding: $spacing-0;
+      font-size: $size-xs;
+    }
+  }
+
+  & pre {
+    background-color: $color-neutral;
+    border: 2px solid $color-static-gray;
+    color: $color-static-black;
+    padding: $spacing-2 $spacing-2;
+    margin: 0 $spacing-1;
+    border-radius: $radii-xs;
+    overflow: auto;
+    font-size: $size-sm;
+
+    @media (width < 768px) {
+      padding: $spacing-1;
+      font-size: $size-xs;
+    }
+
+    > code {
+      padding: 0;
+      margin: 0;
+      border: none;
+    }
+  }
+
+  & .codeblock {
+    width: 100%;
+    position: relative;
+    margin: $spacing-3 0;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    > span {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      transform: translateY(-50%);
+      background-color: $color-static-gray;
+      padding: $spacing-1 $spacing-2;
+      border-radius: $radii-xs;
+      font-size: $size-xs;
+      color: $color-static-black;
+      z-index: 1;
+    }
+
+    > .codeblock {
+      padding-inline: $spacing-5;
+      background-color: $color-neutral;
+      border: 2px solid $color-static-gray;
+      color: $color-static-black;
+      font-size: $size-sm;
+      border-radius: $radii-lg;
+      display: grid;
+      grid-template-columns: 1fr;
+
+      > header {
+        margin-top: $spacing-3;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+
+        > span {
+          font-size: $size-xs;
+          color: $color-static-black;
+          background-color: $color-neutral;
+          padding: $spacing-1 0;
+          border-radius: $radii-xs;
+        }
+
+        > button {
+          grid-column: 3;
+          cursor: pointer;
+          background-color: $color-neutral;
+          border: 2px solid $color-static-gray;
+          color: $color-static-black;
+          padding: $spacing-1 $spacing-2;
+          margin: 0 $spacing-1;
+          font-size: calc(#{$size-sm} - 2px);
+          border-radius: $radii-xs;
+        }
+      }
+
+      > pre {
+        margin: $spacing-3;
+        overflow-y: auto;
+        max-height: 50vh;
+        border: none;
+
+        > code {
+          padding: 0;
+          margin: 0;
+          border: none;
+        }
+      }
+    }
+
+    > div {
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid $color-static-white;
     }
 
-    >pre {
+    > pre {
       margin: $spacing-3;
       overflow-y: auto;
       max-height: 50vh;
     }
   }
 
-  & p>code {
-    background-color: $color-static-black;
-    border: 1px solid $color-static-white;
-    color: $color-static-white;
-    padding: $spacing-1 $spacing-2;
-    font-size: $size-sm;
-    border-radius: $radii-md;
+  & p {
+    > a {
+      text-decoration: underline;
+    }
+
+    > u {
+      text-decoration: underline;
+    }
+
+    > s {
+      text-decoration: line-through;
+    }
+
+    > strong {
+      font-weight: $font-bold;
+    }
+
+    > em {
+      font-style: italic;
+    }
+
+    > .icon {
+      display: inline-block;
+      margin: 0 $spacing-1;
+      text-align: center;
+
+      svg {
+        width: $size-md;
+        height: $size-md;
+      }
+    }
   }
 
   & iframe {
@@ -72,31 +195,118 @@ article {
   }
 
   & figure {
-    width: 100%;
-    max-width: 100%;
     display: grid;
     place-items: center;
 
-    /* 768px = md */
+    img {
+      max-width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
     @media (width < 768px) {
       padding: 0;
-      padding-top: 3rem;
+      padding: 0 $spacing-1;
     }
 
-    &>* {
+    & > * {
       width: fit-content;
       margin: 0 auto;
-    }
-
-    & figcaption {
-      padding-top: $spacing-1;
-      font-size: $size-sm;
-      opacity: 0.8;
     }
   }
 
   & blockquote {
-    padding-left: $spacing-3;
-    // border-left: 5px solid $color-9u-white;
+    padding-left: $spacing-5;
+    border-left: 2px solid $color-static-gray;
+
+    > p {
+      font-style: italic;
+      margin: $spacing-3 0;
+    }
+  }
+
+  & ul {
+    padding: 0;
+
+    li {
+      list-style: disc;
+      display: flex;
+      align-items: center;
+
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 $spacing-1;
+      }
+
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 0.2em;
+        height: 0.2em;
+        background-color: $color-static-black;
+        border-radius: 50%;
+        margin-right: $spacing-2;
+      }
+    }
+  }
+
+  & table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+    margin-top: $spacing-3;
+    table-layout: auto;
+
+    overflow-x: auto;
+    display: block;
+
+    tbody {
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 2px solid $color-text;
+      padding: $spacing-1 $spacing-3;
+      font-size: $size-sm;
+
+      p {
+        text-align: left;
+      }
+
+      figure {
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+
+        a {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+
+        img {
+          object-fit: contain;
+        }
+      }
+
+      svg {
+        width: 1em;
+      }
+    }
+
+    th {
+      background-color: $color-neutral;
+      color: $color-static-black;
+    }
+  }
+
+  & hr {
+    border: none;
+    border-top: 2px solid $color-static-gray;
+    margin: $spacing-5 0;
   }
 }

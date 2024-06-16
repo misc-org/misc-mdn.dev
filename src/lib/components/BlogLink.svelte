@@ -1,33 +1,38 @@
 <script lang="ts">
+  import DummyImage from "./DummyImage.svelte";
   import { formatDate } from "$lib/utils/services/datefmt";
   import type { EndPoints } from "$lib/utils/types/microcms";
 
   export let blogData: EndPoints["get"]["blogs"];
-  $: ({ id, title, publishedAt, tags, ogpImg } = blogData);
+
+  // NOTE: 分割代入を行うと, リアクティブ性が失われるので注意
+  // let { id, ogpImg, title, publishedAt, tags } = blogData;
+
+  const nonInternalTags = blogData.tags.filter((t) => !t.startsWith("_"));
 </script>
 
 <div>
   <div class="thumbnail">
-    <a href={`/blogs/${id}`}>
-      {#if ogpImg}
+    <a href={`/blogs/${blogData.id}`}>
+      {#if blogData.ogpImg != null}
         <img
-          src={ogpImg.url}
-          alt={title}
-          height={ogpImg.height}
-          width={ogpImg.width}
+          src={blogData.ogpImg.url}
+          alt={blogData.title}
+          height={blogData.ogpImg.height}
+          width={blogData.ogpImg.width}
         />
       {:else}
-        <img src="https://placehold.jp/1200x630.png" alt="thumbnail" />
+        <DummyImage />
       {/if}
     </a>
   </div>
-  <p>公開：{formatDate(publishedAt)}</p>
+  <p>公開：{formatDate(blogData.publishedAt)}</p>
   <ul>
-    {#each tags as tag (tag)}
+    {#each nonInternalTags as tag}
       <li>{tag}</li>
     {/each}
   </ul>
-  <h3><a href={`/blogs/${id}`}>{title}</a></h3>
+  <h3><a href={`/blogs/${blogData.id}`}>{blogData.title}</a></h3>
 </div>
 
 <style lang="scss">

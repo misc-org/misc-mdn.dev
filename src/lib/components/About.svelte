@@ -3,7 +3,7 @@
 
 <article>
   <section>
-    <h3>Hi, we are MISC 👋</h3>
+    <h2>Hi, we are MISC 👋</h2>
 
     <p>私たちは名電高校の情報システム部です。</p>
     <p>
@@ -20,7 +20,7 @@
     <p>活動場所は北校舎 3 階の 315 教室(コンピューター教室) です</p>
   </section>
   <section>
-    <h3>指導者メッセージ</h3>
+    <h2>指導者メッセージ</h2>
     <p>
       プログラミングは楽しい！<br />
       自分の作ったソフトが誰かの役に立つ喜びを知ってほしい。<br />
@@ -45,7 +45,7 @@
       flex-direction: column;
       gap: $spacing-5;
 
-      > h3 {
+      > h2 {
         font-weight: $font-extrabold;
       }
 

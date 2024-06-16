@@ -19,4 +19,4 @@ export const tags: Tags = {
   "numeric-1": { title: "1 年生", icon: "mdi:numeric-1" },
   "numeric-2": { title: "2 年生", icon: "mdi:numeric-2" },
   "numeric-3": { title: "3 年生", icon: "mdi:numeric-3" },
-};
+} as const;

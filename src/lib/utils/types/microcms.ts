@@ -30,7 +30,7 @@ export type Blogs<T = "get"> = Structure<
     /**
      * タグ
      */
-    tags?: (
+    tags: (
       | "お知らせ"
       | "ブログ"
       | "作品紹介"
@@ -38,6 +38,7 @@ export type Blogs<T = "get"> = Structure<
       | "1 年生"
       | "2 年生"
       | "3 年生"
+      | "_migrated"
     )[];
     /**
      * 本文
