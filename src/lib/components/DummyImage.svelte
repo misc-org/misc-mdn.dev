@@ -14,5 +14,10 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    transition: transform 0.5s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 </style>
