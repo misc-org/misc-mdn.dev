@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import DummyImage from "./DummyImage.svelte";
   import Marker from "$lib/components/Marker.svelte";
   import {
     rewriteHTML,
@@ -43,7 +44,7 @@
         width={details.ogpImg.width}
       />
     {:else}
-      <img src="https://placehold.jp/1200x630.png" alt="thumbnail" />
+      <DummyImage />
     {/if}
   </div>
 </div>

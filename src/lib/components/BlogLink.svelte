@@ -1,4 +1,5 @@
 <script lang="ts">
+  import DummyImage from "./DummyImage.svelte";
   import { formatDate } from "$lib/utils/services/datefmt";
   import type { EndPoints } from "$lib/utils/types/microcms";
 
@@ -21,7 +22,7 @@
           width={blogData.ogpImg.width}
         />
       {:else}
-        <img src="https://placehold.jp/1200x630.png" alt="thumbnail" />
+        <DummyImage />
       {/if}
     </a>
   </div>
