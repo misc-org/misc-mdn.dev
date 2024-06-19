@@ -20,7 +20,7 @@ jobs:
       - name: 🔨 Prepare Node environment
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
 
       - name: 🎉 Install project dependencies
         run: npm install
