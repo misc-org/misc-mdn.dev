@@ -7,7 +7,7 @@
 
   export let more: boolean = false;
   export let blogs: EndPoints["gets"]["blogs"];
-  export let limit: number | undefined;
+  export let limit: number | undefined = undefined;
 
   const blogDataList = blogs.contents;
 

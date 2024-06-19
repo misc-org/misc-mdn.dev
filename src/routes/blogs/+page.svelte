@@ -1,23 +1,9 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import type { PageData } from "./$types";
   import BlogList from "$lib/components/BlogList.svelte";
   import Marker from "$lib/components/Marker.svelte";
 
   export let data: PageData;
-
-  let limit: number;
-
-  onMount(() => {
-    const width = window.innerWidth;
-    if (width <= 480) {
-      limit = 4;
-    } else if (width <= 768) {
-      limit = 8;
-    } else {
-      limit = 12;
-    }
-  });
 </script>
 
 <h1>
@@ -25,7 +11,7 @@
 </h1>
 
 <section>
-  <BlogList blogs={data.blogList} {limit} more />
+  <BlogList blogs={data.blogList} more />
 </section>
 
 <style lang="scss">
