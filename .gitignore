@@ -15,5 +15,3 @@ schemas/*
 bun.lockb
 yarn.lock
 pnpm-lock.yaml
-src/lib/assets/mocks/*
-!src/lib/assets/mocks/.gitkeep

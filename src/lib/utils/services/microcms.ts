@@ -3,16 +3,14 @@ import {
   PUBLIC_MICROCMS_SERVICE_DOMAIN,
   PUBLIC_MICROCMS_API_KEY,
 } from "$env/static/public";
+import blogsDetail from "$lib/assets/mocks/blogs-detail.json";
+import blogsList from "$lib/assets/mocks/blogs-list.json";
 import type { EndPoints } from "$lib/utils/types/microcms";
 
 export const microcms = createClient({
   serviceDomain: PUBLIC_MICROCMS_SERVICE_DOMAIN,
   apiKey: PUBLIC_MICROCMS_API_KEY,
 });
-
-function eliminateSymKeys<T>(obj: T): T {
-  return JSON.parse(JSON.stringify(obj));
-}
 
 export async function getContentList<T extends keyof EndPoints["gets"]>(
   key: T,
@@ -21,9 +19,7 @@ export async function getContentList<T extends keyof EndPoints["gets"]>(
   if (process.env.NODE_ENV === "development") {
     switch (key) {
       case "blogs":
-        return eliminateSymKeys(
-          await import("$lib/assets/mocks/blogs-list.json"),
-        ) as any;
+        return blogsList as any;
       default:
         throw new Error("Invalid key");
     }
@@ -43,9 +39,7 @@ export async function getContentDetail<T extends keyof EndPoints["get"]>(
   if (process.env.NODE_ENV === "development") {
     switch (key) {
       case "blogs":
-        return eliminateSymKeys(
-          await import("$lib/assets/mocks/blogs-detail.json"),
-        ) as any;
+        return blogsDetail as any;
       default:
         throw new Error("Invalid key");
     }
@@ -66,9 +60,7 @@ export async function getDraftContentDetail<T extends keyof EndPoints["get"]>(
   if (process.env.NODE_ENV === "development") {
     switch (key) {
       case "blogs":
-        return eliminateSymKeys(
-          await import("$lib/assets/mocks/blogs-detail.json"),
-        ) as any;
+        return blogsDetail as any;
       default:
         throw new Error("Invalid key");
     }
