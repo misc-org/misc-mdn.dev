@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import DummyImage from "./DummyImage.svelte";
+  import BlogImage from "./BlogImage.svelte";
   import Marker from "$lib/components/Marker.svelte";
   import {
     rewriteHTML,
@@ -10,16 +10,12 @@
   import type { EndPoints } from "$lib/utils/types/microcms";
 
   export let details: EndPoints["get"]["blogs"];
+  const nonInternalTags = details.tags.filter((t) => !t.startsWith("_"));
 
   onMount(async () => {
     injectComponents();
   });
 </script>
-
-<svelte:head>
-  <title>MISC - {details.title}</title>
-  <meta name="description" content={details.description} />
-</svelte:head>
 
 <div class="head">
   <div id="title">
@@ -29,23 +25,14 @@
     <div>
       <h2>{details.title}</h2>
       <div>
-        {#each details.tags as tag}
+        {#each nonInternalTags as tag}
           <span>{tag}</span>
         {/each}
       </div>
     </div>
   </div>
-  <div id="image">
-    {#if details.ogpImg != null}
-      <img
-        src={details.ogpImg.url}
-        alt={details.title}
-        height={details.ogpImg.height}
-        width={details.ogpImg.width}
-      />
-    {:else}
-      <DummyImage />
-    {/if}
+  <div id="image" style={`view-transition-name: ${details.id}-thumbnail`}>
+    <BlogImage imageData={details.ogpImg} alt={details.title} />
   </div>
 </div>
 
@@ -65,11 +52,13 @@
     grid-template-columns: 1fr 1fr;
 
     #title {
-      padding: 20px;
       display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: 1fr 1fr;
 
+      :not(h1) {
+        padding-inline: $spacing-2;
+      }
       div {
         display: grid;
         grid-template-columns: 1fr;
@@ -98,12 +87,6 @@
     #image {
       display: block;
       padding: $spacing-5;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 5px;
-      }
     }
   }
 
@@ -144,8 +127,6 @@
   article {
     width: 100%;
     margin: auto;
-    margin-top: $spacing-10;
-    margin-bottom: $spacing-10;
     padding: auto 0;
     line-height: 1.8;
     text-align: justify;

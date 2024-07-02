@@ -1,8 +1,7 @@
 <script lang="ts">
-  import { MetaTags } from "svelte-meta-tags";
   import { setupViewTransition } from "sveltekit-view-transition";
-  import { INFO } from "$lib/assets/info";
   import Footer from "$lib/components/Footer.svelte";
+  import HeadTags from "$lib/components/HeadTags.svelte";
   import Header from "$lib/components/Header.svelte";
 
   import "the-new-css-reset";
@@ -27,11 +26,7 @@
   </script>
 </svelte:head>
 
-<MetaTags
-  titleTemplate={`%s | ${INFO.about.title}`}
-  description={INFO.about.description}
-  canonical="https://mise-mdn.dev"
-/>
+<HeadTags />
 
 <div>
   <Header />

@@ -1,18 +1,18 @@
 <script lang="ts">
-  import DummyImage from "./DummyImage.svelte";
   import { formatDate } from "$lib/utils/services/datefmt";
   import type { EndPoints } from "$lib/utils/types/microcms";
 
-  export let blogData: EndPoints["get"]["blogs"];
-
   // NOTE: 分割代入を行うと, リアクティブ性が失われるので注意
   // let { id, ogpImg, title, publishedAt, tags } = blogData;
-
+  export let blogData: EndPoints["get"]["blogs"];
   const nonInternalTags = blogData.tags.filter((t) => !t.startsWith("_"));
 </script>
 
 <div>
-  <div class="thumbnail">
+  <div
+    class="thumbnail"
+    style={`view-transition-name: ${blogData.id}-thumbnail`}
+  >
     <a href={`/blogs/${blogData.id}`}>
       {#if blogData.ogpImg != null}
         <img
@@ -22,7 +22,7 @@
           width={blogData.ogpImg.width}
         />
       {:else}
-        <DummyImage />
+        <img src="/images/ogp.png" alt="" width="1200" height="630" />
       {/if}
     </a>
   </div>
@@ -32,7 +32,7 @@
       <li>{tag}</li>
     {/each}
   </ul>
-  <h3><a href={`/blogs/${blogData.id}`}>{blogData.title}</a></h3>
+  <h1><a href={`/blogs/${blogData.id}`}>{blogData.title}</a></h1>
 </div>
 
 <style lang="scss">
