@@ -14,7 +14,7 @@
     width={imageData.width}
   />
 {:else}
-  <img src="/images/ogp.png" alt="Default MISC OGP" />
+  <img src="/images/ogp.png" alt="Default MISC OGP" width="1200" height="630" />
 {/if}
 
 <style lang="scss">

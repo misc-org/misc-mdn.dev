@@ -10,16 +10,12 @@
   import type { EndPoints } from "$lib/utils/types/microcms";
 
   export let details: EndPoints["get"]["blogs"];
+  const nonInternalTags = details.tags.filter((t) => !t.startsWith("_"));
 
   onMount(async () => {
     injectComponents();
   });
 </script>
-
-<svelte:head>
-  <title>MISC - {details.title}</title>
-  <meta name="description" content={details.description} />
-</svelte:head>
 
 <div class="head">
   <div id="title">
@@ -29,13 +25,13 @@
     <div>
       <h2>{details.title}</h2>
       <div>
-        {#each details.tags as tag}
+        {#each nonInternalTags as tag}
           <span>{tag}</span>
         {/each}
       </div>
     </div>
   </div>
-  <div id="image">
+  <div id="image" style={`view-transition-name: ${details.id}-thumbnail`}>
     <BlogImage imageData={details.ogpImg} alt={details.title} />
   </div>
 </div>
@@ -131,7 +127,6 @@
   article {
     width: 100%;
     margin: auto;
-    margin: $spacing-2 $spacing-10;
     padding: auto 0;
     line-height: 1.8;
     text-align: justify;

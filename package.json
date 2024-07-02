@@ -12,7 +12,7 @@
     "fmt": "prettier --write .",
     "lint": "eslint ./src/ && markuplint './src/**/*.svelte'",
     "generate:cms": "npx --yes microcms-typescript schemas src/lib/utils/types/microcms.ts",
-    "test": "tsc && prettier --check ./src/ --check && eslint --ext .ts,.tsx ./src && vitest --run",
+    "test": "tsc && prettier --check ./src/ --check && npm run lint --check && vitest --run",
     "crate-empty-mocks": "node scripts/crate-empty-mocks.mjs",
     "clean": "npx --yes rimraf ./node_modules ./dist ./.sveltekit"
   },
@@ -23,6 +23,7 @@
     "@sveltejs/adapter-static": "^3.0.1",
     "@sveltejs/kit": "^2.5.5",
     "@sveltejs/vite-plugin-svelte": "^3.0.2",
+    "@types/dom-view-transitions": "^1.0.4",
     "@types/eslint": "^8.56.7",
     "@types/node": "^20.14.9",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
