@@ -14,7 +14,7 @@ export const microcms = createClient({
 
 export async function getContentList<T extends keyof EndPoints["gets"]>(
   key: T,
-  queries: MicroCMSQueries = {},
+  queries?: MicroCMSQueries,
 ): Promise<EndPoints["gets"][T]> {
   if (process.env.NODE_ENV === "development") {
     switch (key) {
@@ -23,6 +23,12 @@ export async function getContentList<T extends keyof EndPoints["gets"]>(
       default:
         throw new Error("Invalid key");
     }
+  }
+
+  if (queries == null) {
+    return microcms.getAllContents({
+      endpoint: key,
+    }) as unknown as EndPoints["gets"][T];
   }
 
   return microcms.get({
