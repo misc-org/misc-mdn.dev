@@ -1,7 +1,9 @@
 <script lang="ts">
+  import extend from "just-extend";
+  import { MetaTags } from "svelte-meta-tags";
   import { setupViewTransition } from "sveltekit-view-transition";
+  import { page } from "$app/stores";
   import Footer from "$lib/components/Footer.svelte";
-  import HeadTags from "$lib/components/HeadTags.svelte";
   import Header from "$lib/components/Header.svelte";
 
   import "the-new-css-reset";
@@ -12,6 +14,10 @@
   import "$lib/styles/article.scss";
 
   setupViewTransition();
+
+  export let data;
+
+  $: metaTags = extend(true, {}, data.baseMetaTags, $page.data.pageMetaTags);
 </script>
 
 <svelte:head>
@@ -26,7 +32,7 @@
   </script>
 </svelte:head>
 
-<HeadTags />
+<MetaTags {...metaTags} />
 
 <div>
   <Header />

@@ -1,11 +1,8 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import About from "$lib/components/About.svelte";
-  import HeadTags from "$lib/components/HeadTags.svelte";
   import Marker from "$lib/components/Marker.svelte";
 </script>
-
-<HeadTags title="ABOUT" />
 
 <h2>
   <Marker>about</Marker>

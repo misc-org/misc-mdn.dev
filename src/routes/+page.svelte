@@ -1,8 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { MetaTags } from "svelte-meta-tags";
   import type { PageData } from "./$types";
-  import { INFO } from "$lib/assets/info";
   import About from "$lib/components/About.svelte";
   import Arrow from "$lib/components/Arrow.svelte";
   import BlogList from "$lib/components/BlogList.svelte";
@@ -24,8 +22,6 @@
     }
   });
 </script>
-
-<MetaTags title={INFO.about.title} />
 
 <div class="landing">
   <p>夢が現実になる、<wbr />未来への一歩を</p>

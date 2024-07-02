@@ -1,13 +1,10 @@
 <script lang="ts">
   import type { PageData } from "./$types";
   import BlogList from "$lib/components/BlogList.svelte";
-  import HeadTags from "$lib/components/HeadTags.svelte";
   import Marker from "$lib/components/Marker.svelte";
 
   export let data: PageData;
 </script>
-
-<HeadTags title="BLOGS" />
 
 <h1>
   <Marker>blogs</Marker>
