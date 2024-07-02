@@ -8,6 +8,7 @@ export const INFO = {
     title: "MISC - 愛工大名電 情報システム部",
     description: "愛工大名電 情報システム部の公式サイトです。",
   },
+  url: "https://mise-mdn.dev",
   internal: {
     id: "misc-mdn",
     localStorageVersion: "1",

@@ -13,7 +13,7 @@
     "lint": "eslint ./src/ && markuplint './src/**/*.svelte'",
     "generate:cms": "npx --yes microcms-typescript schemas src/lib/utils/types/microcms.ts",
     "test": "tsc && prettier --check ./src/ --check && npm run lint --check && vitest --run",
-    "crate-empty-mocks": "node scripts/crate-empty-mocks.mjs",
+    "create-empty-mocks": "node scripts/create-empty-mocks.mjs",
     "clean": "npx --yes rimraf ./node_modules ./dist ./.sveltekit"
   },
   "devDependencies": {

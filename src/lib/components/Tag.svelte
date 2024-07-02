@@ -16,7 +16,7 @@
   on:click={handleClick}
 >
   <span class:updown-on={state} class:updown-off={!state}><span></span></span>
-  <div><slot /></div>
+  <span><slot /></span>
 </button>
 
 <style lang="scss">
@@ -38,7 +38,7 @@
     &.updown-off {
       background-color: #d9d9d9;
 
-      div {
+      :nth-child(2) {
         color: #333;
         padding-left: $spacing-2;
         text-align: left;

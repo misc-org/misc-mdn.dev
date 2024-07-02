@@ -1,24 +1,15 @@
-name: ftp upload
+name: Check code format/style
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
   workflow_dispatch:
-  repository_dispatch:
-    types: [update_content]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.message, '[skip ci]') == false
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v3
-
-      - name: 📸 Calculate commit hash
-        id: sha
-        uses: pr-mpt/actions-commit-hash@v2
 
       - name: 🔨 Prepare Node environment
         uses: actions/setup-node@v4
@@ -39,12 +30,3 @@ jobs:
 
       - name: ✅ Check code format/style
         run: npm run test
-
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWARD }}
-          local-dir: ./dist/
-          server-dir: /home/${{ secrets.FTP_USERNAME }}/www/misc-mdn/

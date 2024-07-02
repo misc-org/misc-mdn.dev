@@ -25,15 +25,12 @@ export async function getContentList<T extends keyof EndPoints["gets"]>(
     }
   }
 
-  if (queries == null) {
-    return microcms.getAllContents({
-      endpoint: key,
-    }) as unknown as EndPoints["gets"][T];
-  }
-
   return microcms.get({
     endpoint: key,
-    queries,
+    queries: {
+      limit: 100,
+      ...queries,
+    },
   });
 }
 
@@ -50,6 +47,7 @@ export async function getContentDetail<T extends keyof EndPoints["get"]>(
         throw new Error("Invalid key");
     }
   }
+
   return microcms.getListDetail<EndPoints["get"][T]>({
     endpoint: key,
     contentId: id,
@@ -71,6 +69,7 @@ export async function getDraftContentDetail<T extends keyof EndPoints["get"]>(
         throw new Error("Invalid key");
     }
   }
+
   return microcms.get<EndPoints["get"][T]>({
     endpoint: key,
     contentId: id,

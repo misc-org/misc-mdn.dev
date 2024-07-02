@@ -4,7 +4,7 @@
 
   export let title: string | undefined = undefined;
   export let description: string | undefined = undefined;
-  export let ogpImg: string | undefined = undefined;
+  export let ogpImgUrl: string | undefined = undefined;
 
   let titleText =
     title != null ? `${title} | ${INFO.about.name.en}` : INFO.about.title;
@@ -16,17 +16,17 @@
   openGraph={{
     title: titleText,
     description: description ?? INFO.about.description,
-    url: "https://mise-mdn.dev",
+    url: INFO.url,
     type: "website",
     locale: "ja_JP",
     images: [
       {
-        url: ogpImg ?? "/images/ogp.png",
+        url: ogpImgUrl ?? `${INFO.url}/images/ogp.png`,
         width: 1200,
         height: 630,
         alt: titleText,
       },
     ],
   }}
-  canonical="https://mise-mdn.dev"
+  canonical={INFO.url}
 />

@@ -9,7 +9,7 @@
 <HeadTags
   title={data.detail.title}
   description={data.detail.description}
-  ogpImg={data.detail.ogpImg.url}
+  ogpImgUrl={data.detail.ogpImg?.url}
 />
 
 <BlogDetails details={data.detail} />
