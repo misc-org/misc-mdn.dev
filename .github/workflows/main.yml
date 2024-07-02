@@ -28,6 +28,9 @@ jobs:
       - name: 🎉 Install project dependencies
         run: npm install
 
+      - name: ✅ Check code format/style
+        run: npm run test
+
       - name: 🏗️ Build app
         run: npm run build
         env:

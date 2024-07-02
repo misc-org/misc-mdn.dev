@@ -1,5 +1,4 @@
 <script lang="ts">
-  import DummyImage from "./DummyImage.svelte";
   import { formatDate } from "$lib/utils/services/datefmt";
   import type { EndPoints } from "$lib/utils/types/microcms";
 
@@ -22,7 +21,7 @@
           width={blogData.ogpImg.width}
         />
       {:else}
-        <DummyImage />
+        <img src="/images/ogp.png" alt="" width="1200" height="630" />
       {/if}
     </a>
   </div>

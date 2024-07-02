@@ -12,7 +12,8 @@
     "fmt": "prettier --write .",
     "lint": "eslint ./src/ && markuplint './src/**/*.svelte'",
     "generate:cms": "npx --yes microcms-typescript schemas src/lib/utils/types/microcms.ts",
-    "test": "vitest",
+    "test": "tsc && prettier --check ./src/ --check && eslint --ext .ts,.tsx ./src && vitest --run",
+    "crate-empty-mocks": "node scripts/crate-empty-mocks.mjs",
     "clean": "npx --yes rimraf ./node_modules ./dist ./.sveltekit"
   },
   "devDependencies": {
@@ -23,6 +24,7 @@
     "@sveltejs/kit": "^2.5.5",
     "@sveltejs/vite-plugin-svelte": "^3.0.2",
     "@types/eslint": "^8.56.7",
+    "@types/node": "^20.14.9",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^7.5.0",
     "eslint": "^8.57.0",
