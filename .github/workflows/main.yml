@@ -48,3 +48,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWARD }}
           local-dir: ./dist/
           server-dir: /home/${{ secrets.FTP_USERNAME }}/www/misc-mdn/
+          dangerous-clean-slate: true # クリーンアップのために全てのファイルを削除する
