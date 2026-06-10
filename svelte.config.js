@@ -17,7 +17,7 @@ const config = {
   onwarn: (warning, handler) => {
     const { code } = warning;
 
-    if (code === "css-unused-selector") {
+    if (code === "css_unused_selector") {
       return;
     }
 

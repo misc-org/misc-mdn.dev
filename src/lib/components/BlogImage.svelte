@@ -1,9 +1,13 @@
 <script lang="ts">
   import type { EndPoints } from "$lib/utils/types/microcms";
 
-  export let imageData: EndPoints["get"]["blogs"]["ogpImg"] | undefined =
-    undefined;
-  export let alt = "";
+  let {
+    imageData = undefined,
+    alt = "",
+  }: {
+    imageData?: EndPoints["get"]["blogs"]["ogpImg"] | undefined;
+    alt?: string;
+  } = $props();
 </script>
 
 {#if imageData != null}

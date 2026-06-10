@@ -1,13 +1,62 @@
+/* color custom properties */
+:root {
+  color-scheme: light;
+
+  --color-text: #000;
+  --color-bg: #f3f3f3;
+  --color-neutral: #d9d9d9;
+  --color-highlight: #f4ff73;
+
+  --color-static-black: #000;
+  --color-static-white: #fff;
+  --color-static-gray: #ccc;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-text: #f3f3f3;
+  --color-bg: #333;
+  --color-neutral: #d9d9d9;
+  --color-highlight: #999e5f;
+
+  --color-static-black: #333;
+  --color-static-white: #f3f3f3;
+  --color-static-gray: #ccc;
+}
+
+/* thx: https://gist.github.com/travis-g/f5caf7f6d5756da1fa90368d33da3362 */
+@font-face {
+  font-family: "emoji";
+  src: local("Noto Color Emoji");
+  unicode-range:
+    U+1f300-1f5ff,
+    /* misc symbols + pictographs */ U+1f910-1f918,
+    U+1f980-1f984,
+    /* supplemental */ U+1f600-1f64f,
+    /* emoticons */ U+1f680-1f6ff,
+    /* transport */ U+26??,
+    /* misc */ U+2700-27bf; /* dingbats */
+}
+
 html {
+  font-size: 1.2rem;
   scroll-padding-top: 60px; /* header height */
 }
 
 body {
+  font-family: "emoji", "M PLUS 1 Variable", sans-serif;
+  font-feature-settings: "palt";
   background-color: $color-bg;
   color: $color-text;
   transition:
     color 0.2s ease,
     background-color 0.2s ease;
+}
+
+code,
+pre {
+  font-family: "JetBrains Mono Variable", "M PLUS 1 Variable", monospace;
 }
 
 button {

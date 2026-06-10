@@ -1,8 +1,15 @@
 <script lang="ts">
-  export let strokeWidthPx = 2;
-  export let arrowHeightPx = 50;
-  export let arrowTailSizePx = 10;
-  export let direction: "top" | "right" | "left" | "bottom" = "bottom";
+  let {
+    strokeWidthPx = 2,
+    arrowHeightPx = 50,
+    arrowTailSizePx = 10,
+    direction = "bottom",
+  }: {
+    strokeWidthPx?: number;
+    arrowHeightPx?: number;
+    arrowTailSizePx?: number;
+    direction?: "top" | "right" | "left" | "bottom";
+  } = $props();
 
   const rotate = {
     top: 0,
@@ -21,7 +28,7 @@
   transform: rotate({rotate[direction]}deg);
   "
 >
-  <div class="arrow-tail" />
+  <div class="arrow-tail"></div>
 </div>
 
 <style lang="scss">

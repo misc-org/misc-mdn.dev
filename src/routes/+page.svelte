@@ -7,9 +7,9 @@
   import Button from "$lib/components/Button.svelte";
   import Marker from "$lib/components/Marker.svelte";
 
-  export let data: PageData;
+  let { data }: { data: PageData } = $props();
 
-  let limit: number;
+  let limit = $state<number | undefined>(undefined);
 
   onMount(() => {
     const width = window.innerWidth;
@@ -103,10 +103,5 @@
     flex-direction: column;
     align-items: center;
     gap: $spacing-5;
-
-    > p {
-      font-size: $size-md;
-      line-height: 1.5;
-    }
   }
 </style>

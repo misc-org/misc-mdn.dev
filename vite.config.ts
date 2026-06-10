@@ -2,7 +2,8 @@ import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
-  plugins: [sveltekit()],
+  // NOTE: vitest が内包する vite の型と root の vite の型が異なるためキャストする
+  plugins: [sveltekit() as never],
 
   test: {
     include: ["src/**/*.{test,spec}.{js,ts}"],
@@ -12,6 +13,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
+        loadPaths: ["."],
         additionalData: `
         @use "src/lib/styles/variables/breakpoints.scss" as *;
         @use "src/lib/styles/variables/colors.scss" as *;

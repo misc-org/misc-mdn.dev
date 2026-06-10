@@ -1,7 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import { Select } from "bits-ui";
-  import { slide } from "svelte/transition";
   import { getEntries } from "$lib/utils/consts";
   import { atomThemeMode } from "$lib/utils/stores/ui";
   import type { ThemeMode } from "$lib/utils/types/ui";
@@ -19,39 +18,37 @@
   }));
 </script>
 
-<Select.Root {items} selected={atomThemeMode}>
+<Select.Root
+  type="single"
+  value={$atomThemeMode}
+  onValueChange={(value) => {
+    $atomThemeMode = value as ThemeMode;
+  }}
+>
   <Select.Trigger title="テーマを選択する">
     <div class="icon">
       <Icon icon={themes[$atomThemeMode].icon} height={23} />
     </div>
   </Select.Trigger>
-  <Select.Content
-    class="select-content"
-    sameWidth={false}
-    sideOffset={8}
-    transition={slide}
-    transitionConfig={{ duration: 300 }}
-  >
-    {#each items as { label, icon, value }}
-      <Select.Item
-        class="select-item"
-        {value}
-        {label}
-        on:click={() => {
-          $atomThemeMode = value;
-        }}
-      >
-        <Icon {icon} />
-        <p>{label}</p>
-        <div class="icon">
-          <Select.ItemIndicator class="select-item-indicator" asChild={false}>
-            <Icon icon="mdi:check" />
-          </Select.ItemIndicator>
-        </div>
-      </Select.Item>
-    {/each}
-  </Select.Content>
-  <Select.Input name="favoriteFruit" />
+  <Select.Portal>
+    <Select.Content class="select-content" sideOffset={8}>
+      <Select.Viewport>
+        {#each items as { label, icon, value }}
+          <Select.Item class="select-item" {value} {label}>
+            {#snippet children({ selected })}
+              <Icon {icon} />
+              <p>{label}</p>
+              <div class="icon">
+                {#if selected}
+                  <Icon icon="mdi:check" />
+                {/if}
+              </div>
+            {/snippet}
+          </Select.Item>
+        {/each}
+      </Select.Viewport>
+    </Select.Content>
+  </Select.Portal>
 </Select.Root>
 
 <style lang="scss">

@@ -4,7 +4,7 @@
   import { getDraftContentDetail } from "$lib/utils/services/microcms";
   import type { EndPoints } from "$lib/utils/types/microcms";
 
-  let blogData: EndPoints["get"]["blogs"];
+  let blogData = $state<EndPoints["get"]["blogs"]>();
 
   async function fetchDraftContent() {
     const url = new URL(document.location.href);
@@ -34,7 +34,7 @@
 {#await fetchDraftContent()}
   <p class="message">下書きの取得中...</p>
 {:then}
-  <BlogDetails details={blogData} />
+  <BlogDetails details={blogData!} />
 {:catch error}
   <p class="message error">
     下書きの取得に失敗しました:<br />

@@ -1,22 +1,29 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher();
+  import type { Snippet } from "svelte";
 
-  export let state: boolean = false;
+  let {
+    state = $bindable(false),
+    onclick,
+    children,
+  }: {
+    state?: boolean;
+    onclick?: (event: MouseEvent) => void;
+    children: Snippet;
+  } = $props();
 
-  function handleClick() {
+  function handleClick(event: MouseEvent) {
     state = !state;
-    dispatch("click");
+    onclick?.(event);
   }
 </script>
 
 <button
   class:updown-on={state}
   class:updown-off={!state}
-  on:click={handleClick}
+  onclick={handleClick}
 >
   <span class:updown-on={state} class:updown-off={!state}><span></span></span>
-  <span><slot /></span>
+  <span>{@render children()}</span>
 </button>
 
 <style lang="scss">

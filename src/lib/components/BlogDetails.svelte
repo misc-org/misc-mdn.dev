@@ -9,8 +9,10 @@
   import { formatDate } from "$lib/utils/services/datefmt";
   import type { EndPoints } from "$lib/utils/types/microcms";
 
-  export let details: EndPoints["get"]["blogs"];
-  const nonInternalTags = details.tags.filter((t) => !t.startsWith("_"));
+  let { details }: { details: EndPoints["get"]["blogs"] } = $props();
+  const nonInternalTags = $derived(
+    details.tags.filter((t) => !t.startsWith("_")),
+  );
 
   onMount(async () => {
     injectComponents();

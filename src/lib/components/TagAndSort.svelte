@@ -6,10 +6,15 @@
   import { getEntries } from "$lib/utils/consts";
   import { tags } from "$lib/utils/types/blogs";
 
-  export let sortAsAsc = false;
-  export let selectedTags = Object.values(tags).map((v) => v.title);
+  let {
+    sortAsAsc = $bindable(false),
+    selectedTags = $bindable(Object.values(tags).map((v) => v.title)),
+  }: {
+    sortAsAsc?: boolean;
+    selectedTags?: string[];
+  } = $props();
 
-  let isOpen = false;
+  let isOpen = $state(false);
 
   const items = getEntries(tags).map(([value, { title, icon }]) => ({
     value,
@@ -21,7 +26,7 @@
 <div class="sort">
   <button
     class="taged"
-    on:click={() => {
+    onclick={() => {
       isOpen = !isOpen;
     }}>tag</button
   >
@@ -29,7 +34,7 @@
     <div class="select" transition:slide={{ duration: 200 }}>
       <div>
         <button
-          on:click={() => {
+          onclick={() => {
             const fullySelected = selectedTags.length === items.length;
             selectedTags = fullySelected ? [] : items.map(({ label }) => label);
           }}
@@ -56,7 +61,7 @@
     </div>
   {/if}
   <Tag
-    on:click={() => {
+    onclick={() => {
       sortAsAsc = !sortAsAsc;
     }}>公開日</Tag
   >
@@ -118,11 +123,5 @@
       }
     }
 
-    .icon {
-      display: grid;
-      grid-template-columns: 30px 1fr;
-      gap: $spacing-2;
-      align-items: center;
-    }
   }
 </style>

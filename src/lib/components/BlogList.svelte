@@ -5,29 +5,35 @@
   import { tags } from "$lib/utils/types/blogs";
   import type { EndPoints } from "$lib/utils/types/microcms";
 
-  export let more: boolean = false;
-  export let blogs: EndPoints["gets"]["blogs"];
-  export let limit: number | undefined = undefined;
+  let {
+    more = false,
+    blogs,
+    limit = undefined,
+  }: {
+    more?: boolean;
+    blogs: EndPoints["gets"]["blogs"];
+    limit?: number | undefined;
+  } = $props();
 
-  const blogDataList = blogs.contents;
+  const blogDataList = $derived(blogs.contents);
 
-  let sortAsAsc = false;
-  let selectedTags = Object.values(tags).map((v) => v.title);
+  let sortAsAsc = $state(false);
+  let selectedTags = $state(Object.values(tags).map((v) => v.title));
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  let _blogDataList = [...blogDataList];
+  const _blogDataList = $derived(
+    [...blogDataList]
+      .sort((a, b) => {
+        const asc = a.publishedAt > b.publishedAt;
+        const desc = a.publishedAt < b.publishedAt;
 
-  $: _blogDataList = blogDataList
-    .sort((a, b) => {
-      const asc = a.publishedAt > b.publishedAt;
-      const desc = a.publishedAt < b.publishedAt;
-
-      return (sortAsAsc ? asc : desc) ? 1 : -1;
-    })
-    .filter(({ tags: _tags }) =>
-      _tags.some((tag) => selectedTags.includes(tag)),
-    )
-    .slice(0, limit ?? blogDataList.length);
+        return (sortAsAsc ? asc : desc) ? 1 : -1;
+      })
+      .filter(({ tags: _tags }) =>
+        _tags.some((tag) => selectedTags.includes(tag)),
+      )
+      .slice(0, limit ?? blogDataList.length),
+  );
 </script>
 
 {#if more}

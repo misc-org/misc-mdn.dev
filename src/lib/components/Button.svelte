@@ -1,14 +1,17 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher();
+  import type { Snippet } from "svelte";
 
-  function handleClick() {
-    dispatch("click");
-  }
+  let {
+    onclick,
+    children,
+  }: {
+    onclick?: (event: MouseEvent) => void;
+    children: Snippet;
+  } = $props();
 </script>
 
 <div id="next">
-  <button on:click={handleClick}><slot /></button>
+  <button {onclick}>{@render children()}</button>
 </div>
 
 <style lang="scss">

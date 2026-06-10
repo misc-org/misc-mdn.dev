@@ -2,10 +2,10 @@
   import { formatDate } from "$lib/utils/services/datefmt";
   import type { EndPoints } from "$lib/utils/types/microcms";
 
-  // NOTE: 分割代入を行うと, リアクティブ性が失われるので注意
-  // let { id, ogpImg, title, publishedAt, tags } = blogData;
-  export let blogData: EndPoints["get"]["blogs"];
-  const nonInternalTags = blogData.tags.filter((t) => !t.startsWith("_"));
+  let { blogData }: { blogData: EndPoints["get"]["blogs"] } = $props();
+  const nonInternalTags = $derived(
+    blogData.tags.filter((t) => !t.startsWith("_")),
+  );
 </script>
 
 <div>
@@ -56,20 +56,6 @@
 
       &:hover {
         transform: scale(1.1);
-      }
-    }
-  }
-
-  h3 {
-    margin: $spacing-2 0;
-
-    a {
-      color: $color-text;
-      text-decoration: none;
-      opacity: 1;
-
-      &:hover {
-        text-decoration: underline;
       }
     }
   }

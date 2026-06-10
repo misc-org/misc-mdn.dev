@@ -1,28 +1,7 @@
-:root {
-  color-scheme: light;
-
-  --color-text: #000;
-  --color-bg: #f3f3f3;
-  --color-neutral: #d9d9d9;
-  --color-highlight: #f4ff73;
-
-  --color-static-black: #000;
-  --color-static-white: #fff;
-  --color-static-gray: #ccc;
-}
-
-html[data-theme="dark"] {
-  color-scheme: dark;
-
-  --color-text: #f3f3f3;
-  --color-bg: #333;
-  --color-neutral: #d9d9d9;
-  --color-highlight: #999e5f;
-
-  --color-static-black: #333;
-  --color-static-white: #f3f3f3;
-  --color-static-gray: #ccc;
-}
+// NOTE: 実際のカスタムプロパティ定義（:root / html[data-theme=dark]）は
+// グローバルに一度だけ読み込まれる _global.scss に置く。
+// このファイルは additionalData で全コンポーネントに注入されるため、
+// CSS ルールを含めず SCSS 変数の定義のみとする。
 
 $color-text: var(--color-text);
 $color-bg: var(--color-bg);

@@ -3,7 +3,7 @@
   import BlogList from "$lib/components/BlogList.svelte";
   import Marker from "$lib/components/Marker.svelte";
 
-  export let data: PageData;
+  let { data }: { data: PageData } = $props();
 </script>
 
 <h1>

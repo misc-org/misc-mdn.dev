@@ -2,7 +2,7 @@
   import type { PageData } from "./$types";
   import BlogDetails from "$lib/components/BlogDetails.svelte";
 
-  export let data: PageData;
+  let { data }: { data: PageData } = $props();
 </script>
 
 <BlogDetails details={data.detail} />
