@@ -12,7 +12,7 @@
     "fmt": "prettier --write .",
     "lint": "eslint ./src/",
     "generate:cms": "npx --yes microcms-typescript schemas src/lib/utils/types/microcms.ts",
-    "test": "tsc && prettier --check ./src/ && bun run lint && vitest --run",
+    "test": "tsc && prettier --check ./src/ && eslint ./src/ && vitest --run",
     "create-empty-mocks": "node scripts/create-empty-mocks.mjs",
     "clean": "npx --yes rimraf ./node_modules ./dist ./.sveltekit"
   },
