@@ -78,7 +78,7 @@
     position: relative;
 
     @include mobile {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
     }
 
     button {

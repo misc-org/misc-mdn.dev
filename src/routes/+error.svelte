@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
 </script>
 
 <div>
-  <div class="status">{$page.status}</div>
+  <div class="status">{page.status}</div>
   <hr />
-  <h1 class="message">{$page.error?.message}</h1>
+  <h1 class="message">{page.error?.message}</h1>
 </div>
 
 <style lang="scss">

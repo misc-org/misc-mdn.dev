@@ -1,10 +1,14 @@
 <script lang="ts">
+  import { addCollection } from "@iconify/svelte";
+  import mdiIcons from "@iconify-json/mdi/icons.json";
   import extend from "just-extend";
   import type { Snippet } from "svelte";
   import { MetaTags } from "svelte-meta-tags";
+
+  addCollection(mdiIcons as Parameters<typeof addCollection>[0]);
   import { setupViewTransition } from "sveltekit-view-transition";
   import type { LayoutData } from "./$types";
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import Footer from "$lib/components/Footer.svelte";
   import Header from "$lib/components/Header.svelte";
 
@@ -20,7 +24,7 @@
   let { data, children }: { data: LayoutData; children: Snippet } = $props();
 
   const metaTags = $derived(
-    extend(true, {}, data.baseMetaTags, $page.data.pageMetaTags),
+    extend(true, {}, data.baseMetaTags, page.data.pageMetaTags),
   );
 </script>
 

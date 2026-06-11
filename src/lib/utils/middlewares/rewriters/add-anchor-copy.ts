@@ -15,5 +15,5 @@ export function addAnchorCopy(html: string): string {
     $elem.prepend(btn);
   });
 
-  return $.html();
+  return $("body").html() ?? html;
 }

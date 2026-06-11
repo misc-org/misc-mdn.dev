@@ -36,13 +36,13 @@
   <div id="image" style={`view-transition-name: ${details.id}-thumbnail`}>
     <BlogImage imageData={details.ogpImg} alt={details.title} />
   </div>
-</div>
-
-<article>
   <div id="date-at">
     <p>公開日：{formatDate(details.publishedAt)}</p>
     <p>更新日：{formatDate(details.updatedAt)}</p>
   </div>
+</div>
+
+<article>
   <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   {@html rewriteHTML(details.content)}
 </article>
@@ -61,6 +61,7 @@
       :not(h1) {
         padding-inline: $spacing-2;
       }
+      
       div {
         display: grid;
         grid-template-columns: 1fr;
@@ -88,6 +89,12 @@
 
     #image {
       display: block;
+      padding: $spacing-5;
+    }
+
+    #date-at {
+      display: flex;
+      flex-direction: column;
       padding: $spacing-5;
     }
   }
@@ -132,11 +139,7 @@
     padding: auto 0;
     line-height: 1.8;
     text-align: justify;
-
-    #date-at {
-      display: flex;
-      flex-direction: column;
-    }
+    margin: $spacing-5 0;
   }
 
   @include mobile {

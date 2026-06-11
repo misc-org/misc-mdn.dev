@@ -35,5 +35,5 @@ export function highlight(html: string): string {
     $container.addClass("code-block");
   });
 
-  return $.html();
+  return $("body").html() ?? html;
 }
