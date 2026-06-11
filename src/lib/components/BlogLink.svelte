@@ -81,4 +81,8 @@
     margin: 5px;
     font-size: 0.8em;
   }
+
+  h1:hover {
+    text-decoration: underline;
+  }
 </style>

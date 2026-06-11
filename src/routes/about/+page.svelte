@@ -56,20 +56,20 @@
     </p>
     <ul>
       <li>
-        <a href="https://svelte.jp/">Svelte / SvelteKit</a>
+        <a target="_blank" href="https://svelte.jp/">Svelte / SvelteKit</a>
       </li>
       <li>
-        <a href="https://www.typescriptlang.org/">TypeScript</a>
+        <a target="_blank" href="https://www.typescriptlang.org/">TypeScript</a>
       </li>
       <li>
-        <a href="https://sass-lang.com/">SCSS</a>
+        <a target="_blank" href="https://sass-lang.com/">SCSS</a>
       </li>
       <li>
-        <a href="https://microcms.io/">microCMS</a>
+        <a target="_blank" href="https://microcms.io/">microCMS</a>
       </li>
     </ul>
     <p>
-      このサイトは、<a href="https://github.com/misc-org/misc-mdn.dev">GitHub</a
+      このサイトは、<a target="_blank" href="https://github.com/misc-org/misc-mdn.dev">GitHub</a
       >でソースコードを公開しています。
     </p>
   </article>
@@ -104,14 +104,19 @@
       }
 
       div {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        display: flex;
+        flex-direction: column;
         gap: $spacing-5;
 
         div {
+          min-width: 400px;
           padding: $spacing-2;
           border-radius: 5px;
           background-color: #d9d9d9;
+
+          @include mobile {
+            min-width: 300px;
+          }
         }
 
         p {

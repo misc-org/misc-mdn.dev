@@ -56,6 +56,6 @@
     padding: 0 $spacing-8;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: $spacing-8;
+    gap: $spacing-10;
   }
 </style>

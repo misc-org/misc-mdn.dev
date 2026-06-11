@@ -19,5 +19,5 @@ export function processFigure(html: string): string {
     );
   });
 
-  return $.html();
+  return $("body").html() ?? html;
 }

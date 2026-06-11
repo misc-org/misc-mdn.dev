@@ -46,7 +46,7 @@
   <Marker>blogs</Marker>
 </h2>
 
-<section>
+<section id="blogs">
   <BlogList blogs={data.blogList} {limit} />
 </section>
 
@@ -96,6 +96,10 @@
 
   h2 {
     padding-block: $spacing-10;
+  }
+
+  #blogs {
+    padding: $spacing-10;
   }
 
   #arrow {
